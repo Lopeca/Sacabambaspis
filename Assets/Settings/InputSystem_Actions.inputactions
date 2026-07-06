@@ -1,6 +1,115 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
+        {
+            "name": "LevelEditor",
+            "id": "e1c85b5a-d683-431b-9c42-dad86a85eb79",
+            "actions": [
+                {
+                    "name": "ZoomIn",
+                    "type": "Button",
+                    "id": "feaa8c02-6696-49bd-8735-33b1cea1b4a5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ZoomOut",
+                    "type": "Button",
+                    "id": "3dfbff11-b6f3-4672-a065-53263f9c2397",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ZoomReset",
+                    "type": "Button",
+                    "id": "a73c7498-2d0b-4225-9f11-af71ac49629e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TogglePanMode",
+                    "type": "Button",
+                    "id": "5c5bb73c-9dbb-4bde-a869-2698509d7653",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OnClick",
+                    "type": "Button",
+                    "id": "fa94e7b2-35d8-4fad-8c8f-a95d582a43fe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0c3ac01b-fbaf-444d-8b89-e690800c4320",
+                    "path": "<Keyboard>/equals",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ZoomIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dccc58f-f2b6-4ee4-b484-875a889ce86a",
+                    "path": "<Keyboard>/minus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5a64010-cfeb-4d1d-9ff4-e57ea4f30082",
+                    "path": "<Keyboard>/quote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomReset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d15bb37-d514-4004-8b15-4ea73a666f09",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TogglePanMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fd533b7-891d-4c5d-a5bd-44a03a517f89",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
         {
             "name": "Player",
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
