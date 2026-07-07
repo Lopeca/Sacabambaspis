@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class LevelEditorManager : MonoBehaviour
@@ -19,17 +20,26 @@ public class LevelEditorManager : MonoBehaviour
     private Camera mainCam;
 
     public Transform matrixRoot;
-    [SerializeField] private GameObject tilePrefab;
     
     private const int MAX_WIDTH = 128;
     private const int MAX_HEIGHT = 128;
     
     private MatrixCell[,] mapGrid;
+    public MatrixCell[,] MapGrid { get => mapGrid; }
 
     [Header("플래그 정리")] 
     private bool isSpacePressed;
     private bool isDrawing;
     private bool isErasing;
+
+    [Header("선택된 타일 프리팹")] 
+    public GameObject selectedTile;
+    
+    [Header("UI")]
+    [SerializeField] private TilePaletteWindow tilePaletteWindow;
+    public TilePaletteWindow TilePaletteWindow => tilePaletteWindow;
+
+    public bool IsInteractingWithUI { get; set; } = false;
     void Awake()
     {
         if (!instance)
@@ -51,11 +61,80 @@ public class LevelEditorManager : MonoBehaviour
     void Update()
     {
         if (isSpacePressed) return;
+        // [방어벽 2] ★ 마우스가 UI 레이어 위에 있다면 맵 그리기를 완전히 스킵!
+        if (IsInteractingWithUI) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        
         if (isDrawing)
         {
             PutTile();
         }
+        else if (isErasing)
+        {
+            EraseTile();
+        }
     }
+    
+    private void PutTile()
+    {
+        if (!selectedTile) return;
+        
+        Vector3 mouseWorldPos = MouseWorldPos();
+
+        // 4. 월드 좌표를 격자 인덱스(정수)로 변환 (그리드 스냅)
+        // Mathf.FloorToInt를 쓰면 커서가 셀 영역 안(-0.5 ~ +0.5 등) 어디에 있든 정확히 하나의 정수로 묶입니다.
+        int posXInt = Mathf.FloorToInt(mouseWorldPos.x);
+        int posYInt = Mathf.FloorToInt(mouseWorldPos.y);
+        
+        int gridX = posXInt + MAX_WIDTH / 2;
+        int gridY = posYInt + MAX_HEIGHT / 2;
+        
+        if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
+        
+        if (mapGrid[gridX, gridY].GetObject())
+        {
+            //Debug.Log($"이미 [{gridX}, {gridY}] 위치에 타일이 존재합니다.");
+            return;
+        }
+        
+        // 7. 타일 생성 및 정중앙 배치
+        // 중심점이 한가운데인 프리팹이므로, 변환된 정수 좌표(gridX, gridY)에 그대로 배치하면 정확히 격자에 딱 들어맞습니다.
+        Vector3 spawnPosition = new Vector3(posXInt + 0.5f, posYInt + 0.5f, 0f);
+        MatrixCell cellComponent = mapGrid[gridX, gridY];
+        
+        GameObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform);
+        
+        cellComponent.SetObject(spawnedObject);
+        cellComponent.SetPosition(posXInt, posYInt);
+    }
+
+    private Vector3 MouseWorldPos()
+    {
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, mainCam.nearClipPlane));
+        return mouseWorldPos;
+    }
+
+    private void EraseTile()
+    {
+        Vector3 mouseWorldPos = MouseWorldPos();
+        
+        int posXInt = Mathf.FloorToInt(mouseWorldPos.x);
+        int posYInt = Mathf.FloorToInt(mouseWorldPos.y);
+        
+        int gridX = posXInt + MAX_WIDTH / 2;
+        int gridY = posYInt + MAX_HEIGHT / 2;
+        
+        if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
+        
+        GameObject target = mapGrid[gridX, gridY].GetObject();
+        if (target)
+        {
+            Destroy(target);
+            mapGrid[gridX, gridY].SetObject(null);
+        }
+    }
+
     private void GenerateInitialGrid()
     {
         // 최상위 루트가 없다면 스크립트가 붙은 오브젝트를 루트로 삼아 방어
@@ -103,12 +182,23 @@ public class LevelEditorManager : MonoBehaviour
         }
     }
 
+    // 이 함수는 직접 바인딩이 아니라 카메라 팬 기능이 없을 때를 전제로 __CameraController.cs 로부터 호출되고 있습니다.
     public void OnGridClick(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
             isDrawing = true;
+        }
         else if (context.canceled)
             isDrawing = false;
+    }
+
+    public void OnGridRightClick(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            isErasing = true;
+        else if (context.canceled)
+            isErasing = false;
     }
 
     public void OnSpacePressed(InputAction.CallbackContext context)
@@ -117,37 +207,5 @@ public class LevelEditorManager : MonoBehaviour
             isSpacePressed = true;
         else if (context.canceled)
             isSpacePressed = false;
-    }
-
-    private void PutTile()
-    {
-        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
-        Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, mainCam.nearClipPlane));
-
-        // 4. 월드 좌표를 격자 인덱스(정수)로 변환 (그리드 스냅)
-        // Mathf.FloorToInt를 쓰면 커서가 셀 영역 안(-0.5 ~ +0.5 등) 어디에 있든 정확히 하나의 정수로 묶입니다.
-        int posXInt = Mathf.FloorToInt(mouseWorldPos.x);
-        int posYInt = Mathf.FloorToInt(mouseWorldPos.y);
-        
-        int gridX = posXInt + MAX_WIDTH / 2;
-        int gridY = posYInt + MAX_HEIGHT / 2;
-        
-        if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
-        
-        if (mapGrid[gridX, gridY].GetObject())
-        {
-            Debug.Log($"이미 [{gridX}, {gridY}] 위치에 타일이 존재합니다.");
-            return;
-        }
-        
-        // 7. 타일 생성 및 정중앙 배치
-        // 중심점이 한가운데인 프리팹이므로, 변환된 정수 좌표(gridX, gridY)에 그대로 배치하면 정확히 격자에 딱 들어맞습니다.
-        Vector3 spawnPosition = new Vector3(posXInt + 0.5f, posYInt + 0.5f, 0f);
-        MatrixCell cellComponent = mapGrid[gridX, gridY];
-        
-        GameObject spawnedObject = Instantiate(tilePrefab, spawnPosition, Quaternion.identity, cellComponent.transform);
-        
-        cellComponent.SetObject(spawnedObject);
-        cellComponent.SetPosition(posXInt, posYInt);
     }
 }

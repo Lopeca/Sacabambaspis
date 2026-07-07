@@ -1,20 +1,28 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class LevelEditorController : MonoBehaviour
+public class LevelEditorCameraController : MonoBehaviour
 {
     public Camera _cam;
 
-    private const float baseSize = 5;
-    private const float maxSize = 3;
-    private const float minSize = 7;
+    private const float baseSize = 6;
+    private const float maxSize = 4;
+    private const float minSize = 8;
 
     [Header("카메라 이동 제어 변수")]
     private bool isSpacePressed = false;
     private bool isDragging = false;
     private Vector3 dragStartMousePos;
     private Vector3 dragStartCamPos;
-    
+
+    private Vector3 camInitPos;
+    private void Awake()
+    {
+        camInitPos = _cam.transform.position;
+    }
+
     void LateUpdate()
     {
         // 스페이스바와 마우스 좌클릭이 동시에 유지되고 있을 때만 드래그 이동 처리
@@ -105,8 +113,32 @@ public class LevelEditorController : MonoBehaviour
     {
         if (!context.performed) return;
         _cam.orthographicSize = baseSize;
-        _cam.transform.position = Vector3.zero;
+        _cam.transform.position = camInitPos;
 
+    }
+
+    public void ZoomScroll(InputAction.CallbackContext context)
+    {
+        // 휠을 굴리는 중(performed) 일 때만 작동
+        if (!context.performed) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        // 휠의 Vector2 값을 읽어옵니다.
+        Vector2 scrollValue = context.ReadValue<Vector2>();
+
+        // scrollValue.y 가 0보다 크면 위로 굴린 것(확대), 0보다 작으면 아래로 굴린 것(축소)
+        if (scrollValue.y > 0f)
+        {
+            _cam.orthographicSize -= 0.5f;
+            if (_cam.orthographicSize < maxSize)
+                _cam.orthographicSize = maxSize;
+            
+        }
+        else if (scrollValue.y < 0f)
+        {
+            _cam.orthographicSize += 0.5f;
+            if(_cam.orthographicSize > minSize)
+                _cam.orthographicSize = minSize;
+        }
     }
     
     #endregion
