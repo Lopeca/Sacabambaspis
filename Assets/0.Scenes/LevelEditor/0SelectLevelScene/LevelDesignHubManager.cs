@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectLevelForEditManager : MonoBehaviour
+public class LevelDesignHubManager : MonoBehaviour
 {
-    public static SelectLevelForEditManager Instance;
+    public static LevelDesignHubManager Instance;
     
     private CustomLevelFileSystem.LevelFolderNode node;
 
@@ -17,8 +17,12 @@ public class SelectLevelForEditManager : MonoBehaviour
     
     [SerializeField] private GameObject popupRayLockPanel;
 
+    [Header("팝업")] 
+    public GameObject createFolderPopup;
 
-    
+
+    // 레벨 작업을 하다가 돌아왔을 때 마지막 탐색하던 폴더를 계속 보기 위한 싱글톤 보존 플래그
+    // 즉 편집 모드를 나갔을 때는 싱글톤 파괴로 폴더 탐색 현황이 초기화되도록대응할 예정
     bool initialized;
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class SelectLevelForEditManager : MonoBehaviour
     {
         if (initialized) return;
         
+        //node 관련 코드는 폴더 구조 가져오기
         node = CustomLevelFileSystem.ScanTree();
         nodeList = new Stack<CustomLevelFileSystem.LevelFolderNode>();
         nodeList.Push(node);
@@ -44,7 +49,7 @@ public class SelectLevelForEditManager : MonoBehaviour
         RefreshView();
     }
 
-    private void RefreshView()
+    public void RefreshView()
     {
         contentRoot.ClearChildren();
 
@@ -62,6 +67,11 @@ public class SelectLevelForEditManager : MonoBehaviour
         }
     }
 
+    public string GetCurrentFolderPath()
+    {
+        return nodeList.Peek().FullPath;
+    }
+
     private void CreateNavigateBackButton()
     {
         Instantiate(navBackBtnPrefab, contentRoot.transform);
@@ -72,12 +82,24 @@ public class SelectLevelForEditManager : MonoBehaviour
     public void OnClickCreateFolderBtn()
     {
         popupRayLockPanel.SetActive(true);
+        createFolderPopup.SetActive(true);
     }
 
     public void OnClickCreateLevelBtn()
     {
         popupRayLockPanel.SetActive(true);
     }
+
+    public void OnClickExplorerBtn()
+    {
+        string currentFolderPath = GetCurrentFolderPath();
+        System.Diagnostics.Process.Start(currentFolderPath);
+    }
     
     #endregion
+
+    public void DisablePopupRayBlocker()
+    {
+        popupRayLockPanel.SetActive(false);
+    }
 }
