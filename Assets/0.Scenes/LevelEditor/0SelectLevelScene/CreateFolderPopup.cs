@@ -8,18 +8,18 @@ public class CreateFolderPopup : MonoBehaviour
 
     public void OnClickCreateBtn()
     {
-        string path = LevelDesignHubManager.Instance.GetCurrentFolderPath();
+        string path = CustomLevelExplorer.Instance.GetCurrentFolderPath();
         string folderName = folderNameInput.text;
         CustomLevelFileSystem.CreateFolder(path, folderName);
         
-        LevelDesignHubManager.Instance.RefreshView();
-        LevelDesignHubManager.Instance.DisablePopupRayBlocker();
+        CustomLevelExplorer.Instance.RefreshView();
+        CustomLevelExplorer.Instance.DisablePopupRayBlocker();
         gameObject.SetActive(false);
     }
 
     public void OnClickCancelBtn()
     {
-        LevelDesignHubManager.Instance.DisablePopupRayBlocker();
+        CustomLevelExplorer.Instance.DisablePopupRayBlocker();
         gameObject.SetActive(false);
     }
 }

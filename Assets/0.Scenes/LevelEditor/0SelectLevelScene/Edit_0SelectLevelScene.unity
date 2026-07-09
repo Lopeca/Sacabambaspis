@@ -1439,7 +1439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.00021130133}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1142676798
@@ -2906,9 +2906,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectLevelForEditManager
   contentRoot: {fileID: 1142676796}
-  navBackBtnPrefab: {fileID: 0}
-  navFolderBtnPrefab: {fileID: 0}
-  navLevelBtnPrefab: {fileID: 0}
+  navBackBtnPrefab: {fileID: 3000397930915607383, guid: 153ca83e9ddc06146b01ea3c134b1695, type: 3}
+  navFolderBtnPrefab: {fileID: 5347680792719509812, guid: 514cc73dbaf9f8c4e9feb820e359974b, type: 3}
+  navLevelBtnPrefab: {fileID: 2408344563387584478, guid: 47a4be14fcf305945be903c509a8f173, type: 3}
   popupRayLockPanel: {fileID: 125646587}
   createFolderPopup: {fileID: 1429332996}
 --- !u!4 &1882153080
@@ -3386,7 +3386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2103292052}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1882153079}
+        m_TargetAssemblyTypeName: CustomLevelExplorer, Assembly-CSharp
+        m_MethodName: OnClickCreateLevelBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2103292052
 MonoBehaviour:
   m_ObjectHideFlags: 0
