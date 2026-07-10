@@ -152,6 +152,7 @@ public static class CustomLevelFileSystem
     public static LevelSaveData LoadLevel(string levelFileFullPathWithoutExt)
     {
         string fullPath = levelFileFullPathWithoutExt + Extension;
+        Debug.Log("로드 경로 : " + fullPath);
         if (!File.Exists(fullPath)) return null;
         return JsonUtility.FromJson<LevelSaveData>(File.ReadAllText(fullPath));
     }

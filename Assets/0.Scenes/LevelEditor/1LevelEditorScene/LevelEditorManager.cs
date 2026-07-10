@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -38,8 +41,8 @@ public class LevelEditorManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TilePaletteWindow tilePaletteWindow;
     public TilePaletteWindow TilePaletteWindow => tilePaletteWindow;
-
     public bool IsInteractingWithUI { get; set; } = false;
+    
     void Awake()
     {
         if (!instance)
@@ -57,6 +60,33 @@ public class LevelEditorManager : MonoBehaviour
         // ★ [추가] 게임 시작 시 격자 무대 미리 생성 및 하이어라키 정리
         GenerateInitialGrid();
     }
+    private void Start()
+    {
+        if (CustomLevelExplorer.Instance.LoadedLevel == null)
+        {
+            tilePaletteWindow.SaveBtn.gameObject.SetActive(false);
+        }
+        else
+        {
+            ConvertLevelDataToMapGrid();
+        }
+    }
+
+    private void ConvertLevelDataToMapGrid()
+    {
+        List<TileSaveData> mapData = CustomLevelExplorer.Instance.LoadedLevel.tiles;
+
+        foreach (TileSaveData tileData in mapData)
+        {
+            selectedTile = TilePrefabPair.Instance.GetPrefab(tileData.tileKey);
+            PutTile(tileData.posX, tileData.posY);
+        }
+
+        TilePaletteWindow.Init();
+    }
+
+  
+
 
     void Update()
     {
@@ -102,10 +132,21 @@ public class LevelEditorManager : MonoBehaviour
         Vector3 spawnPosition = new Vector3(posXInt + 0.5f, posYInt + 0.5f, 0f);
         MatrixCell cellComponent = mapGrid[gridX, gridY];
         
-        GameObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform);
+        MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
         
         cellComponent.SetObject(spawnedObject);
-        cellComponent.SetPosition(posXInt, posYInt);
+        cellComponent.SetPosition(gridX, gridY);
+    }
+
+    public void PutTile(int x, int y)
+    {
+        Vector3 spawnPosition = new Vector3(x + 0.5f - MAX_WIDTH/2, y + 0.5f- MAX_HEIGHT/2);
+        MatrixCell cellComponent = mapGrid[x, y];
+        
+        MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
+        
+        cellComponent.SetObject(spawnedObject);
+        cellComponent.SetPosition(x, y);
     }
 
     private Vector3 MouseWorldPos()
@@ -125,13 +166,18 @@ public class LevelEditorManager : MonoBehaviour
         int gridX = posXInt + MAX_WIDTH / 2;
         int gridY = posYInt + MAX_HEIGHT / 2;
         
+        Debug.Log("Erase : " + gridX + ", " + gridY);
         if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
         
-        GameObject target = mapGrid[gridX, gridY].GetObject();
+        MatrixObject target = mapGrid[gridX, gridY].GetObject();
         if (target)
         {
-            Destroy(target);
+            Destroy(target.GameObject());
             mapGrid[gridX, gridY].SetObject(null);
+        }
+        else
+        {
+            Debug.Log("?");
         }
     }
 
@@ -207,5 +253,24 @@ public class LevelEditorManager : MonoBehaviour
             isSpacePressed = true;
         else if (context.canceled)
             isSpacePressed = false;
+    }
+
+    public void ConvertDataAndSave()
+    {
+        LevelSaveData loadedData = CustomLevelExplorer.Instance.LoadedLevel;
+        loadedData.tiles.Clear();
+        
+        for (int y = 0; y < mapGrid.GetLength(1); y++){
+            for (int x = 0; x < mapGrid.GetLength(0); x++)
+            {
+                TileSaveData tileSaveData = mapGrid[x, y].ToSaveData();
+                if (tileSaveData != null)
+                {
+                    loadedData.tiles.Add(tileSaveData);
+                }
+            }
+        }
+        
+        CustomLevelManager.SaveLevel();
     }
 }

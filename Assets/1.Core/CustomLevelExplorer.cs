@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+
+// 커스텀 레벨 탐색기. 일단은 폴더추가/삭제가 든 에디터용과 단순 플레이용의 기능을 따로 분리하지 않고 만드는 중
 public class CustomLevelExplorer : MonoBehaviour
 {
     public static CustomLevelExplorer Instance;
@@ -9,7 +13,10 @@ public class CustomLevelExplorer : MonoBehaviour
     private CustomLevelFileSystem.LevelFolderNode node;
 
     private Stack<CustomLevelFileSystem.LevelFolderNode> nodeList;
-    
+
+    private LevelSaveData loadedLevel;
+    public LevelSaveData LoadedLevel => loadedLevel;
+
     [SerializeField] GameObject contentRoot;
     [SerializeField] private GameObject navBackBtnPrefab;
     [SerializeField] private GameObject navFolderBtnPrefab;
@@ -17,6 +24,9 @@ public class CustomLevelExplorer : MonoBehaviour
     
     [SerializeField] private GameObject popupRayLockPanel;
 
+    [Header("UISets")]
+    public GameObject HubUI;
+    
     [Header("팝업")] 
     public GameObject createFolderPopup;
 
@@ -133,36 +143,65 @@ public class CustomLevelExplorer : MonoBehaviour
         RefreshView();
     }
 
+    public void OnClickExplorerBtn()
+    {
+        string currentFolderPath = GetCurrentFolderPath();
+        System.Diagnostics.Process.Start(currentFolderPath);
+    }
+
+    public void OnClickRefreshBtn()
+    {
+        // 현재 깊은 폴더 유지하려다 터지는 것보다, 깔끔하게 루트부터 다시 스캔하는 게 안전
+        nodeList.Clear();
+        node = CustomLevelFileSystem.ScanTree(); // 루트부터 완전 재스캔
+        nodeList.Push(node);
+    
+        RefreshView();
+    }
+    
+    #endregion
+
     private bool LevelFileNameExist(string newLevelName)
     {
         bool isExist = nodeList.Peek().LevelFiles.Exists(e => e == newLevelName);
         Debug.Log(isExist);
         return isExist;
     }
-
-    public void OnClickExplorerBtn()
-    {
-        string currentFolderPath = GetCurrentFolderPath();
-        System.Diagnostics.Process.Start(currentFolderPath);
-    }
-    
-    #endregion
-
     public void DisablePopupRayBlocker()
     {
         popupRayLockPanel.SetActive(false);
     }
 
+    // 탐색기에서 상위폴더 버튼 클릭 시
     public void NavBack()
     {
         nodeList.Pop();
         RefreshView();
     }
 
+    // 탐색기에서 폴더 버튼 클릭 시
     public void NavFolder(string buttonNameText)
     {
-        CustomLevelFileSystem.LevelFolderNode targetNode = node.SubFolders.Find(e=>e.FolderName==buttonNameText);
+        CustomLevelFileSystem.LevelFolderNode targetNode = nodeList.Peek().SubFolders.Find(e=>e.FolderName==buttonNameText);
         nodeList.Push(targetNode);
         RefreshView();
     }
+
+    #region 씬 여는 함수들
+    public void LoadLevelToEditor(string buttonNameText)
+    {
+        loadedLevel = CustomLevelFileSystem.LoadLevel(Path.Combine(GetCurrentFolderPath(),buttonNameText));
+        
+        Debug.Log(loadedLevel);
+        
+        SceneManager.LoadScene("Edit_1LevelEditorScene");
+        HubUI.SetActive(false);
+    }
+
+    public void LoadLevelEditorHub()
+    {
+        SceneManager.LoadScene("Edit_0LevelEditorHubScene");
+        HubUI.SetActive(true);
+    }
+    #endregion
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelExplorerButton : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class LevelExplorerButton : MonoBehaviour
     public void OnClickFolderButton()
     {
         CustomLevelExplorer.Instance.NavFolder(buttonName.text);
+    }
+
+    public void OnClickLevelButton()
+    {
+        CustomLevelExplorer.Instance.LoadLevelToEditor(buttonName.text);
     }
     
 }
