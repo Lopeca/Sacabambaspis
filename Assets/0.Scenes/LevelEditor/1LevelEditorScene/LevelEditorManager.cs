@@ -5,6 +5,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
+
+public enum EditorMode
+{
+    Edit,
+    Play
+}
 public class LevelEditorManager : MonoBehaviour
 {
     public static LevelEditorManager instance;
@@ -20,13 +26,18 @@ public class LevelEditorManager : MonoBehaviour
             return instance;
         }
     }
+    private EditorMode editorMode;
+    public EditorMode EditorMode => editorMode;
+    
     private Camera mainCam;
 
     public Transform matrixRoot;
+    public GameObject gridPaper;
     
     private const int MAX_WIDTH = 128;
     private const int MAX_HEIGHT = 128;
     
+    // 에디터용 그리드. 
     private MatrixCell[,] mapGrid;
     public MatrixCell[,] MapGrid { get => mapGrid; }
 
@@ -57,6 +68,7 @@ public class LevelEditorManager : MonoBehaviour
         mainCam = Camera.main;
         mapGrid = new MatrixCell[MAX_WIDTH, MAX_HEIGHT];
         
+        editorMode = EditorMode.Edit;
         // ★ [추가] 게임 시작 시 격자 무대 미리 생성 및 하이어라키 정리
         GenerateInitialGrid();
     }
@@ -90,18 +102,21 @@ public class LevelEditorManager : MonoBehaviour
 
     void Update()
     {
-        if (isSpacePressed) return;
-        // [방어벽 2] ★ 마우스가 UI 레이어 위에 있다면 맵 그리기를 완전히 스킵!
-        if (IsInteractingWithUI) return;
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
-        
-        if (isDrawing)
+        if (editorMode == EditorMode.Edit)
         {
-            PutTile();
-        }
-        else if (isErasing)
-        {
-            EraseTile();
+            if (isSpacePressed) return;
+            // [방어벽 2] ★ 마우스가 UI 레이어 위에 있다면 맵 그리기를 완전히 스킵!
+            if (IsInteractingWithUI) return;
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
+            if (isDrawing)
+            {
+                PutTile();
+            }
+            else if (isErasing)
+            {
+                EraseTile();
+            }
         }
     }
     
@@ -134,7 +149,7 @@ public class LevelEditorManager : MonoBehaviour
         
         MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
         
-        cellComponent.SetObject(spawnedObject);
+        cellComponent.SetMatrixObject(spawnedObject);
         cellComponent.SetPosition(gridX, gridY);
     }
 
@@ -145,7 +160,7 @@ public class LevelEditorManager : MonoBehaviour
         
         MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
         
-        cellComponent.SetObject(spawnedObject);
+        cellComponent.SetMatrixObject(spawnedObject);
         cellComponent.SetPosition(x, y);
     }
 
@@ -173,7 +188,7 @@ public class LevelEditorManager : MonoBehaviour
         if (target)
         {
             Destroy(target.GameObject());
-            mapGrid[gridX, gridY].SetObject(null);
+            mapGrid[gridX, gridY].SetMatrixObject(null);
         }
         else
         {
@@ -257,6 +272,13 @@ public class LevelEditorManager : MonoBehaviour
 
     public void ConvertDataAndSave()
     {
+        ConvertLevelData();
+        CustomLevelManager.SaveLevel();
+    }
+
+    // CustomLevelExplorer와 강한 연결이 된 함수
+    private void ConvertLevelData()
+    {
         LevelSaveData loadedData = CustomLevelExplorer.Instance.LoadedLevel;
         loadedData.tiles.Clear();
         
@@ -270,7 +292,25 @@ public class LevelEditorManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StartPlaying()
+    {
+        matrixRoot.gameObject.SetActive(false);
+        gridPaper.SetActive(false);
         
-        CustomLevelManager.SaveLevel();
+        ConvertLevelData();
+        GamePlayGridManager.Instance.LoadCustomLevel();
+        editorMode = EditorMode.Play;
+    }
+
+
+    public void StopPlaying()
+    {
+        matrixRoot.gameObject.SetActive(true);
+        gridPaper.SetActive(true);
+
+        GamePlayGridManager.Instance.ClearGrid();
+        editorMode = EditorMode.Edit;
     }
 }

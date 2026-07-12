@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum LookDirection
@@ -15,7 +16,7 @@ public class MatrixCell : MonoBehaviour
     [SerializeField] private MatrixObject go; // 나중에 MatrixObject로 변경할 수도 있음
     
 
-    public void SetObject(MatrixObject go)
+    public void SetMatrixObject(MatrixObject go)
     {
         this.go = go;
     }
@@ -43,5 +44,11 @@ public class MatrixCell : MonoBehaviour
         };
 
         return tileSaveData;
+    }
+
+    private void OnDestroy()
+    {
+        if(go!=null) 
+            Destroy(go);
     }
 }

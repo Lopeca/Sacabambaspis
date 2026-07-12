@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
@@ -12,6 +14,8 @@ public class TilePaletteWindow : MonoBehaviour
 
     [SerializeField] private Button saveBtn;
     public Button SaveBtn => saveBtn;
+    
+    public TMP_Text playButtonText;
     
     public void Init()
     {
@@ -29,13 +33,28 @@ public class TilePaletteWindow : MonoBehaviour
 
     public void OnClickOpenLevelBtn()
     {
-        
+        CustomLevelExplorer.Instance.LoadLevelEditorHub();
     }
 
     public void OnClickSaveBtn()
     {
         LevelEditorManager.Instance.ConvertDataAndSave();
       
+    }
+
+    public void OnClickPlayBtn()
+    {
+        if (LevelEditorManager.Instance.EditorMode == EditorMode.Edit)
+        {
+            LevelEditorManager.Instance.StartPlaying();
+            playButtonText.text = "Stop Playing";
+        }
+        else
+        {
+            LevelEditorManager.Instance.StopPlaying();
+            playButtonText.text = "Play";
+            
+        }
     }
 
   
