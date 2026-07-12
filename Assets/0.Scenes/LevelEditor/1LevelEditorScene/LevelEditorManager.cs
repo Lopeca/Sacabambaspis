@@ -53,6 +53,7 @@ public class LevelEditorManager : MonoBehaviour
     [SerializeField] private TilePaletteWindow tilePaletteWindow;
     public TilePaletteWindow TilePaletteWindow => tilePaletteWindow;
     public bool IsInteractingWithUI { get; set; } = false;
+    [SerializeField] private MatrixCell playerCell;
     
     void Awake()
     {
@@ -69,7 +70,7 @@ public class LevelEditorManager : MonoBehaviour
         mapGrid = new MatrixCell[MAX_WIDTH, MAX_HEIGHT];
         
         editorMode = EditorMode.Edit;
-        // ★ [추가] 게임 시작 시 격자 무대 미리 생성 및 하이어라키 정리
+        
         GenerateInitialGrid();
     }
     private void Start()
@@ -91,6 +92,7 @@ public class LevelEditorManager : MonoBehaviour
         foreach (TileSaveData tileData in mapData)
         {
             selectedTile = TilePrefabPair.Instance.GetPrefab(tileData.tileKey);
+            if (selectedTile.CompareTag("Player")) playerCell = mapGrid[tileData.posX, tileData.posY];
             PutTile(tileData.posX, tileData.posY);
         }
 
@@ -145,12 +147,28 @@ public class LevelEditorManager : MonoBehaviour
         // 7. 타일 생성 및 정중앙 배치
         // 중심점이 한가운데인 프리팹이므로, 변환된 정수 좌표(gridX, gridY)에 그대로 배치하면 정확히 격자에 딱 들어맞습니다.
         Vector3 spawnPosition = new Vector3(posXInt + 0.5f, posYInt + 0.5f, 0f);
+
         MatrixCell cellComponent = mapGrid[gridX, gridY];
-        
-        MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
-        
-        cellComponent.SetMatrixObject(spawnedObject);
-        cellComponent.SetPosition(gridX, gridY);
+        MatrixObject spawnedObject;
+        if (playerCell != null && selectedTile.CompareTag("Player"))
+        {
+            spawnedObject = playerCell.GetObject();
+            
+            playerCell.SetMatrixObject(null);
+            playerCell = cellComponent;
+            cellComponent.SetMatrixObject(spawnedObject);
+            spawnedObject.transform.position = spawnPosition;
+        }
+        else
+        {
+            spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform)
+                .GetComponent<MatrixObject>();
+
+            if (selectedTile.CompareTag("Player"))
+                playerCell = cellComponent;
+
+            cellComponent.SetMatrixObject(spawnedObject);
+        }
     }
 
     public void PutTile(int x, int y)
@@ -161,7 +179,7 @@ public class LevelEditorManager : MonoBehaviour
         MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
         
         cellComponent.SetMatrixObject(spawnedObject);
-        cellComponent.SetPosition(x, y);
+
     }
 
     private Vector3 MouseWorldPos()
@@ -189,11 +207,11 @@ public class LevelEditorManager : MonoBehaviour
         {
             Destroy(target.GameObject());
             mapGrid[gridX, gridY].SetMatrixObject(null);
+
+            if (target.CompareTag("Player"))
+                playerCell = null;
         }
-        else
-        {
-            Debug.Log("?");
-        }
+        
     }
 
     private void GenerateInitialGrid()
@@ -238,6 +256,7 @@ public class LevelEditorManager : MonoBehaviour
                     // cellComponent.SetCoordinate(x, y);
 
                     mapGrid[x, y] = cellComponent;
+                    cellComponent.SetPosition(x,y);
                 }
             }
         }
