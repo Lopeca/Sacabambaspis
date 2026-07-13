@@ -138,7 +138,7 @@ public class LevelEditorManager : MonoBehaviour
         
         if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
         
-        if (mapGrid[gridX, gridY].GetObject())
+        if (mapGrid[gridX, gridY].GetMatrixObject())
         {
             //Debug.Log($"이미 [{gridX}, {gridY}] 위치에 타일이 존재합니다.");
             return;
@@ -152,7 +152,7 @@ public class LevelEditorManager : MonoBehaviour
         MatrixObject spawnedObject;
         if (playerCell != null && selectedTile.CompareTag("Player"))
         {
-            spawnedObject = playerCell.GetObject();
+            spawnedObject = playerCell.GetMatrixObject();
             
             playerCell.SetMatrixObject(null);
             playerCell = cellComponent;
@@ -199,10 +199,9 @@ public class LevelEditorManager : MonoBehaviour
         int gridX = posXInt + MAX_WIDTH / 2;
         int gridY = posYInt + MAX_HEIGHT / 2;
         
-        Debug.Log("Erase : " + gridX + ", " + gridY);
         if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
         
-        MatrixObject target = mapGrid[gridX, gridY].GetObject();
+        MatrixObject target = mapGrid[gridX, gridY].GetMatrixObject();
         if (target)
         {
             Destroy(target.GameObject());
@@ -320,6 +319,7 @@ public class LevelEditorManager : MonoBehaviour
         
         ConvertLevelData();
         GamePlayGridManager.Instance.LoadCustomLevel();
+      
         editorMode = EditorMode.Play;
     }
 
@@ -331,5 +331,7 @@ public class LevelEditorManager : MonoBehaviour
 
         GamePlayGridManager.Instance.ClearGrid();
         editorMode = EditorMode.Edit;
+        
+        
     }
 }

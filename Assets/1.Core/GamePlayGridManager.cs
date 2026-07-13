@@ -17,6 +17,8 @@ public class GamePlayGridManager : MonoBehaviour
     
     private MatrixCell[,] mapGrid;
     
+    public PlayerController player;
+    
     private void Awake()
     {
         instance = this;
@@ -98,13 +100,23 @@ public class GamePlayGridManager : MonoBehaviour
         }
         
         // 매트릭스에 오브젝트 채워넣기
-        foreach (var matrixObject in objects)
+        foreach (TileSaveData matrixObject in objects)
         {
-            MatrixCell targetCell = mapGrid[matrixObject.posX - minX, matrixObject.posY - minY];
+            int cellPosX = matrixObject.posX - minX;
+            int cellPosY = matrixObject.posY - minY;
+            MatrixCell targetCell = mapGrid[cellPosX, cellPosY];
             GameObject targetPrefab = TilePrefabPair.Instance.GetPrefab(matrixObject.tileKey);
             MatrixObject clonedMO = Instantiate(targetPrefab, targetCell.transform.position, Quaternion.identity, targetCell.transform).GetComponent<MatrixObject>();
+            clonedMO.posX = cellPosX;
+            clonedMO.posY = cellPosY;
             
             targetCell.SetMatrixObject(clonedMO);
+
+            if (clonedMO.TryGetComponent<PlayerController>(out var pc))
+            {
+                player = pc; 
+                player.SetReady();
+            }
         }
     }
 
@@ -119,5 +131,52 @@ public class GamePlayGridManager : MonoBehaviour
             Array.Clear(mapGrid, 0, mapGrid.Length);
             mapGrid = null;
         }
+    }
+
+    public MatrixCell GetCell(int x, int y)
+    {
+        return mapGrid[x, y];
+    }
+
+    public bool TryReserveMove(MatrixObject mo, Vector2Int startPos, Vector2Int destPos)
+    {
+        if (mapGrid[destPos.x, destPos.y].state != MatrixCell.CellState.Empty)
+        {
+            Debug.Log("뭔가 있음");
+            return false;
+        }
+        
+        MatrixCell startCell = mapGrid[startPos.x, startPos.y];
+        MatrixCell destCell = mapGrid[destPos.x, destPos.y];
+        
+        startCell.state = MatrixCell.CellState.Using;
+        destCell.state = MatrixCell.CellState.Using;
+        
+        destCell.SetMatrixObject(startCell.GetMatrixObject());
+        startCell.SetMatrixObject(null);
+        return true;
+    }
+    public bool TryReserveAttack(MatrixObject mo, Vector2Int startPos, Vector2Int destPos)
+    {
+        if(mapGrid[destPos.x, destPos.y].state != MatrixCell.CellState.Empty) return false;
+        
+        MatrixCell startCell = mapGrid[startPos.x, startPos.y];
+        MatrixCell destCell = mapGrid[destPos.x, destPos.y];
+        
+        startCell.state = MatrixCell.CellState.Using;
+        destCell.state = MatrixCell.CellState.Danger;
+        
+        destCell.SetMatrixObject(startCell.GetMatrixObject());
+        startCell.SetMatrixObject(null);
+        return true;
+    }
+
+    public void CompleteMove(Vector2Int startPos, Vector2Int destPos)
+    {
+        MatrixCell startCell = mapGrid[startPos.x, startPos.y];
+        MatrixCell destCell = mapGrid[destPos.x, destPos.y];
+        
+        startCell.state = MatrixCell.CellState.Empty;
+        destCell.state = MatrixCell.CellState.Filled;
     }
 }
