@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("MoveInput : " + moveInput);
         if (state == PlayerState.Ready)
         {
             HandleInput();

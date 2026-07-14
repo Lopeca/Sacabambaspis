@@ -37,7 +37,7 @@ public class GridMovement : MonoBehaviour
         startPos = new Vector2Int(mo.posX, mo.posY);
         destPos = new Vector2Int(mo.posX + direction.x, mo.posY + direction.y);
 
-        if (GamePlayGridManager.Instance.TryReserveMove(mo, startPos, destPos))
+        if (GamePlayGridManager.Instance.TryReserveMove(mo, startPos, destPos, direction))
         {
             this.state = targetState;
 

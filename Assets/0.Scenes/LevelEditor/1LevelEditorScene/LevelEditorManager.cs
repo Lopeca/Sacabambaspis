@@ -26,7 +26,7 @@ public class LevelEditorManager : MonoBehaviour
             return instance;
         }
     }
-    private EditorMode editorMode;
+    [SerializeField] private EditorMode editorMode;
     public EditorMode EditorMode => editorMode;
     
     private Camera mainCam;
@@ -40,6 +40,8 @@ public class LevelEditorManager : MonoBehaviour
     // 에디터용 그리드. 
     private MatrixCell[,] mapGrid;
     public MatrixCell[,] MapGrid { get => mapGrid; }
+
+    public AllTilesSO allTilesSO;
 
     [Header("플래그 정리")] 
     private bool isSpacePressed;
@@ -91,7 +93,8 @@ public class LevelEditorManager : MonoBehaviour
 
         foreach (TileSaveData tileData in mapData)
         {
-            selectedTile = TilePrefabPair.Instance.GetPrefab(tileData.tileKey);
+            selectedTile = allTilesSO.GetPrefab(tileData.tileKey);
+            if (selectedTile == null) continue;
             if (selectedTile.CompareTag("Player")) playerCell = mapGrid[tileData.posX, tileData.posY];
             PutTile(tileData.posX, tileData.posY);
         }
@@ -138,7 +141,7 @@ public class LevelEditorManager : MonoBehaviour
         
         if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
         
-        if (mapGrid[gridX, gridY].GetMatrixObject())
+        if (mapGrid[gridX, gridY].matrixObject != null)
         {
             //Debug.Log($"이미 [{gridX}, {gridY}] 위치에 타일이 존재합니다.");
             return;
@@ -152,11 +155,11 @@ public class LevelEditorManager : MonoBehaviour
         MatrixObject spawnedObject;
         if (playerCell != null && selectedTile.CompareTag("Player"))
         {
-            spawnedObject = playerCell.GetMatrixObject();
+            spawnedObject = playerCell.matrixObject;
             
-            playerCell.SetMatrixObject(null);
+            playerCell.matrixObject = null;
             playerCell = cellComponent;
-            cellComponent.SetMatrixObject(spawnedObject);
+            cellComponent.matrixObject = spawnedObject;
             spawnedObject.transform.position = spawnPosition;
         }
         else
@@ -167,7 +170,7 @@ public class LevelEditorManager : MonoBehaviour
             if (selectedTile.CompareTag("Player"))
                 playerCell = cellComponent;
 
-            cellComponent.SetMatrixObject(spawnedObject);
+            cellComponent.matrixObject = spawnedObject;
         }
     }
 
@@ -178,7 +181,7 @@ public class LevelEditorManager : MonoBehaviour
         
         MatrixObject spawnedObject = Instantiate(selectedTile, spawnPosition, Quaternion.identity, cellComponent.transform).GetComponent<MatrixObject>();
         
-        cellComponent.SetMatrixObject(spawnedObject);
+        cellComponent.matrixObject = spawnedObject;
 
     }
 
@@ -201,11 +204,11 @@ public class LevelEditorManager : MonoBehaviour
         
         if (gridX < 0 || gridX >= MAX_WIDTH || gridY < 0 || gridY >= MAX_HEIGHT) return;
         
-        MatrixObject target = mapGrid[gridX, gridY].GetMatrixObject();
+        MatrixObject target = mapGrid[gridX, gridY].matrixObject;
         if (target)
         {
             Destroy(target.GameObject());
-            mapGrid[gridX, gridY].SetMatrixObject(null);
+            mapGrid[gridX, gridY].matrixObject = null;
 
             if (target.CompareTag("Player"))
                 playerCell = null;
@@ -319,10 +322,10 @@ public class LevelEditorManager : MonoBehaviour
         
         ConvertLevelData();
         GamePlayGridManager.Instance.LoadCustomLevel();
-      
+
+        ExitObject.OnTryExit += TryClearGame;
         editorMode = EditorMode.Play;
     }
-
 
     public void StopPlaying()
     {
@@ -330,8 +333,14 @@ public class LevelEditorManager : MonoBehaviour
         gridPaper.SetActive(true);
 
         GamePlayGridManager.Instance.ClearGrid();
+        ExitObject.OnTryExit -= TryClearGame;
+        
         editorMode = EditorMode.Edit;
-        
-        
+    }
+
+    private void TryClearGame()
+    {
+        // 나중에 치킨(인포트론) 추가하면 조건 작업
+        StopPlaying();
     }
 }

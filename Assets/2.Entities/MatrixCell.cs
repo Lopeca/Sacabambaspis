@@ -21,7 +21,7 @@ public class MatrixCell : MonoBehaviour
     
     [SerializeField] private int x;
     [SerializeField] private int y;
-    [SerializeField] private MatrixObject go; 
+    public MatrixObject matrixObject; 
 
     // 그리드 매니저가 핸들링하기 쉽게 그냥 public 설정함
     public CellState state;
@@ -32,17 +32,7 @@ public class MatrixCell : MonoBehaviour
     }
 
 
-    public void SetMatrixObject(MatrixObject go)
-    {
-        this.go = go;
-    }
-
-
-
-    public MatrixObject GetMatrixObject()
-    {
-        return go;
-    }
+    
 
     public void SetPosition(int x, int y)
     {
@@ -52,11 +42,11 @@ public class MatrixCell : MonoBehaviour
 
     public TileSaveData ToSaveData()
     {
-        if (go == null) return null;
+        if (matrixObject == null) return null;
         
         TileSaveData tileSaveData = new TileSaveData
         {
-            tileKey = go.TileKey,
+            tileKey = matrixObject.TileKey,
             posX = x,
             posY = y
         };
@@ -66,7 +56,7 @@ public class MatrixCell : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(go!=null) 
-            Destroy(go);
+        if(matrixObject!=null) 
+            Destroy(matrixObject);
     }
 }

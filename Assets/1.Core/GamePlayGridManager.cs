@@ -18,6 +18,7 @@ public class GamePlayGridManager : MonoBehaviour
     private MatrixCell[,] mapGrid;
     
     public PlayerController player;
+    public AllTilesSO allTilesSO;
     
     private void Awake()
     {
@@ -105,12 +106,14 @@ public class GamePlayGridManager : MonoBehaviour
             int cellPosX = matrixObject.posX - minX;
             int cellPosY = matrixObject.posY - minY;
             MatrixCell targetCell = mapGrid[cellPosX, cellPosY];
-            GameObject targetPrefab = TilePrefabPair.Instance.GetPrefab(matrixObject.tileKey);
+            Debug.Log(matrixObject.tileKey);
+            GameObject targetPrefab = allTilesSO.GetPrefab(matrixObject.tileKey);
             MatrixObject clonedMO = Instantiate(targetPrefab, targetCell.transform.position, Quaternion.identity, targetCell.transform).GetComponent<MatrixObject>();
             clonedMO.posX = cellPosX;
             clonedMO.posY = cellPosY;
             
-            targetCell.SetMatrixObject(clonedMO);
+            targetCell.matrixObject = clonedMO;
+            targetCell.state = MatrixCell.CellState.Filled;
 
             if (clonedMO.TryGetComponent<PlayerController>(out var pc))
             {
@@ -137,24 +140,41 @@ public class GamePlayGridManager : MonoBehaviour
     {
         return mapGrid[x, y];
     }
-
-    public bool TryReserveMove(MatrixObject mo, Vector2Int startPos, Vector2Int destPos)
+    
+    // direction은 출발-도착지가 있긴한데 굳이 계산하지 않고 그냥 가져옴
+    public bool TryReserveMove(MatrixObject mo, Vector2Int startPos, Vector2Int destPos, Vector2Int direction)
     {
-        if (mapGrid[destPos.x, destPos.y].state != MatrixCell.CellState.Empty)
-        {
-            Debug.Log("뭔가 있음");
-            return false;
-        }
-        
         MatrixCell startCell = mapGrid[startPos.x, startPos.y];
         MatrixCell destCell = mapGrid[destPos.x, destPos.y];
         
-        startCell.state = MatrixCell.CellState.Using;
-        destCell.state = MatrixCell.CellState.Using;
+        if (destCell.state == MatrixCell.CellState.Empty)
+        {
+            startCell.state = MatrixCell.CellState.Using;
+            destCell.state = MatrixCell.CellState.Using;
         
-        destCell.SetMatrixObject(startCell.GetMatrixObject());
-        startCell.SetMatrixObject(null);
-        return true;
+            destCell.matrixObject = startCell.matrixObject;
+            startCell.matrixObject = null;
+            return true;
+        }
+        if (destCell.state == MatrixCell.CellState.Filled)
+        {
+            bool isPlayer = mo.TryGetComponent<PlayerController>(out var pc);
+            
+            if (destCell.matrixObject.TryGetComponent<IGridObstacle>(out var ob))
+            {
+                if (isPlayer && ob.TryPassThrough(pc, direction))
+                {
+                    startCell.state = MatrixCell.CellState.Using;
+                    destCell.state = MatrixCell.CellState.Using;
+        
+                    destCell.matrixObject = startCell.matrixObject;
+                    startCell.matrixObject = null;
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
     public bool TryReserveAttack(MatrixObject mo, Vector2Int startPos, Vector2Int destPos)
     {
@@ -166,8 +186,8 @@ public class GamePlayGridManager : MonoBehaviour
         startCell.state = MatrixCell.CellState.Using;
         destCell.state = MatrixCell.CellState.Danger;
         
-        destCell.SetMatrixObject(startCell.GetMatrixObject());
-        startCell.SetMatrixObject(null);
+        destCell.matrixObject = startCell.matrixObject;
+        startCell.matrixObject = null;
         return true;
     }
 
