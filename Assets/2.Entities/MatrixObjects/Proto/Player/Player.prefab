@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d7a3f5dacec834d847bc05e8c84f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  state: 0
 --- !u!114 &6877192983326455588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,3 +254,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0376c086dba532842bde32bd1cdf3ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+  state: 0
+  physics: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}

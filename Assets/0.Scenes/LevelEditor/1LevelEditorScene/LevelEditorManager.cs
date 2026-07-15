@@ -57,6 +57,9 @@ public class LevelEditorManager : MonoBehaviour
     public bool IsInteractingWithUI { get; set; } = false;
     [SerializeField] private MatrixCell playerCell;
     
+    
+    public static event Action OnPlayModeStarted;
+    public static event Action OnPlayModeStopped;
     void Awake()
     {
         if (!instance)
@@ -321,9 +324,12 @@ public class LevelEditorManager : MonoBehaviour
         gridPaper.SetActive(false);
         
         ConvertLevelData();
+        GamePlayGridManager.Instance.isPlaying = true;
         GamePlayGridManager.Instance.LoadCustomLevel();
 
         ExitObject.OnTryExit += TryClearGame;
+        
+        OnPlayModeStarted?.Invoke();
         editorMode = EditorMode.Play;
     }
 
@@ -332,10 +338,14 @@ public class LevelEditorManager : MonoBehaviour
         matrixRoot.gameObject.SetActive(true);
         gridPaper.SetActive(true);
 
+        GamePlayGridManager.Instance.isPlaying = false;
         GamePlayGridManager.Instance.ClearGrid();
         ExitObject.OnTryExit -= TryClearGame;
         
+        OnPlayModeStopped?.Invoke();
+        
         editorMode = EditorMode.Edit;
+        TilePaletteWindow.SetPlayButtonTextToPlay();
     }
 
     private void TryClearGame()
@@ -343,4 +353,5 @@ public class LevelEditorManager : MonoBehaviour
         // 나중에 치킨(인포트론) 추가하면 조건 작업
         StopPlaying();
     }
+
 }

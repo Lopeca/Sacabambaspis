@@ -18,7 +18,7 @@ public class GridMovement : MonoBehaviour
 
     [SerializeField] MoveState state;
     public MoveState State => state;
-    private float moveDuration = 0.3f;
+    public ObjectPhysicsConfigSO physics;
     void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -29,11 +29,9 @@ public class GridMovement : MonoBehaviour
     {
         if (state != MoveState.Staying)
         {
-            Debug.Log("state ? " + targetState);
             return;
         }
         
-        Debug.Log("RequestMove");
         startPos = new Vector2Int(mo.posX, mo.posY);
         destPos = new Vector2Int(mo.posX + direction.x, mo.posY + direction.y);
 
@@ -54,7 +52,7 @@ public class GridMovement : MonoBehaviour
         if (state == MoveState.Moving)
         {
             Vector3 destWorldPos = GamePlayGridManager.Instance.GetCell(this.destPos.x, this.destPos.y).transform.position;
-            transform.DOMove(destWorldPos, moveDuration)
+            transform.DOMove(destWorldPos, physics.moveDuration)
                 .SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {

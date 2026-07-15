@@ -93,5 +93,10 @@ public class TilePaletteWindow : MonoBehaviour
         }
     }
 
+    public void SetPlayButtonTextToPlay()
+    {
+        playButtonText.text = "Play";
+    }
+
   
 }

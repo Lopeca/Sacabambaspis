@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
             GamePlayGridManager.Instance.player = this;
     }
 
-    private void Update()
+    public void PlayerUpdate()
     {
         if (state == PlayerState.Ready)
         {
@@ -114,4 +114,6 @@ public class PlayerController : MonoBehaviour
     {
         state = PlayerState.Ready;
     }
+
+    
 }

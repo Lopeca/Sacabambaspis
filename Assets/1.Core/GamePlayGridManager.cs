@@ -19,10 +19,39 @@ public class GamePlayGridManager : MonoBehaviour
     
     public PlayerController player;
     public AllTilesSO allTilesSO;
+    public ObjectPhysicsConfigSO playerConfigSO;
+
+    public bool isPlaying;
     
     private void Awake()
     {
         instance = this;
+
+        isPlaying = false;
+    }
+
+    private void Update()
+    {
+        //isPlaying 반복 검사는 중간 페이즈에 게임이 끝날 경우 모든 생명주기를 돌 필요가 없기 때문. 턴제게임이 꼭 내턴이 끝나지 않아도 상대가 무너지면 중간에 끝내는 것처럼, 한 주기 안에서 반복 체크하는 건 자연스러운 일이라고 함
+        if (!isPlaying) return;
+        
+        // 1. 플레이어 인풋 처리
+        player.PlayerUpdate();
+        
+        if (!isPlaying) return;
+        
+        // 2. 오브젝트들 자연 업데이트 
+        for (int x = 0; x < mapGrid.GetLength(0); x++)
+        {
+            for (int y = 0; y < mapGrid.GetLength(1); y++)
+            {
+                if (mapGrid[x, y].state == MatrixCell.CellState.Filled && mapGrid[x, y].matrixObject
+                        .TryGetComponent<IActiveGridElement>(out var activeGridElement))
+                {
+                    activeGridElement.GridUpdate();
+                }
+            }
+        }
     }
 
     public void SetGrid(MatrixCell[,] mapGrid)
@@ -106,7 +135,6 @@ public class GamePlayGridManager : MonoBehaviour
             int cellPosX = matrixObject.posX - minX;
             int cellPosY = matrixObject.posY - minY;
             MatrixCell targetCell = mapGrid[cellPosX, cellPosY];
-            Debug.Log(matrixObject.tileKey);
             GameObject targetPrefab = allTilesSO.GetPrefab(matrixObject.tileKey);
             MatrixObject clonedMO = Instantiate(targetPrefab, targetCell.transform.position, Quaternion.identity, targetCell.transform).GetComponent<MatrixObject>();
             clonedMO.posX = cellPosX;
