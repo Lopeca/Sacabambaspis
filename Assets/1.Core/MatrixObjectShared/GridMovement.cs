@@ -9,7 +9,7 @@ public class GridMovement : MonoBehaviour
         Staying,
         Moving,
         Rolling,
-        Falling
+        Falling // 필요 없을 수도
     }
     private Vector2Int startPos;
     private Vector2Int destPos;
@@ -24,8 +24,9 @@ public class GridMovement : MonoBehaviour
         mo = GetComponent<MatrixObject>();
         state = MoveState.Staying;
     }
-
-    public void RequestMove(Vector2Int direction, MoveState targetState)
+    
+    // 이동 전에 셀 상태를 의도에 맞게 변경해주는 움직이기 전 셋팅을 하는 함수
+    public void ExecuteMove(Vector2Int direction, MoveState targetState, bool isAttack = false)
     {
         if (state != MoveState.Staying)
         {
@@ -34,19 +35,13 @@ public class GridMovement : MonoBehaviour
         
         startPos = new Vector2Int(mo.posX, mo.posY);
         destPos = new Vector2Int(mo.posX + direction.x, mo.posY + direction.y);
-
-        if (GamePlayGridManager.Instance.TryReserveMove(mo, startPos, destPos, direction))
-        {
-            this.state = targetState;
-
-            // 로직 상 움직이기 전에 도착 지점에 먼저 가있는 방식
-            // 이를 통해 이동 중 도착지점 위에서 장애물이 떨어지면 도착지점으로 달려드는 유닛과 충돌하여 피해를 입음
-            mo.posX = destPos.x;
-            mo.posY = destPos.y;
-            PerformMove();
-        }
+        state = targetState;
+        
+        GamePlayGridManager.Instance.ReserveMove(startPos, destPos, isAttack);
+        PerformMove();
     }
 
+    // DOTween과 함께 실제로 움직이고 완료상태를 핸들링해주는 함수
     private void PerformMove()
     {
         if (state == MoveState.Moving)
@@ -62,24 +57,4 @@ public class GridMovement : MonoBehaviour
                 });
         }
     }
-
-    // IEnumerator Co_PerformMove()
-    // {
-    //     // 일단 state = moving 이라고 가정하고 작업
-    //     Vector3 targetWorldPos = new Vector3(targetPos.x, targetPos.y, 0); // 2D 그리드 기준
-    //     
-    //     // 시각적으로 부드럽게 이동하는 도중 (이미 데이터상으로는 출발지와 목적지가 다 잠긴 상태!)
-    //     while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
-    //     {
-    //         transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
-    //         yield return null;
-    //     }
-    //     transform.position = targetWorldPos;
-    //     
-    //     // 도착 완료 통보
-    //     GamePlayGridManager.Instance.CompleteMove(gameObject, startPos, destPos);
-    //     
-    //     currentPos = targetPos;
-    //     isMoving = false;
-    // }
 }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5d07b4059e34043be1bd8679ad8152, type: 3}
+  m_Name: Tile_Stone
+  m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
+  tileKey: Stone
+  prefab: {fileID: 7888029381291469708, guid: 8a969bf2dd89dff40a8550d55ecd0933, type: 3}
+  editorIcon: {fileID: -2305440788557870646, guid: 9875e39a76c5c354e8845953671aae97, type: 3}

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState State => state;
 
     private MatrixObject mo;
+    public MatrixObject MO => mo;
     GridMovement movement;
     private void Awake()
     {
@@ -53,12 +54,44 @@ public class PlayerController : MonoBehaviour
     {
         if (moveInput != Vector2.zero)
         {
-            movement.RequestMove(moveInput, GridMovement.MoveState.Moving);
+            // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기
+            // 다른 오브젝트들은 조건을 보고 틀리면 다른 선택을 해야해서 이 요청 함수 안에 들어가서 이동 가능한지 검사하고 이동까지 다 하면 모듈화가 꼬임
+             MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
+            
+            if (IsDestinationEmpty(targetCell))
+            {
+                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
+            }
+
+            if (CanCollect(targetCell))
+            {
+                targetCell.matrixObject.CollectibleObject.Collect(moveInput);
+                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
+            }
+
+            // GridMovement와 별개로 확실하게 플레이어 상태로 조율
             if (movement.State == GridMovement.MoveState.Moving)
             {
                 state = PlayerState.Moving;
             }
         }
+    }
+
+    private bool IsDestinationEmpty(MatrixCell targetCell)
+    {
+        if (targetCell.state == MatrixCell.CellState.Empty) return true;
+        
+        return false;
+    }
+
+    bool CanCollect(MatrixCell targetCell)
+    {
+        if (targetCell.state == MatrixCell.CellState.Filled)
+        {
+            if (targetCell.matrixObject.CollectibleObject != null) return true;
+        }
+
+        return false;
     }
 
     public void OnMove(InputAction.CallbackContext context)

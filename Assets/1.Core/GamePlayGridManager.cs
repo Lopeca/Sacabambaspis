@@ -45,10 +45,10 @@ public class GamePlayGridManager : MonoBehaviour
         {
             for (int y = 0; y < mapGrid.GetLength(1); y++)
             {
-                if (mapGrid[x, y].state == MatrixCell.CellState.Filled && mapGrid[x, y].matrixObject
-                        .TryGetComponent<IActiveGridElement>(out var activeGridElement))
+                var cell = mapGrid[x, y];
+                if (cell.state == MatrixCell.CellState.Filled && cell.matrixObject.ActiveElement != null)
                 {
-                    activeGridElement.GridUpdate();
+                    cell.matrixObject.ActiveElement.GridUpdate();
                 }
             }
         }
@@ -168,55 +168,24 @@ public class GamePlayGridManager : MonoBehaviour
     {
         return mapGrid[x, y];
     }
-    
-    // direction은 출발-도착지가 있긴한데 굳이 계산하지 않고 그냥 가져옴
-    public bool TryReserveMove(MatrixObject mo, Vector2Int startPos, Vector2Int destPos, Vector2Int direction)
+    public MatrixCell GetCell(Vector2Int pos)
     {
-        MatrixCell startCell = mapGrid[startPos.x, startPos.y];
-        MatrixCell destCell = mapGrid[destPos.x, destPos.y];
-        
-        if (destCell.state == MatrixCell.CellState.Empty)
-        {
-            startCell.state = MatrixCell.CellState.Using;
-            destCell.state = MatrixCell.CellState.Using;
-        
-            destCell.matrixObject = startCell.matrixObject;
-            startCell.matrixObject = null;
-            return true;
-        }
-        if (destCell.state == MatrixCell.CellState.Filled)
-        {
-            bool isPlayer = mo.TryGetComponent<PlayerController>(out var pc);
-            
-            if (destCell.matrixObject.TryGetComponent<IGridObstacle>(out var ob))
-            {
-                if (isPlayer && ob.TryPassThrough(pc, direction))
-                {
-                    startCell.state = MatrixCell.CellState.Using;
-                    destCell.state = MatrixCell.CellState.Using;
-        
-                    destCell.matrixObject = startCell.matrixObject;
-                    startCell.matrixObject = null;
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return mapGrid[pos.x, pos.y];
     }
-    public bool TryReserveAttack(MatrixObject mo, Vector2Int startPos, Vector2Int destPos)
+
+    public void ReserveMove(Vector2Int startPos, Vector2Int destPos, bool isAttack = false)
     {
-        if(mapGrid[destPos.x, destPos.y].state != MatrixCell.CellState.Empty) return false;
-        
         MatrixCell startCell = mapGrid[startPos.x, startPos.y];
         MatrixCell destCell = mapGrid[destPos.x, destPos.y];
-        
-        startCell.state = MatrixCell.CellState.Using;
-        destCell.state = MatrixCell.CellState.Danger;
-        
+
         destCell.matrixObject = startCell.matrixObject;
         startCell.matrixObject = null;
-        return true;
+        
+        destCell.matrixObject.posX = destPos.x;
+        destCell.matrixObject.posY = destPos.y;
+        
+        startCell.state = MatrixCell.CellState.Using;
+        destCell.state = isAttack ? MatrixCell.CellState.Danger : MatrixCell.CellState.Using;
     }
 
     public void CompleteMove(Vector2Int startPos, Vector2Int destPos)

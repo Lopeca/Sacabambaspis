@@ -1,12 +1,20 @@
+using System;
 using UnityEngine;
 
-public class EditorCameraController : MonoBehaviour
+public class EditorCameraPlaymodeController : MonoBehaviour
 {
     [Header("Tracking Settings")]
     [SerializeField] private float smoothSpeed = 0.125f;
     private Transform playerTarget;
     private Vector3 editModePosition;
     private bool isPlayMode = false;
+
+    Camera camera;
+
+    private void Awake()
+    {
+        camera = GetComponent<Camera>();
+    }
 
     private void Start()
     {
@@ -46,11 +54,11 @@ public class EditorCameraController : MonoBehaviour
 
     private void EnablePlayModeCamera()
     {
-        // 1. 에디터 상태의 카메라 원래 위치를 기억
-        editModePosition = transform.position;
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null) playerTarget = player.transform;
         isPlayMode = true;
+
+        camera.depth = 1;
     }
 
     private void DisablePlayModeCamera()
@@ -58,7 +66,6 @@ public class EditorCameraController : MonoBehaviour
         isPlayMode = false;
         playerTarget = null;
 
-        // 2. 에디터 원래 위치로 복구
-        transform.position = editModePosition;
+        camera.depth = -2;
     }
 }

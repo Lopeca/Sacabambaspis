@@ -26,4 +26,9 @@ public class CollectibleObject : MonoBehaviour, IGridObstacle
         tileMaskAnimator.PlayMaskAnimation(direction, ( )=> Destroy(gameObject));
         return true;
     }
+
+    public void Collect(Vector2Int direction)
+    {
+        tileMaskAnimator.PlayMaskAnimation(direction, ( )=> Destroy(gameObject));
+    }
 }
