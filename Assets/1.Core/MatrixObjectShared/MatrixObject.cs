@@ -8,6 +8,7 @@ public class MatrixObject : MonoBehaviour
 
     public IActiveGridElement ActiveElement { get; private set; }
     public CollectibleObject CollectibleObject { get; private set; }
+    public IGridObstacle GridObstacle { get; private set; }
     public int posX;
     public int posY;
 
@@ -15,6 +16,7 @@ public class MatrixObject : MonoBehaviour
     {
         ActiveElement = GetComponent<IActiveGridElement>();
         CollectibleObject = GetComponent<CollectibleObject>();
+        GridObstacle = GetComponent<IGridObstacle>();
     }
 
     public Vector2Int GetPos()

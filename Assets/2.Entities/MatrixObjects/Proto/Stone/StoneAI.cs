@@ -23,7 +23,8 @@ public class StoneAI : MonoBehaviour, IActiveGridElement
 
     private bool CanFall()
     {
-        return GamePlayGridManager.Instance.GetCell(mo.GetPos()).state == MatrixCell.CellState.Empty;
+        Debug.Log(mo.GetPos() - Vector2Int.down);
+        return GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).state == MatrixCell.CellState.Empty;
     }
 
     private void ExecuteFall()

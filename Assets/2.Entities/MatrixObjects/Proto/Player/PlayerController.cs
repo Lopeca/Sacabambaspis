@@ -63,10 +63,14 @@ public class PlayerController : MonoBehaviour
                 movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
             }
 
-            if (CanCollect(targetCell))
+            else if (CanCollect(targetCell))
             {
                 targetCell.matrixObject.CollectibleObject.Collect(moveInput);
                 movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
+            }
+            else if (CanInteract(targetCell))
+            {
+                targetCell.matrixObject.GridObstacle.TryInteract(this, moveInput);
             }
 
             // GridMovement와 별개로 확실하게 플레이어 상태로 조율
@@ -75,6 +79,11 @@ public class PlayerController : MonoBehaviour
                 state = PlayerState.Moving;
             }
         }
+    }
+
+    private bool CanInteract(MatrixCell targetCell)
+    {
+        return targetCell.matrixObject.GridObstacle != null;
     }
 
     private bool IsDestinationEmpty(MatrixCell targetCell)

@@ -54,8 +54,8 @@ public class EditorCameraPlaymodeController : MonoBehaviour
 
     private void EnablePlayModeCamera()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null) playerTarget = player.transform;
+        Transform player = GamePlayGridManager.Instance.player.transform;
+        if (player != null) playerTarget = player;
         isPlayMode = true;
 
         camera.depth = 1;

@@ -53,12 +53,7 @@ public class GamePlayGridManager : MonoBehaviour
             }
         }
     }
-
-    public void SetGrid(MatrixCell[,] mapGrid)
-    {
-        this.mapGrid = mapGrid;
-    }
-
+    
     public void SetLevelData(LevelSaveData levelSaveData)
     {
         loadedLevelData = levelSaveData;

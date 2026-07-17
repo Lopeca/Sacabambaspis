@@ -20,7 +20,7 @@ public class CollectibleObject : MonoBehaviour, IGridObstacle
         }
     }
 
-    public bool TryPassThrough(PlayerController player, Vector2Int direction)
+    public bool TryInteract(PlayerController player, Vector2Int direction)
     {
         // 수집 관련 기능 필요(베이스타일은 수집해도 아무 효과 없는 조건의 수집형 오브젝트)
         tileMaskAnimator.PlayMaskAnimation(direction, ( )=> Destroy(gameObject));
