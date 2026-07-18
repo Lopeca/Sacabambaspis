@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public MatrixObject MO => mo;
     GridMovement movement;
     public GridMovement Movement => movement;
-    public Coroutine controllCoroutine;
+    Coroutine controlCoroutine;
     private void Awake()
     {
         state = PlayerState.Uncontrolled;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             if (movement.State != GridMovement.MoveState.Staying)
             {
                 state = PlayerState.Uncontrolled;
-                controllCoroutine = StartCoroutine(WaitMovement());
+                controlCoroutine = StartCoroutine(WaitMovement());
                 return;
             }
             // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기

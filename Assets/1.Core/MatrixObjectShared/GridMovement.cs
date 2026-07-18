@@ -23,6 +23,10 @@ public class GridMovement : MonoBehaviour
     [SerializeField] MoveState state;
     public MoveState State => state;
     public ObjectPhysicsConfigSO physics;
+
+    private Tween moveTween;
+    Tween rollTween;
+    
     void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -72,7 +76,7 @@ public class GridMovement : MonoBehaviour
     public void PerformMove(Vector3 destPos, Action onComplete = null, bool isPlayerSpeed = false)
     {
         state = MoveState.Moving;
-        transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
+        moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
@@ -88,8 +92,50 @@ public class GridMovement : MonoBehaviour
         GamePlayGridManager.Instance.SetCellState(destPos, MatrixCell.CellState.Filled);
     }
 
+    public void ForceCompleteMove()
+    {
+        // 트윈의 OnComplete에 액션으로 CompleteMove 혹은 CompletePush를 걸었기 때문에 트윈만을 강제로 끝냄으로써 이동을 강제 완료함
+        moveTween.Complete();
+        rollTween.Complete();
+    }
+
     public void ForceState(MoveState state)
     {
         this.state = state;
+    }
+
+    /// <summary>
+    /// 이동에 관여하지 않고 회전트윈만 담당하겠다는 뜻
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <param name="isPlayerSpeed"></param>
+    public void ExecuteRollTween(Vector2Int direction, bool isPlayerSpeed = false)
+    {
+        //duration 동안 한바퀴 회전하는 코드. 왼쪽으로 구르면 반시계, 오른쪽은 시계 방향
+        float targetAngle = (direction == Vector2Int.left) ? 360f : -360f;
+        float duration = isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration;
+        
+        rollTween = transform.DOLocalRotate(new Vector3(0f, 0f, targetAngle), duration, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                // 4. 회전이 끝나면 다음 구르기를 위해 로컬 회전값을 깔끔하게 0으로 리셋
+                transform.localRotation = Quaternion.identity;
+                rollTween = null;
+            });
+    }
+    
+    private void OnDestroy()
+    {
+        // 오브젝트 파괴 시 메모리 누수 방지
+        if (moveTween != null && moveTween.IsActive())
+        {
+            moveTween.Kill();
+        }
+        
+        if (rollTween != null && rollTween.IsActive())
+        {
+            rollTween.Kill();
+        }
     }
 }

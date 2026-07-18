@@ -20,7 +20,8 @@ public class GamePlayGridManager : MonoBehaviour
     public PlayerController player;
     public AllTilesSO allTilesSO;
     public ObjectPhysicsConfigSO playerConfigSO;
-
+    public GameObject explodeEffectElementPrefab;   // 매니저 본업의 영역은 아니지만 사소해서 매니저한테 맡기는 프리팹 참조용 필드
+    
     public bool isPlaying;
     
     private void Awake()
@@ -40,7 +41,7 @@ public class GamePlayGridManager : MonoBehaviour
         // 1. 오브젝트들 자연 업데이트 
         for (int x = 0; x < mapGrid.GetLength(0); x++)
         {
-            for (int y = 0; y < mapGrid.GetLength(1); y++)
+            for (int y = mapGrid.GetLength(1)-1; y >=0; y--)
             {
                 var cell = mapGrid[x, y];
                 if (cell.state == MatrixCell.CellState.Filled)
