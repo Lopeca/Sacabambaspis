@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 399633883067287906}
   - component: {fileID: 645257002339543437}
   - component: {fileID: 4003951257898259461}
+  - component: {fileID: 241141689656202943}
+  - component: {fileID: 1517605668579415719}
+  - component: {fileID: 3109820506977186299}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -108,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
   tileKey: Stone
+  isRounded: 1
   posX: 0
   posY: 0
 --- !u!114 &645257002339543437
@@ -136,3 +140,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ca9357a30cfd946a2fa9b05a022595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneAI
+--- !u!114 &241141689656202943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888029381291469708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5baf373c81dc634489c0a868b3462141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridRollable
+--- !u!114 &1517605668579415719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888029381291469708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9ee09b34579684d918f9b5402fc63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridGravity
+--- !u!114 &3109820506977186299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888029381291469708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf3652fcdf584841b73e3f1d05da131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridPushable
+  endureStartTime: 3.4028235e+38
+  continuous: 0

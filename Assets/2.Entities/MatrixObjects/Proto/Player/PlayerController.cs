@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,10 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public enum PlayerState
     {
-        Ready,      // 입력을 받고 수행할 수 있는 상태
-        Moving,     // 입력 수행 중인 상태
-        Frozen,     // 에디터나, 일시정지 등
-        Dead        // 사망. Frozen에 흡수될 가능성 있음
+        Controlled,  // 제어 하에 있는
+        Uncontrolled // 제어에서 벗어난
     }
     
     private double lastXInputTime;
@@ -23,12 +22,13 @@ public class PlayerController : MonoBehaviour
     private MatrixObject mo;
     public MatrixObject MO => mo;
     GridMovement movement;
+    public GridMovement Movement => movement;
+    public Coroutine controllCoroutine;
     private void Awake()
     {
-        state = PlayerState.Frozen;
+        state = PlayerState.Uncontrolled;
         mo = GetComponent<MatrixObject>();
         movement = GetComponent<GridMovement>();
-
     }
 
     private void Start()
@@ -39,14 +39,9 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerUpdate()
     {
-        if (state == PlayerState.Ready)
+        if (state == PlayerState.Controlled)
         {
             HandleInput();
-        }
-        else if (state == PlayerState.Moving)
-        {
-            if (movement.State == GridMovement.MoveState.Staying)
-                state = PlayerState.Ready;
         }
     }
 
@@ -54,6 +49,13 @@ public class PlayerController : MonoBehaviour
     {
         if (moveInput != Vector2.zero)
         {
+            // 어떤 이유로든 이동 중이면 조작을 일단 막음
+            if (movement.State != GridMovement.MoveState.Staying)
+            {
+                state = PlayerState.Uncontrolled;
+                controllCoroutine = StartCoroutine(WaitMovement());
+                return;
+            }
             // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기
             // 다른 오브젝트들은 조건을 보고 틀리면 다른 선택을 해야해서 이 요청 함수 안에 들어가서 이동 가능한지 검사하고 이동까지 다 하면 모듈화가 꼬임
              MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
@@ -62,7 +64,6 @@ public class PlayerController : MonoBehaviour
             {
                 movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
             }
-
             else if (CanCollect(targetCell))
             {
                 targetCell.matrixObject.CollectibleObject.Collect(moveInput);
@@ -70,20 +71,17 @@ public class PlayerController : MonoBehaviour
             }
             else if (CanInteract(targetCell))
             {
-                targetCell.matrixObject.GridObstacle.TryInteract(this, moveInput);
+                targetCell.matrixObject.GridInteractable.Interact(this, moveInput);
             }
 
-            // GridMovement와 별개로 확실하게 플레이어 상태로 조율
-            if (movement.State == GridMovement.MoveState.Moving)
-            {
-                state = PlayerState.Moving;
-            }
+           
         }
     }
 
     private bool CanInteract(MatrixCell targetCell)
     {
-        return targetCell.matrixObject.GridObstacle != null;
+        Debug.Log("TargetCell pos : " + targetCell.GetPosition());
+        return targetCell.state == MatrixCell.CellState.Filled && targetCell.matrixObject.GridInteractable != null;
     }
 
     private bool IsDestinationEmpty(MatrixCell targetCell)
@@ -154,8 +152,14 @@ public class PlayerController : MonoBehaviour
 
     public void SetReady()
     {
-        state = PlayerState.Ready;
+        state = PlayerState.Controlled;
     }
 
-    
+    IEnumerator WaitMovement()
+    {
+        while (movement.State != GridMovement.MoveState.Staying)
+            yield return null;
+        
+        state = PlayerState.Controlled;
+    }
 }

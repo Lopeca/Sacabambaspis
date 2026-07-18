@@ -31,13 +31,16 @@ public class MatrixCell : MonoBehaviour
         state = CellState.Empty;
     }
 
-
     
-
     public void SetPosition(int x, int y)
     {
         this.x = x;
         this.y = y;
+    }
+
+    public Vector2Int GetPosition()
+    {
+        return new Vector2Int(this.x, this.y);
     }
 
     public TileSaveData ToSaveData()
@@ -59,4 +62,5 @@ public class MatrixCell : MonoBehaviour
         if(matrixObject!=null) 
             Destroy(matrixObject);
     }
+    
 }

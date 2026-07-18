@@ -8,6 +8,8 @@ public class TileMaskAnimator : MonoBehaviour
     public ObjectPhysicsConfigSO speedConfigSO;
     public GameObject mask;
 
+    private Tween maskTween;
+    
     private void Awake()
     {
         ResetMask();
@@ -47,7 +49,7 @@ public class TileMaskAnimator : MonoBehaviour
 
         // 3. SO에 정의된 moveDuration 동안 마스크를 로컬 좌표계 기준으로 부드럽게 이동시킵니다.
         // Ease.Linear를 쓰면 플레이어의 등속 격자 이동과 완벽하게 싱크가 맞습니다.
-        mask.transform.DOLocalMove(targetLocalPos, speedConfigSO.moveDuration)
+        maskTween = mask.transform.DOLocalMove(targetLocalPos, speedConfigSO.moveDuration)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
@@ -55,5 +57,26 @@ public class TileMaskAnimator : MonoBehaviour
                 // 타일 자체를 파괴(Destroy)하는 등 후처리 로직을 여기에 작성합니다.
                 onAnimationComplete?.Invoke();
             });
+    }
+    
+    /// <summary>
+    /// 현재 재생 중인 마스크 트윈을 안전하게 종료합니다.
+    /// </summary>
+    private void KillActiveTween()
+    {
+        if (maskTween != null && maskTween.IsActive())
+        {
+            maskTween.Kill();
+        }
+        maskTween = null;
+    }
+
+    /// <summary>
+    /// 이 오브젝트가 그리드 매니저나 플레이어에 의해 파괴될 때 호출됩니다.
+    /// </summary>
+    private void OnDestroy()
+    {
+        // 4. 오브젝트가 파괴되는 시점에 안전하게 트윈을 정리하여 누수를 막습니다.
+        KillActiveTween();
     }
 }

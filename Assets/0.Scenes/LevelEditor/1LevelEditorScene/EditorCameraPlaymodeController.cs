@@ -9,7 +9,7 @@ public class EditorCameraPlaymodeController : MonoBehaviour
     private Vector3 editModePosition;
     private bool isPlayMode = false;
 
-    Camera camera;
+    [SerializeField] Camera camera;
 
     private void Awake()
     {

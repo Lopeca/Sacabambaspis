@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IActiveGridElement
+public interface IGridComponent
 {
     void GridUpdate();
 }

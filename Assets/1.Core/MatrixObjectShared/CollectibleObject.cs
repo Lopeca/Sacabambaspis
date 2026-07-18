@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 
-public class CollectibleObject : MonoBehaviour, IGridObstacle
+public class CollectibleObject : MonoBehaviour, IGridInteractable
 {
-    private MatrixObject owner;
+    private MatrixObject mo;
     TileMaskAnimator tileMaskAnimator;
+    public bool Continuous { get; set; }
     private void Awake()
     {
-        owner = GetComponent<MatrixObject>();
-        if (owner == null)
+        mo = GetComponent<MatrixObject>();
+        if (mo == null)
         {
             Debug.LogError("CollectibleObject needs to be attached to this gameobject");
         }
@@ -20,15 +21,16 @@ public class CollectibleObject : MonoBehaviour, IGridObstacle
         }
     }
 
-    public bool TryInteract(PlayerController player, Vector2Int direction)
+    public void Interact(PlayerController player, Vector2Int direction)
     {
         // 수집 관련 기능 필요(베이스타일은 수집해도 아무 효과 없는 조건의 수집형 오브젝트)
         tileMaskAnimator.PlayMaskAnimation(direction, ( )=> Destroy(gameObject));
-        return true;
     }
+
 
     public void Collect(Vector2Int direction)
     {
+        GamePlayGridManager.Instance.ClearCell(mo.GetPos());
         tileMaskAnimator.PlayMaskAnimation(direction, ( )=> Destroy(gameObject));
     }
 }

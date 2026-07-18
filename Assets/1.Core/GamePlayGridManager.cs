@@ -33,25 +33,27 @@ public class GamePlayGridManager : MonoBehaviour
     private void Update()
     {
         //isPlaying 반복 검사는 중간 페이즈에 게임이 끝날 경우 모든 생명주기를 돌 필요가 없기 때문. 턴제게임이 꼭 내턴이 끝나지 않아도 상대가 무너지면 중간에 끝내는 것처럼, 한 주기 안에서 반복 체크하는 건 자연스러운 일이라고 함
-        if (!isPlaying) return;
-        
-        // 1. 플레이어 인풋 처리
-        player.PlayerUpdate();
+       
         
         if (!isPlaying) return;
         
-        // 2. 오브젝트들 자연 업데이트 
+        // 1. 오브젝트들 자연 업데이트 
         for (int x = 0; x < mapGrid.GetLength(0); x++)
         {
             for (int y = 0; y < mapGrid.GetLength(1); y++)
             {
                 var cell = mapGrid[x, y];
-                if (cell.state == MatrixCell.CellState.Filled && cell.matrixObject.ActiveElement != null)
+                if (cell.state == MatrixCell.CellState.Filled)
                 {
-                    cell.matrixObject.ActiveElement.GridUpdate();
+                    cell.matrixObject.GridUpdate();
                 }
             }
         }
+        
+        if (!isPlaying) return;
+        
+        // 2. 플레이어 인풋 처리
+        player.PlayerUpdate();
     }
     
     public void SetLevelData(LevelSaveData levelSaveData)
@@ -120,6 +122,7 @@ public class GamePlayGridManager : MonoBehaviour
                     // cellComponent.SetCoordinate(x, y);
 
                     mapGrid[x, y] = cellComponent;
+                    cellComponent.SetPosition(x,y);
                 }
             }
         }
@@ -168,27 +171,56 @@ public class GamePlayGridManager : MonoBehaviour
         return mapGrid[pos.x, pos.y];
     }
 
-    public void ReserveMove(Vector2Int startPos, Vector2Int destPos, bool isAttack = false)
+    public void ClearCell(int x, int y)
     {
-        MatrixCell startCell = mapGrid[startPos.x, startPos.y];
-        MatrixCell destCell = mapGrid[destPos.x, destPos.y];
-
-        destCell.matrixObject = startCell.matrixObject;
-        startCell.matrixObject = null;
-        
-        destCell.matrixObject.posX = destPos.x;
-        destCell.matrixObject.posY = destPos.y;
-        
-        startCell.state = MatrixCell.CellState.Using;
-        destCell.state = isAttack ? MatrixCell.CellState.Danger : MatrixCell.CellState.Using;
+        mapGrid[x, y].matrixObject = null;
+        mapGrid[x, y].state = MatrixCell.CellState.Empty;
     }
 
-    public void CompleteMove(Vector2Int startPos, Vector2Int destPos)
+    public void ClearCell(Vector2Int pos)
     {
-        MatrixCell startCell = mapGrid[startPos.x, startPos.y];
-        MatrixCell destCell = mapGrid[destPos.x, destPos.y];
+        ClearCell(pos.x, pos.y);
+    }
+
+    /// <summary>
+    /// 주의 : 셀 상태를 바꾸지 않음. 로직상 필요해서 셀의 MatrixObject만 우선적으로 옮겨줌. 트윈 등 이동절차 완료 후 셀 상태가 별도로 다뤄지기에 기능이 분리됨
+    /// 즉 셀 A에서 B로 이동할 때 A가 Empty가 되지 않고 B가 Filled 상태가 되지 않으니 주의해서 다룰 것
+    /// </summary>
+    /// <param name="matrixObject"></param>
+    /// <param name="destX"></param>
+    /// <param name="destY"></param>
+    public void MoveMatrixObjectPosition(MatrixObject matrixObject, int destX, int destY)
+    {
+        MatrixCell prevCell = mapGrid[matrixObject.posX,matrixObject.posY];
+        MatrixCell destCell = mapGrid[destX,destY];
+
+        if (destCell.matrixObject != null)
+        {
+            Debug.LogError("로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.");
+            Debug.Break();
+            return;
+        }
+
+        destCell.matrixObject = matrixObject;
+        prevCell.matrixObject = null;
         
-        startCell.state = MatrixCell.CellState.Empty;
-        destCell.state = MatrixCell.CellState.Filled;
+        matrixObject.posX = destX;
+        matrixObject.posY = destY;
+    }
+
+    public void MoveMatrixObjectPosition(MatrixObject matrixObject, Vector2Int direction)
+    {
+        int destX = matrixObject.posX + direction.x;
+        int destY = matrixObject.posY + direction.y;
+        
+        MoveMatrixObjectPosition(matrixObject, destX, destY);
+    }
+
+  
+
+    public void SetCellState(Vector2Int targetPos, MatrixCell.CellState state)
+    {
+        MatrixCell cell = mapGrid[targetPos.x, targetPos.y];
+        cell.state = state;
     }
 }
