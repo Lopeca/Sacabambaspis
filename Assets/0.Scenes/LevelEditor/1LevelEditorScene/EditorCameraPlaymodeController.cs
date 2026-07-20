@@ -11,9 +11,14 @@ public class EditorCameraPlaymodeController : MonoBehaviour
 
     [SerializeField] Camera camera;
 
+    // private void Awake()
+    // {
+    //     camera = GetComponent<Camera>();
+    // }
+
     private void Awake()
     {
-        camera = GetComponent<Camera>();
+        Debug.Log("카메라플레이컨트롤러 awake 실행");
     }
 
     private void Start()
@@ -31,11 +36,9 @@ public class EditorCameraPlaymodeController : MonoBehaviour
     {
         Debug.Log($"[Camera] OnDestroy 실행됨. Instance ID: {GetHashCode()}");
 
-        if (LevelEditorManager.Instance != null)
-        {
-            LevelEditorManager.OnPlayModeStarted -= EnablePlayModeCamera;
-            LevelEditorManager.OnPlayModeStopped -= DisablePlayModeCamera;
-        }
+        LevelEditorManager.OnPlayModeStarted -= EnablePlayModeCamera;
+        LevelEditorManager.OnPlayModeStopped -= DisablePlayModeCamera;
+        
     }
 
     private void LateUpdate()

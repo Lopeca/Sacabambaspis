@@ -15,8 +15,9 @@ public class MatrixCell : MonoBehaviour
     {
         Empty,
         Filled,
-        Using,
-        Danger
+        Moving,
+        Attacking,
+        Falling
     }
     
     [SerializeField] private int x;
@@ -57,10 +58,25 @@ public class MatrixCell : MonoBehaviour
         return tileSaveData;
     }
 
+    public void Clear()
+    {
+        state = CellState.Empty;
+        Destroy(matrixObject);
+        matrixObject = null;
+    }
+
+    public void PutMatrixObject(MatrixObject matrixObject)
+    {
+        this.matrixObject = matrixObject;
+        matrixObject.transform.SetParent(transform);
+        matrixObject.transform.localPosition = Vector3.zero;
+        matrixObject.posX =x;
+        matrixObject.posY =y;
+    }
+
     private void OnDestroy()
     {
         if(matrixObject!=null) 
             Destroy(matrixObject);
     }
-    
 }

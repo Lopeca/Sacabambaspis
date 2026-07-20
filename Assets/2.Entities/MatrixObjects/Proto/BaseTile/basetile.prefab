@@ -200,6 +200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
   tileKey: BaseTile
+  explosionResponse: 0
+  isRounded: 0
+  isCrushable: 1
   posX: 0
   posY: 0
 --- !u!114 &719345078193648484

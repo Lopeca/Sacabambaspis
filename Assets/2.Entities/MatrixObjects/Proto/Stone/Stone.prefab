@@ -111,7 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
   tileKey: Stone
+  explosionResponse: 0
   isRounded: 1
+  isCrushable: 1
+  isVulnerableToFalling: 0
   posX: 0
   posY: 0
 --- !u!114 &645257002339543437
@@ -176,5 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf3652fcdf584841b73e3f1d05da131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridPushable
-  endureStartTime: 3.4028235e+38
-  continuous: 0
+  endureCumulativeTime: 0

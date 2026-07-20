@@ -59,23 +59,31 @@ public class PlayerController : MonoBehaviour
             // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기
             // 다른 오브젝트들은 조건을 보고 틀리면 다른 선택을 해야해서 이 요청 함수 안에 들어가서 이동 가능한지 검사하고 이동까지 다 하면 모듈화가 꼬임
              MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
-            
-            if (IsDestinationEmpty(targetCell))
+
+             if (targetCell.state == MatrixCell.CellState.Attacking)
+             {
+                 MoveToTargetCell(targetCell);
+                 mo.ExplodeOnDeath.Explode();
+             }
+            else if (IsDestinationEmpty(targetCell))
             {
-                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
+                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Moving);
             }
             else if (CanCollect(targetCell))
             {
                 targetCell.matrixObject.CollectibleObject.Collect(moveInput);
-                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving);
+                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Moving);
             }
             else if (CanInteract(targetCell))
             {
                 targetCell.matrixObject.GridInteractable.Interact(this, moveInput);
             }
-
-           
         }
+    }
+
+    private void MoveToTargetCell(MatrixCell targetCell)
+    {
+        targetCell.PutMatrixObject(mo);
     }
 
     private bool CanInteract(MatrixCell targetCell)

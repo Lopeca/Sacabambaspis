@@ -38,10 +38,10 @@ public class GridMovement : MonoBehaviour
     /// </summary>
     /// <param name="direction"></param>
     /// <param name="targetState"> 오브젝트가 취할 상태 </param>
-    /// <param name="isAttack"> 플레이어가 이 오브젝트의 도착지로 진입 시도 시 게임 오버가 되도록 </param>
+    /// <param name="destState"> 이동의 의도가 다음 셀의 특이사항으로 반영될 때 </param>
     /// <param name="isPlayerSpeed"></param>
     
-    public void ExecuteMove(Vector2Int direction, MoveState targetState, bool isAttack = false, bool isPlayerSpeed = false)
+    public void ExecuteMove(Vector2Int direction, MoveState targetState, MatrixCell.CellState destState, bool isPlayerSpeed = false)
     {
         // 1. 오브젝트가 가만히 있지 않고 뭔가 동작 중이면 이 함수가 실행될 이유가 없음
         if (state != MoveState.Staying)
@@ -58,8 +58,8 @@ public class GridMovement : MonoBehaviour
         state = targetState;
         
         // 2. 이동에 관여되는 셀들을 잠그고 로직상 이동은 미리 완료함
-        GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Using);
-        GamePlayGridManager.Instance.SetCellState(destPos, isAttack ? MatrixCell.CellState.Danger : MatrixCell.CellState.Using);
+        GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Moving);
+        GamePlayGridManager.Instance.SetCellState(destPos, destState);
         GamePlayGridManager.Instance.MoveMatrixObjectPosition(mo, direction);
         
         //GamePlayGridManager.Instance.ReserveMove(startPos, destPos, isAttack);

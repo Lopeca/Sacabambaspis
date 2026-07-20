@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EditorCameraController
   smoothSpeed: 0.125
-  camera: {fileID: 0}
+  camera: {fileID: 1472997807}
 --- !u!114 &1472997805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3270,6 +3270,7 @@ MonoBehaviour:
   allTilesSO: {fileID: 11400000, guid: 12dee77763995574e8746924b00a2fc2, type: 2}
   playerConfigSO: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
   explodeEffectElementPrefab: {fileID: 8759684515881517720, guid: 789c777d9398bf3498be53da1405e46c, type: 3}
+  chickenPrefab: {fileID: 0}
   isPlaying: 0
 --- !u!1 &1847107991
 GameObject:

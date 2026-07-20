@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6571452089137253918}
   - component: {fileID: 112307396893078244}
   - component: {fileID: 6877192983326455588}
+  - component: {fileID: 55396539852076065}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -109,6 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
   tileKey: Player
+  explosionResponse: 0
+  isRounded: 0
+  isCrushable: 1
+  isVulnerableToFalling: 1
   posX: 0
   posY: 0
 --- !u!114 &6571452089137253918
@@ -256,3 +261,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
   state: 0
   physics: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
+--- !u!114 &55396539852076065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448840840017159360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab7ef88b67c44548bd612fce03992dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplodeOnDeath
+  isChainingChicken: 0

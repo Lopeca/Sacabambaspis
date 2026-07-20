@@ -25,8 +25,8 @@ public class StoneAI : MonoBehaviour, IGridComponent
     {
         if (gridMovement.State == GridMovement.MoveState.Staying)
         {
-            if (gravity.CanFall())  // 
-                gravity.ExecuteFall();  // 낙하 실패시 구르기 
+            if (gravity.CanProcess())  
+                gravity.Process();  
             else if (rollable.CanRoll())
                 rollable.ExecuteRoll();
         }

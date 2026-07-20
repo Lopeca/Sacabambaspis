@@ -39,7 +39,7 @@ public class GridRollable : MonoBehaviour
 
     public void ExecuteRoll()
     {
-        gridMovement.ExecuteMove(rollDirection, GridMovement.MoveState.Moving, true);
+        gridMovement.ExecuteMove(rollDirection, GridMovement.MoveState.Moving, MatrixCell.CellState.Moving,true);
         gridMovement.ExecuteRollTween(rollDirection);
     }
     

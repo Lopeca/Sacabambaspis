@@ -51,9 +51,9 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
         MatrixCell startCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
         MatrixCell destCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + direction);
         
-        pusherCell.state = MatrixCell.CellState.Using;
-        startCell.state = MatrixCell.CellState.Using;
-        destCell.state = MatrixCell.CellState.Using;
+        pusherCell.state = MatrixCell.CellState.Moving;
+        startCell.state = MatrixCell.CellState.Moving;
+        destCell.state = MatrixCell.CellState.Moving;
         
         // 2. 데이터상 이동 완료를 선행
         GamePlayGridManager.Instance.MoveMatrixObjectPosition(mo, direction);

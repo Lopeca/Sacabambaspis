@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class MatrixObject : MonoBehaviour
 {
+    public enum ExplosionResponse
+    {
+        Destructible,
+        Indestructible,
+        Chain
+    }
+    
     [SerializeField] private string tileKey;
     public string TileKey => tileKey;
-    
+
+    private GridMovement gridMovement;
     public CollectibleObject CollectibleObject { get; private set; }
     public IGridInteractable GridInteractable { get; private set; }
+    public ExplodeOnDeath ExplodeOnDeath { get; private set; }
+    
+    public SpriteRenderer SpriteRenderer { get; private set; }
+
+    public ExplosionResponse explosionResponse;
     public bool isRounded;
+    public bool isCrushable;    // 폭발에 휩쓸리는가
+    public bool isVulnerableToFalling; // 떨어지는 물체에 당하는가
 
     public int posX;
     public int posY;
@@ -19,9 +34,11 @@ public class MatrixObject : MonoBehaviour
     private void Awake()
     {
         gridComponents = new List<IGridComponent>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
         
         CollectibleObject = GetComponent<CollectibleObject>();
         GridInteractable = GetComponent<IGridInteractable>();
+        ExplodeOnDeath = GetComponent<ExplodeOnDeath>();
     }
 
     public Vector2Int GetPos()
@@ -38,5 +55,25 @@ public class MatrixObject : MonoBehaviour
         {
             gridComponent.GridUpdate();
         }
+    }
+
+    public void ForceCompleteTween()
+    {
+        // 제일 큰 목적은 이동 중인 오브젝트가 폭발에 휩쓸릴 때 폭발범위 바깥의 셀이 정상화되는 것
+        // 로직상 이동 완료가 먼저 이루어지고 트윈이 되기 때문에 이동중 폭발에 휩쓸렸다면 출발지는 폭발영역 밖에 있어서 Empty가 보장됨
+        if (gridMovement == null) return;
+        gridMovement.ForceCompleteMove();
+    }
+
+    public void DestroyMatrixObject()
+    {
+        MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(posX, posY);
+        currentCell.Clear();
+        Destroy(gameObject);
+    }
+
+    public MatrixCell GetCurrentCell()
+    {
+        return GamePlayGridManager.Instance.GetCell(posX, posY);
     }
 }

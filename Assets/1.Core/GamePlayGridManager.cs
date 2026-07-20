@@ -20,7 +20,10 @@ public class GamePlayGridManager : MonoBehaviour
     public PlayerController player;
     public AllTilesSO allTilesSO;
     public ObjectPhysicsConfigSO playerConfigSO;
+    
+    [Header("범용 프리팹")]
     public GameObject explodeEffectElementPrefab;   // 매니저 본업의 영역은 아니지만 사소해서 매니저한테 맡기는 프리팹 참조용 필드
+    public GameObject chickenPrefab;
     
     public bool isPlaying;
     
@@ -54,7 +57,7 @@ public class GamePlayGridManager : MonoBehaviour
         if (!isPlaying) return;
         
         // 2. 플레이어 인풋 처리
-        player.PlayerUpdate();
+        if (player != null) player.PlayerUpdate();
     }
     
     public void SetLevelData(LevelSaveData levelSaveData)
