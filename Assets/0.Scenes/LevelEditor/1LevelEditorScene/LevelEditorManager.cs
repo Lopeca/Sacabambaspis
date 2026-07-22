@@ -47,7 +47,7 @@ public class LevelEditorManager : MonoBehaviour
     private bool isSpacePressed;
     private bool isDrawing;
     private bool isErasing;
-    private bool enabledAutoChickenCount;
+    public bool enabledAutoChickenCount;
 
     [Header("선택된 타일 프리팹")] 
     public GameObject selectedTile;

@@ -141,6 +141,7 @@ public class GamePlayGridManager : MonoBehaviour
         }
 
         int id = 0;
+        int chickenCount = 0;
         // 매트릭스에 오브젝트 채워넣기
         foreach (TileSaveData matrixObject in objects)
         {
@@ -156,6 +157,11 @@ public class GamePlayGridManager : MonoBehaviour
             targetCell.state = MatrixCell.CellState.Filled;
             targetCell.matrixObject.id = id++;
 
+            if (matrixObject.tileKey == TileKeys.Chicken)
+            {
+                chickenCount++;
+            }
+
             if (clonedMO.CompareTag("Player"))
             {
                 player = clonedMO.GetComponent<PlayerController>(); 
@@ -163,6 +169,9 @@ public class GamePlayGridManager : MonoBehaviour
                 player.OnDeath += HandlePlayerDeath;
             }
         }
+        
+        if(loadedLevelData.autoCountChicken) requiredChickenCount = chickenCount;
+        else requiredChickenCount = loadedLevelData.requiredChickenCount;
     }
 
     private void ExitEventListener()

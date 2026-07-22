@@ -19,13 +19,28 @@ public class TilePaletteWindow : MonoBehaviour
     public TMP_Text playButtonText;
     public AllTilesSO allTilesSO;
     public GameObject tileCellPrefab;
+    public CheckBox autoCountChickenCheckBox;
     
     public void Init()
     {
         GenerateTileButtons();
+        SetAutoChickenCountCheck();
         // 직접 실행하는 대신 코루틴을 통해 안전하게 한 프레임 대기 후 첫 타일 선택
         StartCoroutine(SelectFirstTileDeferred());
     }
+
+    private void SetAutoChickenCountCheck()
+    {
+        if (CustomLevelExplorer.Instance == null)
+            autoCountChickenCheckBox.SetCheckEnabled(false);
+        else
+        {
+            LevelEditorManager.Instance.enabledAutoChickenCount =
+                CustomLevelExplorer.Instance.LoadedLevel.autoCountChicken;
+            autoCountChickenCheckBox.SetCheckEnabled(LevelEditorManager.Instance.enabledAutoChickenCount);
+        }
+    }
+
     private IEnumerator SelectFirstTileDeferred()
     {
         // 1. 레이아웃 리빌드 강제 실행
@@ -91,6 +106,15 @@ public class TilePaletteWindow : MonoBehaviour
             playButtonText.text = "Play";
             
         }
+    }
+
+    public void OnCheckAutoChickenCount()
+    {
+        LevelEditorManager.Instance.enabledAutoChickenCount =
+            !LevelEditorManager.Instance.enabledAutoChickenCount;
+        
+        CustomLevelExplorer.Instance.LoadedLevel.autoCountChicken = LevelEditorManager.Instance.enabledAutoChickenCount;
+        autoCountChickenCheckBox.SetCheckEnabled(LevelEditorManager.Instance.enabledAutoChickenCount);
     }
 
     public void SetPlayButtonTextToPlay()

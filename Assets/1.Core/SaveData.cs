@@ -15,6 +15,8 @@ public class TileSaveData
 public class LevelSaveData
 {
     public string levelName;
+
+    public bool autoCountChicken;
     public int requiredChickenCount;
  
     public List<TileSaveData> tiles = new List<TileSaveData>();
