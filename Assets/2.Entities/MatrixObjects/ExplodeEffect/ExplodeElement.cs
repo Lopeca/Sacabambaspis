@@ -44,7 +44,7 @@ public class ExplodeElement : MonoBehaviour
         }
 
         // 이전 오브젝트로인한 폭발 과정에 코루틴이 여기서 증발되는 걸 의도함
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         
         MatrixCell currentCell = mo.GetCurrentCell();
         
@@ -60,6 +60,7 @@ public class ExplodeElement : MonoBehaviour
             currentCell.state = MatrixCell.CellState.Empty;
         }
         
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 

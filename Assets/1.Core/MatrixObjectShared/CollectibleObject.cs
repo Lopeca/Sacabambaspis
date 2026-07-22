@@ -6,6 +6,7 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
     private MatrixObject mo;
     TileMaskAnimator tileMaskAnimator;
     public bool Continuous { get; set; }
+    public CollectibleEffect collectibleEffect;
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -31,6 +32,7 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
     public void Collect(Vector2Int direction)
     {
         GamePlayGridManager.Instance.ClearCell(mo.GetPos());
+        collectibleEffect?.ApplyEffect();
         tileMaskAnimator.PlayMaskAnimation(direction, ( )=> Destroy(gameObject));
     }
 }

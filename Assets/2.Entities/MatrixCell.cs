@@ -50,7 +50,7 @@ public class MatrixCell : MonoBehaviour
         
         TileSaveData tileSaveData = new TileSaveData
         {
-            tileKey = matrixObject.TileKey,
+            tileKey = matrixObject.TileDataSO.tileKey,
             posX = x,
             posY = y
         };

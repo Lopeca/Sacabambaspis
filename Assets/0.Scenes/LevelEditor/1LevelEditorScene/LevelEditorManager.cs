@@ -47,6 +47,7 @@ public class LevelEditorManager : MonoBehaviour
     private bool isSpacePressed;
     private bool isDrawing;
     private bool isErasing;
+    private bool enabledAutoChickenCount;
 
     [Header("선택된 타일 프리팹")] 
     public GameObject selectedTile;
@@ -88,6 +89,8 @@ public class LevelEditorManager : MonoBehaviour
         {
             ConvertLevelDataToMapGrid();
         }
+        
+        GamePlayGridManager.Instance.OnGameOver += StopPlaying;
     }
 
     private void ConvertLevelDataToMapGrid()
@@ -305,7 +308,8 @@ public class LevelEditorManager : MonoBehaviour
     {
         LevelSaveData loadedData = CustomLevelExplorer.Instance.LoadedLevel;
         loadedData.tiles.Clear();
-        
+
+        int chickenCount = 0;
         for (int y = 0; y < mapGrid.GetLength(1); y++){
             for (int x = 0; x < mapGrid.GetLength(0); x++)
             {
@@ -313,9 +317,16 @@ public class LevelEditorManager : MonoBehaviour
                 if (tileSaveData != null)
                 {
                     loadedData.tiles.Add(tileSaveData);
+                    if (mapGrid[x, y].matrixObject.TileDataSO.tileKey == "Chicken")
+                    {
+                        chickenCount++;
+                    }
                 }
             }
         }
+
+        if (enabledAutoChickenCount) loadedData.requiredChickenCount = chickenCount;
+        else loadedData.requiredChickenCount = -1;
     }
 
     public void StartPlaying()
@@ -354,4 +365,9 @@ public class LevelEditorManager : MonoBehaviour
         StopPlaying();
     }
 
+    private void OnDestroy()
+    {
+        GamePlayGridManager.Instance.OnGameOver -= StopPlaying;
+
+    }
 }

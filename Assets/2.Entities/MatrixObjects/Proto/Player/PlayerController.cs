@@ -24,17 +24,15 @@ public class PlayerController : MonoBehaviour
     GridMovement movement;
     public GridMovement Movement => movement;
     Coroutine controlCoroutine;
+
+    public Action OnDeath;
     private void Awake()
     {
         state = PlayerState.Uncontrolled;
         mo = GetComponent<MatrixObject>();
         movement = GetComponent<GridMovement>();
-    }
 
-    private void Start()
-    {
-        if(GamePlayGridManager.Instance.player == null)
-            GamePlayGridManager.Instance.player = this;
+        mo.OnEliminated += Die;
     }
 
     public void PlayerUpdate()
@@ -62,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
              if (targetCell.state == MatrixCell.CellState.Attacking)
              {
+                 targetCell.matrixObject.EliminateMatrixObject();
                  MoveToTargetCell(targetCell);
                  mo.ExplodeOnDeath.Explode();
              }
@@ -88,7 +87,6 @@ public class PlayerController : MonoBehaviour
 
     private bool CanInteract(MatrixCell targetCell)
     {
-        Debug.Log("TargetCell pos : " + targetCell.GetPosition());
         return targetCell.state == MatrixCell.CellState.Filled && targetCell.matrixObject.GridInteractable != null;
     }
 
@@ -150,14 +148,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void Suicide()
     {
-        if (GamePlayGridManager.Instance.player == this)
-        {
-            GamePlayGridManager.Instance.player = null;
-        }
+        mo.ExplodeOnDeath.Explode();
     }
-
+    
+    void Die()
+    {
+        OnDeath?.Invoke();
+    }
+    
     public void SetReady()
     {
         state = PlayerState.Controlled;
@@ -169,5 +169,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         
         state = PlayerState.Controlled;
+    }
+
+    private void OnDestroy()
+    {
+        mo.OnEliminated -= Die;
     }
 }

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28948d4894f2ab7419a6e8f96fbbc353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
-  tileKey: Stone
+  tileDataSO: {fileID: 11400000, guid: 42011fa91d0d7634588bbe1fad63f052, type: 2}
   explosionResponse: 0
   isRounded: 1
   isCrushable: 1
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
   state: 0
-  physics: {fileID: 11400000, guid: 3f291f2a3e050c648949cdda3c673216, type: 2}
+  physics: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
 --- !u!114 &4003951257898259461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9ee09b34579684d918f9b5402fc63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridGravity
+  isFalling: 0
 --- !u!114 &3109820506977186299
 MonoBehaviour:
   m_ObjectHideFlags: 0

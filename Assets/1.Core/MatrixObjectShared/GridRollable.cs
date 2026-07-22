@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,8 +18,10 @@ public class GridRollable : MonoBehaviour
 
     public bool CanRoll()
     {
-        if (GetCell(mo.GetPos() + Vector2Int.down).state == MatrixCell.CellState.Filled
-            && GetCell(mo.GetPos() + Vector2Int.down).matrixObject.isRounded == false)
+        if (GetCell(mo.GetPos() + Vector2Int.down).state != MatrixCell.CellState.Filled)
+            return false;
+        
+        if (GetCell(mo.GetPos() + Vector2Int.down).matrixObject.isRounded == false)
             return false;
         
         if (GetCell(mo.GetPos() + Vector2Int.left).state == MatrixCell.CellState.Empty
@@ -39,11 +42,9 @@ public class GridRollable : MonoBehaviour
 
     public void ExecuteRoll()
     {
-        gridMovement.ExecuteMove(rollDirection, GridMovement.MoveState.Moving, MatrixCell.CellState.Moving,true);
-        gridMovement.ExecuteRollTween(rollDirection);
+        gridMovement.ExecuteMove(rollDirection, GridMovement.MoveState.Moving, MatrixCell.CellState.Attacking,true);
+        gridMovement.ExecuteRoll(rollDirection);
     }
-    
-    
 
     MatrixCell GetCell(Vector2Int pos)
     {

@@ -61,7 +61,7 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
 
         //3. 미는 물체 이동 트윈
         movement.PerformMove(destCell.transform.position, null, true);
-        if(mo.isRounded) movement.ExecuteRollTween(direction, true);
+        if(mo.isRounded) movement.ExecuteRoll(direction, true, true);
 
         //4. 플레이어 이동 트윈
         GamePlayGridManager.Instance.player.Movement.ForceState(GridMovement.MoveState.Moving);

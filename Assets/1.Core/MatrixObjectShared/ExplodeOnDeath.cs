@@ -56,12 +56,11 @@ public class ExplodeOnDeath : MonoBehaviour
             gridMovement.ForceCompleteMove();
         
         if (isChainingChicken) this.isChainingChicken = true;
+        mo.EliminateMatrixObject();
         
         // 3*3 공간에 공격과 동시에 폭발 엘리먼트 생성(엘리먼트에 체인 속성 넘겨줌)
         SpawnExplodeElements(this.isChainingChicken);
         
-        // 오브젝트 삭제
-        Destroy(gameObject);
     }
 
     private void SpawnExplodeElements(bool isChainingChicken)
@@ -80,12 +79,13 @@ public class ExplodeOnDeath : MonoBehaviour
                     SetupExplodeElement(isChainingChicken, targetCell, currentExplodeElement);
                 }
                 // 폭발에 휩쓸리지 않는 물체의 공간은 폭발 원소가 생기지 않음
-                else if (targetCell.matrixObject.explosionResponse == MatrixObject.ExplosionResponse.Indestructible)
+                else if (targetCellObject.explosionResponse == MatrixObject.ExplosionResponse.Indestructible)
                 {
                     Destroy(currentExplodeElement.gameObject);
                 }
                 else
                 {
+                    Debug.Log("물체 감지 - ID : " + targetCell.matrixObject.id);
                     targetCellObject.ForceCompleteTween();
                     
                     if (targetCell.state == MatrixCell.CellState.Moving)

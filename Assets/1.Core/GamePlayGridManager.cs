@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,11 +28,19 @@ public class GamePlayGridManager : MonoBehaviour
     
     public bool isPlaying;
     
+    [Header("스코어보드")]
+    [SerializeField] int requiredChickenCount;
+    // 플레이 타임
+    // 레드 디스크 수
+
+    public event Action OnGameOver;
     private void Awake()
     {
         instance = this;
 
         isPlaying = false;
+        
+        ExitObject.OnTryExit += ExitEventListener;
     }
 
     private void Update()
@@ -130,7 +139,8 @@ public class GamePlayGridManager : MonoBehaviour
                 }
             }
         }
-        
+
+        int id = 0;
         // 매트릭스에 오브젝트 채워넣기
         foreach (TileSaveData matrixObject in objects)
         {
@@ -144,13 +154,21 @@ public class GamePlayGridManager : MonoBehaviour
             
             targetCell.matrixObject = clonedMO;
             targetCell.state = MatrixCell.CellState.Filled;
+            targetCell.matrixObject.id = id++;
 
-            if (clonedMO.TryGetComponent<PlayerController>(out var pc))
+            if (clonedMO.CompareTag("Player"))
             {
-                player = pc; 
+                player = clonedMO.GetComponent<PlayerController>(); 
                 player.SetReady();
+                player.OnDeath += HandlePlayerDeath;
             }
         }
+    }
+
+    private void ExitEventListener()
+    {
+        player = null;
+        StartCoroutine(SendGameOverAfterSeconds(1.5f));
     }
 
     public void ClearGrid()
@@ -219,12 +237,29 @@ public class GamePlayGridManager : MonoBehaviour
         
         MoveMatrixObjectPosition(matrixObject, destX, destY);
     }
-
-  
-
+    
     public void SetCellState(Vector2Int targetPos, MatrixCell.CellState state)
     {
         MatrixCell cell = mapGrid[targetPos.x, targetPos.y];
         cell.state = state;
+    }
+
+    void HandlePlayerDeath()
+    {
+        Debug.Log("[PlayGridManager] 플레이어 사망으로 인한 게임 종료. 1.5초 후 종료됩니다.");
+        player.OnDeath -= HandlePlayerDeath;
+        StartCoroutine(SendGameOverAfterSeconds(1.5f));
+    }
+
+    IEnumerator SendGameOverAfterSeconds(float f)
+    {
+        yield return new WaitForSeconds(f);
+        OnGameOver?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        if(player != null) player.OnDeath -= HandlePlayerDeath;
+        ExitObject.OnTryExit -= ExitEventListener;
     }
 }

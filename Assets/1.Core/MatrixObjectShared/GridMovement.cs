@@ -75,7 +75,6 @@ public class GridMovement : MonoBehaviour
     /// <param name="isPlayerSpeed"></param>
     public void PerformMove(Vector3 destPos, Action onComplete = null, bool isPlayerSpeed = false)
     {
-        state = MoveState.Moving;
         moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
@@ -94,11 +93,19 @@ public class GridMovement : MonoBehaviour
 
     public void ForceCompleteMove()
     {
-        // 트윈의 OnComplete에 액션으로 CompleteMove 혹은 CompletePush를 걸었기 때문에 트윈만을 강제로 끝냄으로써 이동을 강제 완료함
-        moveTween.Complete();
-        rollTween.Complete();
-    }
+        // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
+        bool isMoving = (moveTween != null && moveTween.IsActive() && moveTween.IsPlaying()) 
+                        || (rollTween != null && rollTween.IsActive() && rollTween.IsPlaying());
 
+        if (isMoving)
+        {
+            Debug.Log("[ForceCompleteMove] 진행 중인 이동/구르기 트윈을 강제로 완료시킵니다.");
+        }
+
+        // 트윈 강제 완료 (OnComplete 즉시 호출됨)
+        moveTween?.Complete();
+        rollTween?.Complete();
+    }
     public void ForceState(MoveState state)
     {
         this.state = state;
@@ -109,7 +116,7 @@ public class GridMovement : MonoBehaviour
     /// </summary>
     /// <param name="direction"></param>
     /// <param name="isPlayerSpeed"></param>
-    public void ExecuteRollTween(Vector2Int direction, bool isPlayerSpeed = false)
+    public void ExecuteRoll(Vector2Int direction, bool isPlayerSpeed = false, bool isPushed = false)
     {
         //duration 동안 한바퀴 회전하는 코드. 왼쪽으로 구르면 반시계, 오른쪽은 시계 방향
         float targetAngle = (direction == Vector2Int.left) ? 360f : -360f;
@@ -123,6 +130,27 @@ public class GridMovement : MonoBehaviour
                 transform.localRotation = Quaternion.identity;
                 rollTween = null;
             });
+
+        if (isPushed) return;
+        StartCoroutine(RollCoroutine());
+    }
+
+    IEnumerator RollCoroutine()
+    {
+        yield return new WaitForSeconds(physics.moveDuration / 3);
+
+        moveTween.Pause();  // 둘은 DoTween의 트윈들임
+        rollTween.Pause();
+        
+        while (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).state !=
+               MatrixCell.CellState.Empty)
+        {
+            
+            yield return null;
+        }
+        
+        moveTween.Play();
+        rollTween.Play();
     }
     
     private void OnDestroy()

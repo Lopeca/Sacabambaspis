@@ -10,9 +10,10 @@ public class MatrixObject : MonoBehaviour
         Indestructible,
         Chain
     }
-    
-    [SerializeField] private string tileKey;
-    public string TileKey => tileKey;
+
+    public int id;  // 디버그용
+    [SerializeField] private TileDataSO tileDataSO;
+    public TileDataSO TileDataSO => tileDataSO;
 
     private GridMovement gridMovement;
     public CollectibleObject CollectibleObject { get; private set; }
@@ -31,6 +32,7 @@ public class MatrixObject : MonoBehaviour
     
     List<IGridComponent> gridComponents;
 
+    public Action OnEliminated;
     private void Awake()
     {
         gridComponents = new List<IGridComponent>();
@@ -65,8 +67,10 @@ public class MatrixObject : MonoBehaviour
         gridMovement.ForceCompleteMove();
     }
 
-    public void DestroyMatrixObject()
+    public void EliminateMatrixObject()
     {
+        OnEliminated?.Invoke();
+        if(gridMovement != null) gridMovement.ForceCompleteMove();
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(posX, posY);
         currentCell.Clear();
         Destroy(gameObject);

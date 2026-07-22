@@ -105,4 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28948d4894f2ab7419a6e8f96fbbc353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
-  tileKey: WhiteWall
+  tileDataSO: {fileID: 11400000, guid: c976e3dfdc5aebc48878d6c32b5551d8, type: 2}
+  explosionResponse: 0
+  isRounded: 0
+  isCrushable: 0
+  isVulnerableToFalling: 0
+  posX: 0
+  posY: 0
