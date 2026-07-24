@@ -26,7 +26,9 @@ public class GridMovement : MonoBehaviour
 
     private Tween moveTween;
     Tween rollTween;
-    
+
+    // 주로 트윈 완료 후 Filled 상태 여지 없이 다음 동작을 수행하도록 할 때
+    public event Action AfterOnMoveCompleted;
     void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -64,24 +66,38 @@ public class GridMovement : MonoBehaviour
         
         //GamePlayGridManager.Instance.ReserveMove(startPos, destPos, isAttack);
         // 3. 이동이 완료될 때까지 
-        PerformMove(destWorldPos, CompleteMove, isPlayerSpeed);
+        PerformMove(destWorldPos, isPlayerSpeed);
     }
-    
+
     /// <summary>
     /// Pusher 컴포넌트에 필요하여 분리된 포지션 이동 트윈과 트윈중의 오브젝트 상태 관리만을 담당하는 함수
     /// </summary>
     /// <param name="destPos"></param>
-    /// <param name="onComplete"></param>
     /// <param name="isPlayerSpeed"></param>
-    public void PerformMove(Vector3 destPos, Action onComplete = null, bool isPlayerSpeed = false)
+    /// <param name="OnMoveCompleted"> 마감처리에 필요한 것 </param>
+    public void PerformMove(Vector3 destPos, bool isPlayerSpeed = false)
     {
         moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
-                onComplete?.Invoke();
-
+                CompleteMove();
                 state = MoveState.Staying;
+                
+                AfterOnMoveCompleted?.Invoke();
+            });
+    }
+    
+    public void PerformMove_CustomCompleteAction(Vector3 destPos, bool isPlayerSpeed = false, Action OnMoveCompleted = null)
+    {
+        moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                state = MoveState.Staying;
+                
+                OnMoveCompleted?.Invoke();
+                AfterOnMoveCompleted?.Invoke();
             });
     }
 
@@ -91,6 +107,8 @@ public class GridMovement : MonoBehaviour
         GamePlayGridManager.Instance.SetCellState(destPos, MatrixCell.CellState.Filled);
     }
 
+    // 더 이상 시뮬레이션이 필요없어질 오브젝트를 전제함. 폭발에 휩쓸리는 등
+    // CompleteMove의 이전 셀 Empty화를 직관적으로 트윈을 끊음으로써 연출하는 전개를 만듬
     public void ForceCompleteMove()
     {
         // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
@@ -102,6 +120,8 @@ public class GridMovement : MonoBehaviour
             Debug.Log("[ForceCompleteMove] 진행 중인 이동/구르기 트윈을 강제로 완료시킵니다.");
         }
 
+        AfterOnMoveCompleted = null;
+        
         // 트윈 강제 완료 (OnComplete 즉시 호출됨)
         moveTween?.Complete();
         rollTween?.Complete();
@@ -142,8 +162,8 @@ public class GridMovement : MonoBehaviour
         moveTween.Pause();  // 둘은 DoTween의 트윈들임
         rollTween.Pause();
         
-        while (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).state !=
-               MatrixCell.CellState.Empty)
+        while (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).matrixObject !=
+               null)
         {
             
             yield return null;
@@ -152,7 +172,15 @@ public class GridMovement : MonoBehaviour
         moveTween.Play();
         rollTween.Play();
     }
+
+    // FSM에서 "이동 끝났나?" 체크용 (다음 상태 전환 조건)
+    public bool IsMoveFinished()
+    {
+        // 트윈 참조가 없거나, 죽었거나, 이미 완료(Complete)되었으면 '끝난 상태'로 판단
+        if (moveTween == null || !moveTween.IsActive()) return true;
     
+        return moveTween.IsComplete();
+    }
     private void OnDestroy()
     {
         // 오브젝트 파괴 시 메모리 누수 방지
@@ -165,5 +193,7 @@ public class GridMovement : MonoBehaviour
         {
             rollTween.Kill();
         }
+        
+        AfterOnMoveCompleted = null;
     }
 }

@@ -7,7 +7,7 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
     private MatrixObject mo;
     GridMovement movement;
     
-    private float endureDuration = 0.3f;
+    private float endureDuration = 0.25f;
     [SerializeField] private float endureCumulativeTime;
 
     public bool Continuous { get; set; }
@@ -42,8 +42,7 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
 
     private void ExecutePush(Vector2Int direction)
     {
-        Debug.Log("밀기 실행?");
-        
+        endureCumulativeTime = 0;
         this.direction = direction;
         
         // 1. 셀들을 잠근다
@@ -60,20 +59,22 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
         GamePlayGridManager.Instance.MoveMatrixObjectPosition(GamePlayGridManager.Instance.player.MO, direction);
 
         //3. 미는 물체 이동 트윈
-        movement.PerformMove(destCell.transform.position, null, true);
+        movement.PerformMove_CustomCompleteAction(destCell.transform.position, true, CompletePush);
         if(mo.isRounded) movement.ExecuteRoll(direction, true, true);
 
         //4. 플레이어 이동 트윈
         GamePlayGridManager.Instance.player.Movement.ForceState(GridMovement.MoveState.Moving);
-        GamePlayGridManager.Instance.player.Movement.PerformMove(startCell.transform.position, CompletePush);
+        GamePlayGridManager.Instance.player.Movement.PerformMove_CustomCompleteAction(startCell.transform.position, true);
     }
 
     private void CompletePush()
     {
+        Debug.Log("CompletePush MO Pos : " + mo.GetPos());
         MatrixCell pusherCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() - direction * 2);
         MatrixCell startCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() - direction);
         MatrixCell destCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
         
+        Debug.Log("PusherCell pos : " + pusherCell.GetPosition());
         pusherCell.state = MatrixCell.CellState.Empty;
         startCell.state = MatrixCell.CellState.Filled;
         destCell.state = MatrixCell.CellState.Filled;

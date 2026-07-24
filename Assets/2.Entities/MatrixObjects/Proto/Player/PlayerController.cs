@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             // 다른 오브젝트들은 조건을 보고 틀리면 다른 선택을 해야해서 이 요청 함수 안에 들어가서 이동 가능한지 검사하고 이동까지 다 하면 모듈화가 꼬임
              MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
 
-             if (targetCell.state == MatrixCell.CellState.Attacking)
+             if (targetCell.state == MatrixCell.CellState.Attacking || targetCell.state == MatrixCell.CellState.Falling)
              {
                  targetCell.matrixObject.EliminateMatrixObject();
                  MoveToTargetCell(targetCell);
@@ -161,6 +161,11 @@ public class PlayerController : MonoBehaviour
     public void SetReady()
     {
         state = PlayerState.Controlled;
+    }
+
+    public void Paralyze()
+    {
+        state = PlayerState.Uncontrolled;
     }
 
     IEnumerator WaitMovement()

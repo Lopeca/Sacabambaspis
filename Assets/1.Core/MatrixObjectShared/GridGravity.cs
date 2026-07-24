@@ -42,6 +42,7 @@ public class GridGravity : MonoBehaviour, IGridComponent
 
         if (belowObject != null && belowObject.isVulnerableToFalling)
         {
+            Debug.Log("중력으로 파괴");
             belowObject.ExplodeOnDeath.Explode();
         }
         else

@@ -16,6 +16,8 @@ public class MatrixObject : MonoBehaviour
     public TileDataSO TileDataSO => tileDataSO;
 
     private GridMovement gridMovement;
+    GridGravity gridGravity;
+    public GridGravity GridGravity => gridGravity;
     public CollectibleObject CollectibleObject { get; private set; }
     public IGridInteractable GridInteractable { get; private set; }
     public ExplodeOnDeath ExplodeOnDeath { get; private set; }
@@ -33,8 +35,11 @@ public class MatrixObject : MonoBehaviour
     List<IGridComponent> gridComponents;
 
     public Action OnEliminated;
+    
     private void Awake()
     {
+        gridGravity = GetComponent<GridGravity>();
+        
         gridComponents = new List<IGridComponent>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         
@@ -72,8 +77,10 @@ public class MatrixObject : MonoBehaviour
         OnEliminated?.Invoke();
         if(gridMovement != null) gridMovement.ForceCompleteMove();
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(posX, posY);
+
+        Debug.Log(currentCell.matrixObject.id + " :: " + id);
+        
         currentCell.Clear();
-        Destroy(gameObject);
     }
 
     public MatrixCell GetCurrentCell()

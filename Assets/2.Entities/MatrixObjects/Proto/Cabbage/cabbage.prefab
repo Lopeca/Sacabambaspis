@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6013160330743888007
+--- !u!1 &5731899325594070813
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6505792587075470423}
-  - component: {fileID: 5544869543645310433}
-  - component: {fileID: 6651551378018134034}
+  - component: {fileID: 5567271262137300069}
+  - component: {fileID: 5338331596720288533}
+  - component: {fileID: -5463752027207572444}
+  - component: {fileID: 4736001001350153925}
+  - component: {fileID: -7475210368154144446}
+  - component: {fileID: -6621405363864431615}
   m_Layer: 0
-  m_Name: WhiteWall
+  m_Name: cabbage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6505792587075470423
+--- !u!4 &5567271262137300069
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6013160330743888007}
+  m_GameObject: {fileID: 5731899325594070813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,14 +36,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5544869543645310433
+--- !u!212 &5338331596720288533
 SpriteRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6013160330743888007}
+  m_GameObject: {fileID: 5731899325594070813}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,34 +85,73 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 7cfcd040f983ccb4f9b5bd4f8c2eb2a1, type: 3}
+  m_Sprite: {fileID: 3244378606169850246, guid: d7f7af9dad1b3ba4a8ad04b4cea14b5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.4, y: 2.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &6651551378018134034
+--- !u!114 &-5463752027207572444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6013160330743888007}
+  m_GameObject: {fileID: 5731899325594070813}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28948d4894f2ab7419a6e8f96fbbc353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
   id: 0
-  tileDataSO: {fileID: 11400000, guid: c976e3dfdc5aebc48878d6c32b5551d8, type: 2}
-  explosionResponse: 1
+  tileDataSO: {fileID: 11400000, guid: 69a3fd3de641c5c44a7ba07e8f61522a, type: 2}
+  explosionResponse: 0
   isRounded: 0
-  isCrushable: 0
-  isVulnerableToFalling: 0
+  isCrushable: 1
+  isVulnerableToFalling: 1
   posX: 0
   posY: 0
+--- !u!114 &4736001001350153925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731899325594070813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0376c086dba532842bde32bd1cdf3ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+  state: 0
+  physics: {fileID: 0}
+--- !u!114 &-7475210368154144446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731899325594070813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab7ef88b67c44548bd612fce03992dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplodeOnDeath
+  isChainingChicken: 1
+--- !u!114 &-6621405363864431615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731899325594070813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539402d9a5e26cc4d89b82564f99ad72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CabbageAI

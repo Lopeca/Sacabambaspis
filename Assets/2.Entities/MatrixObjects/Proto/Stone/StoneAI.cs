@@ -19,16 +19,28 @@ public class StoneAI : MonoBehaviour, IGridComponent
         
         mo.AppendGridComponent(this);
         mo.AppendGridComponent(pushable);
+
+        gridMovement.AfterOnMoveCompleted += ObserveSurroundingAreaAndAct;
     }
 
     public void GridUpdate()
     {
         if (gridMovement.State == GridMovement.MoveState.Staying)
         {
-            if (gravity.CanProcess())  
-                gravity.Process();  
-            else if (rollable.CanRoll())
-                rollable.ExecuteRoll();
+            ObserveSurroundingAreaAndAct();
         }
+    }
+
+    private void ObserveSurroundingAreaAndAct()
+    {
+        if (gravity.CanProcess())  
+            gravity.Process();  
+        else if (rollable.CanRoll())
+            rollable.ExecuteRoll();
+    }
+
+    private void OnDestroy()
+    {
+        gridMovement.AfterOnMoveCompleted -= ObserveSurroundingAreaAndAct;
     }
 }

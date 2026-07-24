@@ -61,7 +61,8 @@ public class MatrixCell : MonoBehaviour
     public void Clear()
     {
         state = CellState.Empty;
-        Destroy(matrixObject);
+        if (matrixObject == null) return;
+        Destroy(matrixObject.gameObject);
         matrixObject = null;
     }
 

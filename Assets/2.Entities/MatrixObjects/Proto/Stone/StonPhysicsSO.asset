@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da859dd5fc5624048bbb8ba744fc29af, type: 3}
   m_Name: StonPhysicsSO
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPhysicsConfigSO
-  moveDuration: 0.33
+  moveDuration: 0.28

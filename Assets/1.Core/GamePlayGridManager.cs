@@ -17,10 +17,15 @@ public class GamePlayGridManager : MonoBehaviour
     public Transform playGridRoot;
     
     private MatrixCell[,] mapGrid;
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    
+    private List<GameObject> pendingObjects;
     
     public PlayerController player;
     public AllTilesSO allTilesSO;
     public ObjectPhysicsConfigSO playerConfigSO;
+    
     
     [Header("범용 프리팹")]
     public GameObject explodeEffectElementPrefab;   // 매니저 본업의 영역은 아니지만 사소해서 매니저한테 맡기는 프리팹 참조용 필드
@@ -41,6 +46,8 @@ public class GamePlayGridManager : MonoBehaviour
         isPlaying = false;
         
         ExitObject.OnTryExit += ExitEventListener;
+        
+        pendingObjects = new List<GameObject>();
     }
 
     private void Update()
@@ -54,10 +61,12 @@ public class GamePlayGridManager : MonoBehaviour
         for (int x = 0; x < mapGrid.GetLength(0); x++)
         {
             for (int y = mapGrid.GetLength(1)-1; y >=0; y--)
+            //for (int y = 0; y < mapGrid.GetLength(1); y++)
             {
                 var cell = mapGrid[x, y];
                 if (cell.state == MatrixCell.CellState.Filled)
                 {
+                    if(cell.matrixObject == null) Debug.Log("filled인데 오브젝트가 없음 : " + cell.GetPosition());
                     cell.matrixObject.GridUpdate();
                 }
             }
@@ -92,8 +101,8 @@ public class GamePlayGridManager : MonoBehaviour
         int maxY = objects.Max(t => t.posY);
     
         // 이 값들을 활용해 런타임 격자 크기(Width, Height)를 동적으로 계산할 수 있습니다.
-        int width = maxX - minX + 1;
-        int height = maxY - minY + 1;
+        width = maxX - minX + 1;
+        height = maxY - minY + 1;
         
         // 사이즈에 맞게 그리드 생성 (레벨에디터매니저로부터 카피)
         mapGrid = new MatrixCell[width, height];
@@ -199,6 +208,7 @@ public class GamePlayGridManager : MonoBehaviour
     }
     public MatrixCell GetCell(Vector2Int pos)
     {
+        if (pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= height) return null;
         return mapGrid[pos.x, pos.y];
     }
 
@@ -227,7 +237,7 @@ public class GamePlayGridManager : MonoBehaviour
 
         if (destCell.matrixObject != null)
         {
-            Debug.LogError("로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.");
+            Debug.LogError($"ID : {matrixObject.id} - 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.");
             Debug.Break();
             return;
         }
@@ -237,6 +247,7 @@ public class GamePlayGridManager : MonoBehaviour
         
         matrixObject.posX = destX;
         matrixObject.posY = destY;
+        matrixObject.transform.SetParent(destCell.transform);
     }
 
     public void MoveMatrixObjectPosition(MatrixObject matrixObject, Vector2Int direction)
@@ -266,9 +277,28 @@ public class GamePlayGridManager : MonoBehaviour
         OnGameOver?.Invoke();
     }
 
+    public void RegisterPendingObject(GameObject obj)
+    {
+        if(!pendingObjects.Contains(obj))
+            pendingObjects.Add(obj);
+    }
+    
+    public void UnregisterPendingObject(GameObject obj)
+    {
+        if(pendingObjects.Contains(obj))
+            pendingObjects.Remove(obj);
+    }
+    
+    
     private void OnDestroy()
     {
         if(player != null) player.OnDeath -= HandlePlayerDeath;
         ExitObject.OnTryExit -= ExitEventListener;
+
+        foreach (GameObject obj in pendingObjects)
+        {
+            Destroy(obj);
+        }
+        pendingObjects.Clear();
     }
 }
