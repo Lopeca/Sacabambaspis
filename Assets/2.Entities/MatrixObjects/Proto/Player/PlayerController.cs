@@ -74,12 +74,12 @@ public class PlayerController : MonoBehaviour
              }
             else if (IsDestinationEmpty(targetCell))
             {
-                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Moving);
+                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Receiving);
             }
             else if (CanCollect(targetCell))
             {
                 targetCell.matrixObject.CollectibleObject.Collect(moveInput);
-                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Moving);
+                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Receiving);
             }
             else if (CanInteract(targetCell))
             {

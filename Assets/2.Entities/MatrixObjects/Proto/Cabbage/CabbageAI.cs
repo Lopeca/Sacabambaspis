@@ -19,6 +19,10 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
     [SerializeField] bool passiveRotate;  // 양배추는 상시 돌지만, 그렇지 않은 경우도 있을 수 있음
     [SerializeField] private int facingDirectionIndex;
 
+    
+    // 디버그용
+    [SerializeField] private MatrixCell scannedCell;
+    [SerializeField] private int scannedFrameCount;
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -56,6 +60,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         if (validDirIndex != -1)
         {
             // [길 있음]: 회전 후 1칸 이동 코루틴 시작
+            // 여기서 바라보는 방향이 이미 바뀜
             bool isForward = facingDirectionIndex == validDirIndex;
             facingDirectionIndex = validDirIndex;
             StartCoroutine(Co_RotateAndMove(facingDirectionIndex, isForward));
@@ -76,8 +81,10 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
 
         //if(passiveRotate)
         if (!isForward)
-            yield return new WaitForSeconds(GameConstants.ENEMY_ROTATE_DURATION);
-        
+        {
+            yield return new WaitForSeconds(GameConstants.ENEMY_ROTATE_DURATION); // 회전 대기
+        }
+
         MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + directionOrder[targetDirIndex]);
         if (targetCell.HasPlayer())
         {
@@ -93,12 +100,16 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
                 MatrixCell.CellState.Attacking);
 
             yield return gridMovement.MoveTween.WaitForCompletion();
+
+            //isBusy = false;
+            yield return null;
+            // ★ [핵심] GridUpdate를 기다리지 않고 완료 즉시 다음 동작으로 연속 진행!
+            DecideAndExecuteNextAction();
         }
-
-        isBusy = false;
-
-        // ★ [핵심] GridUpdate를 기다리지 않고 완료 즉시 다음 동작으로 연속 진행!
-        DecideAndExecuteNextAction(); 
+        else
+        {
+            isBusy = false;
+        }
     }
 
     // newDir은 회전방향이라 히나 만들 때 구현할 예정
@@ -157,6 +168,9 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
     public bool ScanForwardEmpty()
     {
         MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + directionOrder[facingDirectionIndex]);
+        //scannedCell = targetCell;
+        //scannedFrameCount = Time.frameCount;
+        
         return targetCell.state == MatrixCell.CellState.Empty;
     }
 
@@ -168,11 +182,6 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         if (resultValue < 0)
             return resultValue + directionOrder.Length;
         return resultValue;
-    }
-
-    private Vector2Int RotateLeft(Vector2Int dir)
-    {
-        return new Vector2Int(-dir.y, dir.x);
     }
 
     private void OnDestroy()

@@ -122,7 +122,7 @@ public class ExplodeOnDeath : MonoBehaviour
                     
                     if (targetCell.state == MatrixCell.CellState.Moving)
                     {
-                        Debug.LogError("셀 상태 사용중, 트윈 완료 조치가 안 된 것으로 보임");
+                        targetCell.GetMovingObject().ForceCompleteTween();
                     }
                     
                     ExplodeOnDeath sweptObjectExplodeComponent = targetCellObject.ExplodeOnDeath;

@@ -48,13 +48,6 @@ public class GridMovement : MonoBehaviour
     
     public void ExecuteMove(Vector2Int direction, MoveState targetState, MatrixCell.CellState destState, bool isPlayerSpeed = false)
     {
-        // 1. 오브젝트가 가만히 있지 않고 뭔가 동작 중이면 이 함수가 실행될 이유가 없음
-        if (state != MoveState.Staying)
-        {
-            Debug.Log("움직이는 오브젝트에 이동명령이 실행됨. 이동 검사 로직 확인 필요");
-            Debug.Break();
-            return;
-        }
         lastIntendedDirection = direction;
         startPos = new Vector2Int(mo.posX, mo.posY);
         destPos = new Vector2Int(mo.posX + direction.x, mo.posY + direction.y);
@@ -62,10 +55,19 @@ public class GridMovement : MonoBehaviour
         
         state = targetState;
         
+        MatrixCell destCell = GamePlayGridManager.Instance.GetCell(destPos);
+        if (destCell.matrixObject != null)
+        {
+            Debug.LogError($"ID : {mo.id} - movent로부터 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.\n" +
+                           $"destCell pos : " + destCell.GetPosition() + "|| destCell Object : " + destCell.matrixObject +"\n" +
+                           "frame : " + Time.frameCount);
+            Debug.Break();
+            return;
+        }
         // 2. 이동에 관여되는 셀들을 잠그고 로직상 이동은 미리 완료함
+        GamePlayGridManager.Instance.MoveMatrixObjectPosition(mo, direction);
         GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Moving);
         GamePlayGridManager.Instance.SetCellState(destPos, destState);
-        GamePlayGridManager.Instance.MoveMatrixObjectPosition(mo, direction);
         
         //GamePlayGridManager.Instance.ReserveMove(startPos, destPos, isAttack);
         // 3. 이동이 완료될 때까지 
@@ -106,7 +108,11 @@ public class GridMovement : MonoBehaviour
 
     void CompleteMove()
     {
-        GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Empty);
+        MatrixCell startCell = GamePlayGridManager.Instance.GetCell(startPos);
+        
+        // 움직이는 사이 폭발 이펙트가 치고 들어올 수 있음 
+        if(startCell.matrixObject == null)
+            GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Empty);
         GamePlayGridManager.Instance.SetCellState(destPos, MatrixCell.CellState.Filled);
     }
 

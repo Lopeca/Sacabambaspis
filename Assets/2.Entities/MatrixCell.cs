@@ -16,6 +16,7 @@ public class MatrixCell : MonoBehaviour
         Empty,
         Filled,
         Moving,
+        Receiving,
         Attacking,
         Falling
     }

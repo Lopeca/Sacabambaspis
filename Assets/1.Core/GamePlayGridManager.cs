@@ -237,7 +237,9 @@ public class GamePlayGridManager : MonoBehaviour
 
         if (destCell.matrixObject != null)
         {
-            Debug.LogError($"ID : {matrixObject.id} - 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.");
+            Debug.LogError($"ID : {matrixObject.id} - 매니저로부터 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.\n" +
+                           $"destCell pos : " + destCell.GetPosition() + "|| destCell Object : " + destCell.matrixObject +"\n" +
+                           "frame : " + Time.frameCount);
             Debug.Break();
             return;
         }
