@@ -117,7 +117,7 @@ public class ExplodeOnDeath : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("물체 감지 - ID : " + targetCell.matrixObject.id);
+                    //Debug.Log("물체 감지 - ID : " + targetCell.matrixObject.id);
                     targetCellObject.ForceCompleteTween();
                     
                     if (targetCell.state == MatrixCell.CellState.Moving)
@@ -149,7 +149,10 @@ public class ExplodeOnDeath : MonoBehaviour
             && targetCell.matrixObject.TryGetComponent<ExplodeElement>(out var e))
         {
             e.CancelChaining();
+            Debug.Log("CancelChain " + targetCell.GetPosition());
         }
+        
+        //Debug.Log("폭발셀 : " + targetCell.GetPosition());
         targetCell.Clear();
         targetCell.PutMatrixObject(currentExplodeElement.MO);
         currentExplodeElement.gameObject.SetActive(true);

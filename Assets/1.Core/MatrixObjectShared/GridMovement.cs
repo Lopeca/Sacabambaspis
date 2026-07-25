@@ -22,9 +22,12 @@ public class GridMovement : MonoBehaviour
 
     [SerializeField] MoveState state;
     public MoveState State => state;
+    [SerializeField] private Vector2Int lastIntendedDirection;
+    
     public ObjectPhysicsConfigSO physics;
 
     private Tween moveTween;
+    public Tween MoveTween => moveTween;
     Tween rollTween;
 
     // 주로 트윈 완료 후 Filled 상태 여지 없이 다음 동작을 수행하도록 할 때
@@ -52,7 +55,7 @@ public class GridMovement : MonoBehaviour
             Debug.Break();
             return;
         }
-        
+        lastIntendedDirection = direction;
         startPos = new Vector2Int(mo.posX, mo.posY);
         destPos = new Vector2Int(mo.posX + direction.x, mo.posY + direction.y);
         Vector3 destWorldPos = GamePlayGridManager.Instance.GetCell(destPos).transform.position;

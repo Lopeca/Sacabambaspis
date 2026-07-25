@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private double lastXInputTime;
     private double lastYInputTime;
     private Vector2Int moveInput;
+    private bool escBuffer;
 
     [SerializeField]private PlayerState state;
     public PlayerState State => state;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     Coroutine controlCoroutine;
 
     public Action OnDeath;
+    private bool isAlive;
     private void Awake()
     {
         state = PlayerState.Uncontrolled;
@@ -33,11 +35,12 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<GridMovement>();
 
         mo.OnEliminated += Die;
+        escBuffer = false;
     }
 
     public void PlayerUpdate()
     {
-        if (state == PlayerState.Controlled)
+        if (isAlive && state == PlayerState.Controlled)
         {
             HandleInput();
         }
@@ -45,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
+        if (escBuffer)
+        {
+            PlayerExplode();
+            return;
+        }
         if (moveInput != Vector2.zero)
         {
             // 어떤 이유로든 이동 중이면 조작을 일단 막음
@@ -60,8 +68,8 @@ public class PlayerController : MonoBehaviour
 
              if (targetCell.state == MatrixCell.CellState.Attacking || targetCell.state == MatrixCell.CellState.Falling)
              {
-                 targetCell.matrixObject.EliminateMatrixObject();
-                 MoveToTargetCell(targetCell);
+                 // targetCell.matrixObject.EliminateMatrixObject();
+                 // MoveToTargetCell(targetCell);
                  mo.ExplodeOnDeath.Explode();
              }
             else if (IsDestinationEmpty(targetCell))
@@ -78,6 +86,14 @@ public class PlayerController : MonoBehaviour
                 targetCell.matrixObject.GridInteractable.Interact(this, moveInput);
             }
         }
+    }
+
+    public void PlayerExplode()
+    {
+        mo.ExplodeOnDeath.Explode();
+        
+        escBuffer = false;
+        Die();
     }
 
     private void MoveToTargetCell(MatrixCell targetCell)
@@ -148,19 +164,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Suicide()
+    public void OnEscPressed(InputAction.CallbackContext context)
     {
-        mo.ExplodeOnDeath.Explode();
+        if (context.performed)
+        {
+            escBuffer = true;
+        }
     }
     
     void Die()
     {
+        isAlive = false;
         OnDeath?.Invoke();
     }
     
     public void SetReady()
     {
         state = PlayerState.Controlled;
+        isAlive = true;
     }
 
     public void Paralyze()

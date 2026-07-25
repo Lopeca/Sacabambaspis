@@ -77,8 +77,6 @@ public class MatrixObject : MonoBehaviour
         OnEliminated?.Invoke();
         if(gridMovement != null) gridMovement.ForceCompleteMove();
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(posX, posY);
-
-        Debug.Log(currentCell.matrixObject.id + " :: " + id);
         
         currentCell.Clear();
     }
@@ -86,5 +84,20 @@ public class MatrixObject : MonoBehaviour
     public MatrixCell GetCurrentCell()
     {
         return GamePlayGridManager.Instance.GetCell(posX, posY);
+    }
+
+    public void MoveToTargetCell(MatrixCell targetCell)
+    {
+        MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(posX, posY);
+        
+        // 1. 어떤 오브젝트(this)가 문제인지 gameObject.name을 같이 찍어주면 디버깅이 훨씬 편합니다. 
+        Debug.Assert(currentCell.state == MatrixCell.CellState.Filled, 
+            $"[{gameObject.name}] 현 오브젝트 위치 ({posX}, {posY}) : 현재 셀 상태가 Filled가 아닙니다. (현재: {currentCell.state})");
+        
+        Debug.Assert(targetCell.state == MatrixCell.CellState.Empty, 
+            $"[{gameObject.name}] 타겟 셀 위치 ({targetCell.GetPosition()}) : 이동하려는 셀이 Empty가 아닙니다. (현재: {targetCell.state})");  
+        
+        currentCell.Clear();
+        targetCell.PutMatrixObject(this);
     }
 }

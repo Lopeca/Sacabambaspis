@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
   state: 0
-  physics: {fileID: 0}
+  physics: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
 --- !u!114 &-7475210368154144446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,3 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539402d9a5e26cc4d89b82564f99ad72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CabbageAI
+  durationPerRotate: 2
+  isBusy: 0
+  passiveRotate: 1
+  facingDirectionIndex: 0

@@ -258,10 +258,11 @@ public class GamePlayGridManager : MonoBehaviour
         MoveMatrixObjectPosition(matrixObject, destX, destY);
     }
     
-    public void SetCellState(Vector2Int targetPos, MatrixCell.CellState state)
+    public void SetCellState(Vector2Int targetPos, MatrixCell.CellState state, Vector2Int? direction = null)
     {
         MatrixCell cell = mapGrid[targetPos.x, targetPos.y];
         cell.state = state;
+        if (direction != null) cell.moveStateDirection = direction.Value;
     }
 
     void HandlePlayerDeath()

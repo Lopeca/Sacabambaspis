@@ -20,16 +20,11 @@ public class GridGravity : MonoBehaviour, IGridComponent
     {
         if (gridMovement.State != GridMovement.MoveState.Staying) return false;
         MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down);
-        belowObject = targetCell.matrixObject;
+        belowObject = GetBelowAttackableObject();
         bool canProcess; 
         
         if(targetCell.state == MatrixCell.CellState.Empty) canProcess = true;   // 아래칸이 비어있으면
-        else if (isFalling
-                 && targetCell.state == MatrixCell.CellState.Filled             // 막 떨어지는 중이었고 아래칸이 이동 처리중이 아니고 떨어지는 물체에 피해를 입는 물체면
-                 && targetCell.matrixObject.isVulnerableToFalling)
-        {
-            canProcess = true;
-        }
+        else if (belowObject != null && belowObject.isVulnerableToFalling) canProcess = true;
         else canProcess = false;
 
         if (!canProcess) isFalling = false;
@@ -42,8 +37,20 @@ public class GridGravity : MonoBehaviour, IGridComponent
 
         if (belowObject != null && belowObject.isVulnerableToFalling)
         {
-            Debug.Log("중력으로 파괴");
-            belowObject.ExplodeOnDeath.Explode();
+            // 아래 오브젝트가 플레이어가 아니거나, 플레이어지만 제자리일 때
+            if (belowObject != GamePlayGridManager.Instance.player.MO)
+            {
+                // 아래칸이 비어있으면 이동중인 오브젝트인것. 아니면 냅두고 그냥 폭발
+                if (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).state ==
+                    MatrixCell.CellState.Empty)
+                {
+                    belowObject.ForceCompleteTween();
+                    belowObject.MoveToTargetCell(GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down));
+                }
+
+                belowObject.ExplodeOnDeath.Explode();
+            }
+            
         }
         else
         {
@@ -57,5 +64,19 @@ public class GridGravity : MonoBehaviour, IGridComponent
         
         if (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).state == MatrixCell.CellState.Empty)
             isFalling = true;
+    }
+
+    public MatrixObject GetBelowAttackableObject()
+    {
+        MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down);
+        MatrixObject _belowObject;
+
+        if (targetCell.state == MatrixCell.CellState.Filled)
+            _belowObject = targetCell.matrixObject;
+        else if (targetCell.state == MatrixCell.CellState.Moving && targetCell.moveStateDirection != Vector2Int.down)
+            _belowObject = targetCell.GetMovingObject();
+        else return null;
+        
+        return _belowObject;
     }
 }

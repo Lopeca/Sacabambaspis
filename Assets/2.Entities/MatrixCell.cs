@@ -26,6 +26,7 @@ public class MatrixCell : MonoBehaviour
 
     // 그리드 매니저가 핸들링하기 쉽게 그냥 public 설정함
     public CellState state;
+    public Vector2Int moveStateDirection;
 
     private void Awake()
     {
@@ -79,5 +80,18 @@ public class MatrixCell : MonoBehaviour
     {
         if(matrixObject!=null) 
             Destroy(matrixObject);
+    }
+
+    public bool HasPlayer()
+    {
+        if(matrixObject == null) return false;
+        return matrixObject == GamePlayGridManager.Instance.player.MO;
+    }
+
+    public MatrixObject GetMovingObject()
+    {
+        Debug.Assert(state == CellState.Moving, $"[Cell] Moving 상태가 아닌 셀({x}, {y})에서 GetMovingObject를 호출했습니다!");
+        if (state != CellState.Moving) return null;
+        return GamePlayGridManager.Instance.GetCell(x + moveStateDirection.x, y + moveStateDirection.y).matrixObject;
     }
 }
