@@ -86,7 +86,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         }
 
         MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + directionOrder[targetDirIndex]);
-        if (targetCell.HasPlayer())
+        if (targetCell.HasPlayer() && targetCell.state == MatrixCell.CellState.Filled)
         {
             //GamePlayGridManager.Instance.player.PlayerExplode();
             mo.ExplodeOnDeath.Explode();

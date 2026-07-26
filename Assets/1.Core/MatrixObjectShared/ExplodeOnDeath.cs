@@ -60,6 +60,7 @@ public class ExplodeOnDeath : MonoBehaviour
         // 셀과 연결을 끊음
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
         currentCell.state = MatrixCell.CellState.Empty;
+        currentCell.matrixObject.OnEliminated?.Invoke();
         currentCell.matrixObject = null;
         
         // 매니저에 등록 후 격자 뒤에서 폭발 프로세스

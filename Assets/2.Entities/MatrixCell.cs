@@ -85,7 +85,11 @@ public class MatrixCell : MonoBehaviour
 
     public bool HasPlayer()
     {
-        if(matrixObject == null) return false;
+        if (matrixObject == null)
+        {
+            if (state == CellState.Moving && GetMovingObject() == GamePlayGridManager.Instance.player.MO) return true;
+            return false;
+        }
         return matrixObject == GamePlayGridManager.Instance.player.MO;
     }
 

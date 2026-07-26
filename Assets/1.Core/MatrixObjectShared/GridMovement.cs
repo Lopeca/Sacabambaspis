@@ -65,6 +65,7 @@ public class GridMovement : MonoBehaviour
             return;
         }
         // 2. 이동에 관여되는 셀들을 잠그고 로직상 이동은 미리 완료함
+        mo.GetCurrentCell().moveStateDirection = direction;
         GamePlayGridManager.Instance.MoveMatrixObjectPosition(mo, direction);
         GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Moving);
         GamePlayGridManager.Instance.SetCellState(destPos, destState);

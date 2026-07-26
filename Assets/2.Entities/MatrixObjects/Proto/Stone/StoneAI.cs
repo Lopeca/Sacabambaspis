@@ -35,7 +35,7 @@ public class StoneAI : MonoBehaviour, IGridComponent
     {
         if (gravity.CanProcess())  
             gravity.Process();  
-        else if (rollable.CanRoll())
+        else if (rollable != null && rollable.CanRoll())
             rollable.ExecuteRoll();
     }
 

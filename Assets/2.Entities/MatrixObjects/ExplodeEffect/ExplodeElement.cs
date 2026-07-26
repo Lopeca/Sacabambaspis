@@ -36,6 +36,7 @@ public class ExplodeElement : MonoBehaviour
         if (isChainingChicken || isChainingChicken)
         {
             MatrixObject chicken = Instantiate(GamePlayGridManager.Instance.chickenPrefab.GetComponent<MatrixObject>());
+            currentCell.Clear();
             currentCell.PutMatrixObject(chicken);
             currentCell.state = MatrixCell.CellState.Filled;
         }

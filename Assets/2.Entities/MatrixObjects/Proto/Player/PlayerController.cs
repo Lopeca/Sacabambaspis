@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
         mo.ExplodeOnDeath.Explode();
         
         escBuffer = false;
-        Die();
     }
 
     private void MoveToTargetCell(MatrixCell targetCell)
@@ -174,6 +173,7 @@ public class PlayerController : MonoBehaviour
     
     void Die()
     {
+        Debug.Log("플레이어 죽음");
         isAlive = false;
         OnDeath?.Invoke();
     }
