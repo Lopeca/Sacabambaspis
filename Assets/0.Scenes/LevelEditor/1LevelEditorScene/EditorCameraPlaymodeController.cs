@@ -4,7 +4,6 @@ using UnityEngine;
 public class EditorCameraPlaymodeController : MonoBehaviour
 {
     [Header("Tracking Settings")]
-    [SerializeField] private float smoothSpeed = 0.125f;
     private Transform playerTarget;
     private Vector3 editModePosition;
     private bool isPlayMode = false;

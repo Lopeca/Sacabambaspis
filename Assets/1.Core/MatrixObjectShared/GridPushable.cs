@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(GridMovement))]
 public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
 {
     private MatrixObject mo;
@@ -76,12 +77,12 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
 
     private void CompletePush()
     {
-        Debug.Log("CompletePush MO Pos : " + mo.GetPos());
+//        Debug.Log("CompletePush MO Pos : " + mo.GetPos());
         MatrixCell pusherCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() - direction * 2);
         MatrixCell startCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() - direction);
         MatrixCell destCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
         
-        Debug.Log("PusherCell pos : " + pusherCell.GetPosition());
+        //Debug.Log("PusherCell pos : " + pusherCell.GetPosition());
         pusherCell.state = MatrixCell.CellState.Empty;
         startCell.state = MatrixCell.CellState.Filled;
         destCell.state = MatrixCell.CellState.Filled;

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(GridMovement))]
 public class GridGravity : MonoBehaviour, IGridComponent
 {
     GridMovement gridMovement;
@@ -42,7 +43,7 @@ public class GridGravity : MonoBehaviour, IGridComponent
                 if (!isSensitive) OnEndFalling?.Invoke(); // 아직 isSensitive가 false면서 이 이벤트에 구독을 거는 오브젝트는 없어서 지워도 무방함
                 else
                 {
-                    if (!targetCell.HasPlayer() || targetCell.state == MatrixCell.CellState.Filled)
+                    if (targetCell.state == MatrixCell.CellState.Filled)
                     {
                         Debug.Log("리제");
                         explodeOnDeath.Explode(); // 일단은 약한 물체는 낙하 후 터지는 걸 전제함
@@ -71,11 +72,11 @@ public class GridGravity : MonoBehaviour, IGridComponent
                 if (bottomCell.state ==
                     MatrixCell.CellState.Moving)
                 {
-                    belowObject.ForceCompleteTween();
-                    belowObject.MoveToTargetCell(GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down));
+                    belowObject.ForceCancelTween();
+                    //belowObject.MoveToTargetCell(GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down));
                 }
 
-                belowObject.ExplodeOnDeath.Explode();
+                belowObject.ExplodeOnDeath.Explode();  
             }
             else if (belowObject == GamePlayGridManager.Instance.player.MO &&
                      bottomCell.state == MatrixCell.CellState.Filled) // 플레이어면 안움직이면 터뜨림

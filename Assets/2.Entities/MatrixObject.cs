@@ -43,6 +43,7 @@ public class MatrixObject : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         
+        gridMovement = GetComponent<GridMovement>();
         gridGravity = GetComponent<GridGravity>();
         
         gridComponents = new List<IGridComponent>();
@@ -75,6 +76,18 @@ public class MatrixObject : MonoBehaviour
         // 로직상 이동 완료가 먼저 이루어지고 트윈이 되기 때문에 이동중 폭발에 휩쓸렸다면 출발지는 폭발영역 밖에 있어서 Empty가 보장됨
         if (gridMovement == null) return;
         gridMovement.ForceCompleteMove();
+    }
+    
+    public void ForceCancelTween()
+    {
+        // 제일 큰 목적은 이동 중인 오브젝트가 폭발에 휩쓸릴 때 폭발범위 바깥의 셀이 정상화되는 것
+        // 로직상 이동 완료가 먼저 이루어지고 트윈이 되기 때문에 이동중 폭발에 휩쓸렸다면 출발지는 폭발영역 밖에 있어서 Empty가 보장됨
+        if (gridMovement == null)
+        {
+            Debug.Log("????");
+            return;
+        }
+        gridMovement.ForceCancelMove();
     }
 
     public void EliminateMatrixObject()

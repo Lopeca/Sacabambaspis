@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(GridMovement))]
 public class GridRollable : MonoBehaviour
 {
     private GridMovement gridMovement;

@@ -116,9 +116,7 @@ public class GridMovement : MonoBehaviour
             GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Empty);
         GamePlayGridManager.Instance.SetCellState(destPos, MatrixCell.CellState.Filled);
     }
-
-    // 더 이상 시뮬레이션이 필요없어질 오브젝트를 전제함. 폭발에 휩쓸리는 등
-    // CompleteMove의 이전 셀 Empty화를 직관적으로 트윈을 끊음으로써 연출하는 전개를 만듬
+    
     public void ForceCompleteMove()
     {
         // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
@@ -135,6 +133,37 @@ public class GridMovement : MonoBehaviour
         // 트윈 강제 완료 (OnComplete 즉시 호출됨)
         moveTween?.Complete();
         rollTween?.Complete();
+    }
+    
+    public void ForceCancelMove()
+    {
+        // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
+        bool isMoving = (moveTween != null && moveTween.IsActive() && moveTween.IsPlaying()) 
+                        || (rollTween != null && rollTween.IsActive() && rollTween.IsPlaying());
+
+        if (isMoving)
+        {
+            Debug.Log("[ForceCancelMove] 진행 중인 이동/구르기 트윈을 강제로 취소시킵니다.");
+        }
+        else
+        {
+            Debug.Log("[ForceCancelMove] 이동/구르기 트윈이 진행중이 아닙니다.");
+        }
+
+        AfterOnMoveCompleted = null;
+        
+        // 트윈 강제 완료 (OnComplete 즉시 호출됨)
+        moveTween?.Kill();
+        rollTween?.Kill();
+
+        mo.GetCurrentCell().state = MatrixCell.CellState.Empty;
+        mo.GetCurrentCell().matrixObject = null;
+        
+        mo.posX -= lastIntendedDirection.x;
+        mo.posY -= lastIntendedDirection.y;
+        
+        mo.GetCurrentCell().state = MatrixCell.CellState.Filled;
+        mo.GetCurrentCell().matrixObject = mo;
     }
     public void ForceState(MoveState state)
     {

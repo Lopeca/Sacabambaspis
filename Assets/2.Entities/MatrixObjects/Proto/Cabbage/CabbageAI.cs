@@ -32,11 +32,11 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
 
     private void Start()
     {
-        if (passiveRotate) StartRotation();
+        if (passiveRotate) StartSpriteRotation();
         mo.AppendGridComponent(this);
     }
 
-    private void StartRotation()
+    private void StartSpriteRotation()
     {
         // -360도: Z축 기준 양수는 시계방향, 음수는 반시계방향입니다.
         // SetLoops(-1, LoopType.Incremental): 트윈이 끝날 때마다 위치를 리셋하지 않고 계속 360도씩 더 돌립니다.
@@ -137,7 +137,8 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         targetDir = directionOrder[targetDirectionIndex];
         targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + targetDir);
         if (targetCell.state == MatrixCell.CellState.Empty || targetCell.state == MatrixCell.CellState.Falling
-                                                           || targetCell.HasPlayer())
+                                                           //|| (targetCell.HasPlayer() &&targetCell.state == MatrixCell.CellState.Filled))
+                                                           || (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO))
         {
             return targetDirectionIndex;
         }
@@ -147,7 +148,8 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         targetDir = directionOrder[targetDirectionIndex];
         targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + targetDir);
         if (targetCell.state == MatrixCell.CellState.Empty || targetCell.state == MatrixCell.CellState.Falling
-                                                           || targetCell.HasPlayer())
+                                                           || (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO))
+
         {
             return targetDirectionIndex;
         }
@@ -157,7 +159,8 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         targetDir = directionOrder[targetDirectionIndex];
         targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + targetDir);
         if (targetCell.state == MatrixCell.CellState.Empty || targetCell.state == MatrixCell.CellState.Falling
-                                                           || targetCell.HasPlayer())
+                                                           || (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO))
+
         {
             return targetDirectionIndex;
         }
