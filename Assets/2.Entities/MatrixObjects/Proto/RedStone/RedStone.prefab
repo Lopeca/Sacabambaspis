@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
   state: 0
   lastIntendedDirection: {x: 0, y: 0}
-  physics: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
+  physics: {fileID: 11400000, guid: 3f291f2a3e050c648949cdda3c673216, type: 2}
 --- !u!114 &8029237940615536063
 MonoBehaviour:
   m_ObjectHideFlags: 0

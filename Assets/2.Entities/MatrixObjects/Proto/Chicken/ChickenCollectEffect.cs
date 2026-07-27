@@ -6,6 +6,7 @@ public class ChickenCollectEffect : CollectibleEffect
     public override void ApplyEffect()
     {
         if (GamePlayGridManager.Instance == null) return;
-        
+
+        GamePlayGridManager.Instance.ObtainChicken();
     }
 }

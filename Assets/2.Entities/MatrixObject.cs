@@ -15,6 +15,9 @@ public class MatrixObject : MonoBehaviour
     [SerializeField] private TileDataSO tileDataSO;
     public TileDataSO TileDataSO => tileDataSO;
 
+    Animator animator;
+    public Animator Animator => animator;
+    
     private GridMovement gridMovement;
     GridGravity gridGravity;
     public GridGravity GridGravity => gridGravity;
@@ -38,6 +41,8 @@ public class MatrixObject : MonoBehaviour
     
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+        
         gridGravity = GetComponent<GridGravity>();
         
         gridComponents = new List<IGridComponent>();

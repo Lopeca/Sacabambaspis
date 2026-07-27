@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using _1.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private double lastYInputTime;
     private Vector2Int moveInput;
     private bool escBuffer;
+    private bool spaceBuffer;
+    private float spacePressedTime;
 
     [SerializeField]private PlayerState state;
     public PlayerState State => state;
@@ -24,8 +28,11 @@ public class PlayerController : MonoBehaviour
     public MatrixObject MO => mo;
     GridMovement movement;
     public GridMovement Movement => movement;
-    Coroutine controlCoroutine;
 
+    [SerializeField] private GameObject mushroomPrefab; 
+    private int mushroomCount;
+
+    private Coroutine controlCoroutine;
     public Action OnDeath;
     private bool isAlive;
     private void Awake()
@@ -36,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
         mo.OnEliminated += Die;
         escBuffer = false;
+        spaceBuffer = false;
+
+        movement.AfterOnMoveCompleted += PlayerUpdate;
     }
 
     public void PlayerUpdate()
@@ -53,15 +63,29 @@ public class PlayerController : MonoBehaviour
             PlayerExplode();
             return;
         }
-        if (moveInput != Vector2.zero)
+        
+        // 어떤 이유로든 이동 중이면 조작을 일단 막음
+        if (movement.State != GridMovement.MoveState.Staying)
         {
-            // 어떤 이유로든 이동 중이면 조작을 일단 막음
-            if (movement.State != GridMovement.MoveState.Staying)
-            {
-                state = PlayerState.Uncontrolled;
-                controlCoroutine = StartCoroutine(WaitMovement());
-                return;
-            }
+            state = PlayerState.Uncontrolled;
+            controlCoroutine = StartCoroutine(WaitMovement());
+            return;
+        }
+        if (mushroomCount > 0 && spaceBuffer && Time.time - spacePressedTime >= GameConstants.MUSHROOM_SPIT_TIME)
+        {
+            UseMushroom();
+            spaceBuffer = false;
+        }
+        else if (spaceBuffer && moveInput != Vector2.zero)
+        {
+            spaceBuffer = false;
+            // 제자리에서 옆칸 먹기
+        }
+        else if (moveInput != Vector2.zero)
+        {
+            spaceBuffer = false;
+       
+            
             // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기
             // 다른 오브젝트들은 조건을 보고 틀리면 다른 선택을 해야해서 이 요청 함수 안에 들어가서 이동 가능한지 검사하고 이동까지 다 하면 모듈화가 꼬임
              MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
@@ -94,12 +118,6 @@ public class PlayerController : MonoBehaviour
         
         escBuffer = false;
     }
-
-    private void MoveToTargetCell(MatrixCell targetCell)
-    {
-        targetCell.PutMatrixObject(mo);
-    }
-
     private bool CanInteract(MatrixCell targetCell)
     {
         return targetCell.state == MatrixCell.CellState.Filled && targetCell.matrixObject.GridInteractable != null;
@@ -169,6 +187,27 @@ public class PlayerController : MonoBehaviour
         {
             escBuffer = true;
         }
+
+        if (context.canceled)
+        {
+            escBuffer = false;
+        }
+    }
+
+    public void OnSpacePressed(InputAction.CallbackContext context)
+    {
+        if (state == PlayerState.Uncontrolled) return;
+        
+        if (context.performed)
+        {
+            spaceBuffer = true;
+            spacePressedTime = Time.time;
+        }
+
+        if (context.canceled)
+        {
+            spaceBuffer = false;
+        }
     }
     
     void Die()
@@ -200,5 +239,22 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         mo.OnEliminated -= Die;
+        movement.AfterOnMoveCompleted -= PlayerUpdate;
+    }
+
+    public void ObtainMushroom()
+    {
+        mushroomCount++;
+    }
+
+    public void UseMushroom()
+    {
+        mushroomCount--;
+        
+        Mushroom mushroom = Instantiate(mushroomPrefab.GetComponent<Mushroom>(), mo.GetCurrentCell().transform, true);
+        mushroom.transform.position = transform.position;
+        
+        mushroom.MO.posX = mo.posX;
+        mushroom.MO.posY = mo.posY;
     }
 }

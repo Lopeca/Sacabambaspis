@@ -51,8 +51,9 @@ public class EditorCameraPlaymodeController : MonoBehaviour
             return;
         }
 
-        Vector3 desiredPosition = new Vector3(playerTarget.position.x, playerTarget.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        //Vector3 desiredPosition = new Vector3(playerTarget.position.x, playerTarget.position.y, transform.position.z);
+        //transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = new Vector3(playerTarget.position.x, playerTarget.position.y, transform.position.z);
     }
 
     private void EnablePlayModeCamera()

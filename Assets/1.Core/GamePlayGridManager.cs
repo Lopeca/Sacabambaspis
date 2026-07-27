@@ -304,4 +304,10 @@ public class GamePlayGridManager : MonoBehaviour
         }
         pendingObjects.Clear();
     }
+
+    public void ObtainChicken(int count = 1)
+    {
+        requiredChickenCount -= count;
+        if (requiredChickenCount < 0) requiredChickenCount = 0;
+    }
 }
