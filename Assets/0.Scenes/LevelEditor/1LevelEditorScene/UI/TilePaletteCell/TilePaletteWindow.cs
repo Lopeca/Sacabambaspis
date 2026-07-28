@@ -71,6 +71,8 @@ public class TilePaletteWindow : MonoBehaviour
             cell.SetDataSO(tileDataSO);
         }
         
+        tilePointer.transform.SetParent(contentRoot);
+        
         // 만일을 위한 빈타일 코드. 우클릭 지우기를 지원하고 있기에 필요없을 수도 있음
         // Instantiate(tileCellPrefab, contentRoot.transform);
         
