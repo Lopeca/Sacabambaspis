@@ -29,7 +29,6 @@ public class MatrixObject : MonoBehaviour
 
     public ExplosionResponse explosionResponse;
     public bool isRounded;
-    public bool isCrushable;    // 폭발에 휩쓸리는가
     public bool isVulnerableToFalling; // 떨어지는 물체에 당하는가
 
     public int posX;

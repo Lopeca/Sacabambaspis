@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class GridMovement : MonoBehaviour
 {
+    private static readonly int Teleport = Animator.StringToHash("Teleport");
+
     public enum MoveState
     {
         Staying,
@@ -29,6 +31,10 @@ public class GridMovement : MonoBehaviour
     private Tween moveTween;
     public Tween MoveTween => moveTween;
     Tween rollTween;
+
+    // 공용 캐싱용 필드
+    private MatrixCell startCell;
+    private MatrixCell destCell;
 
     // 주로 트윈 완료 후 Filled 상태 여지 없이 다음 동작을 수행하도록 할 때
     public event Action AfterOnMoveCompleted;
@@ -234,5 +240,42 @@ public class GridMovement : MonoBehaviour
         }
         
         AfterOnMoveCompleted = null;
+    }
+
+    public void EnterPipe(Vector2Int direction)
+    {
+        // 데이터
+        startCell = mo.GetCurrentCell();
+        destCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + direction * 2);
+
+        startCell.state = MatrixCell.CellState.Moving;
+        destCell.state = MatrixCell.CellState.Receiving;
+
+        destCell.matrixObject = startCell.matrixObject;
+        startCell.matrixObject = null;
+
+        mo.posX = destCell.GetPosition().x;
+        mo.posY = destCell.GetPosition().y;
+
+        // 뷰
+        StartCoroutine(TeleportCoroutine());
+    }
+
+    private IEnumerator TeleportCoroutine()
+    {
+        mo.Animator.SetBool(Teleport, true);
+        state = MoveState.Moving;
+        
+        yield return new WaitForSeconds(0.1f);
+        
+        transform.position = mo.GetCurrentCell().transform.position;
+        
+        yield return new WaitForSeconds(0.16f);
+
+        state = MoveState.Staying;
+        mo.Animator.SetBool(Teleport, false);
+        
+        startCell.state = MatrixCell.CellState.Empty;
+        destCell.state = MatrixCell.CellState.Filled;
     }
 }

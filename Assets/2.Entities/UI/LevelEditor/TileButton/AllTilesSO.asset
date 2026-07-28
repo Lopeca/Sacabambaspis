@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: AllTilesSO
   m_EditorClassIdentifier: Assembly-CSharp::AllTilesSO
   tileDataSOs:
-  - {fileID: 11400000, guid: 5433a9517c2aa0b498a6763d72239132, type: 2}
   - {fileID: 11400000, guid: 7339353a9c6e0094aac1cd9da3f58552, type: 2}
   - {fileID: 11400000, guid: ef672a6b98d393c4a9eb759d24850608, type: 2}
   - {fileID: 11400000, guid: ff81884cd2991f64694e54168003aeb2, type: 2}
@@ -30,3 +29,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6f0ed25bdf1af746ae57f330f25d675, type: 2}
   - {fileID: 11400000, guid: 4897ee530fa3bd049850c9f751124fb8, type: 2}
   - {fileID: 11400000, guid: a492efefcf9d6244db6cc7573366452a, type: 2}
+  - {fileID: 11400000, guid: 8c6e987e54df6374ab145141185b56cd, type: 2}
+  - {fileID: 11400000, guid: f6715052779c0d748b1af40f6134400a, type: 2}
+  - {fileID: 11400000, guid: 7c84cc5de3ad71f4f9c845d9b760fc7f, type: 2}
+  - {fileID: 11400000, guid: a6075ae5fa396d44a8dee1e6c50c9b5c, type: 2}
+  - {fileID: 11400000, guid: f73ad9eb086b2ec4092e4a3b32ef6364, type: 2}
+  - {fileID: 11400000, guid: 91b135b9cc9ee37448e7fb00ecb9a54c, type: 2}
+  - {fileID: 11400000, guid: 26da89db4e7e3d04e9a2c139f35c34cb, type: 2}
+  - {fileID: 11400000, guid: f02357cecf426524795d6b6fd5e98ec2, type: 2}

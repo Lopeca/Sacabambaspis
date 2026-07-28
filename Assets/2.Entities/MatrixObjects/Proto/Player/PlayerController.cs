@@ -103,7 +103,8 @@ public class PlayerController : MonoBehaviour
             else if (CanCollect(targetCell))
             {
                 targetCell.matrixObject.CollectibleObject.Collect(moveInput);
-                movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Receiving);
+                if(isAlive) // collectible이 trap인경우 이동명령 불가
+                    movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Receiving);
             }
             else if (CanInteract(targetCell))
             {

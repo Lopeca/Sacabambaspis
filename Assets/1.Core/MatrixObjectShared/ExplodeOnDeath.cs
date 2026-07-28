@@ -72,12 +72,19 @@ public class ExplodeOnDeath : MonoBehaviour
 
     IEnumerator ChainExplode(bool isSpreadingChain)
     {
+        if (mo == GamePlayGridManager.Instance.player.MO)
+        {
+            Debug.Log("플레이어 체인");
+        }
         mo.SpriteRenderer.enabled = false;
         yield return new WaitForSeconds(0.3f);
         
         if(isExploding) yield break;
         
-        Debug.Log("id : " + mo.id + " - 지연 폭발");
+        if (mo == GamePlayGridManager.Instance.player.MO)
+        {
+            Debug.Log("플레이어 체인2");
+        }
         // 진행중인 트윈 강제 종료
         if (gridMovement != null)
             gridMovement.ForceCompleteMove();
@@ -85,12 +92,12 @@ public class ExplodeOnDeath : MonoBehaviour
         if (isSpreadingChain) isChainingChicken = true;
         SpawnExplodeElements();
         GamePlayGridManager.Instance.UnregisterPendingObject(gameObject);
+        mo.OnEliminated?.Invoke();
         Destroy(gameObject);
     }
 
     public void Explode(bool isSpreadingChain = false)
     {
-        Debug.Log("id : " + mo.id + " - 폭발");
         // 진행중인 트윈 강제 종료
         if (gridMovement != null)
             gridMovement.ForceCompleteMove();

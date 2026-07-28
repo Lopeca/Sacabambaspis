@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5d07b4059e34043be1bd8679ad8152, type: 3}
+  m_Name: Tile_HornPipe_Vertical
+  m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
+  tileKey: HornPipe_Vertical
+  prefab: {fileID: 7823050701885004647, guid: 9a0924b55825f3e46a1ea4b7fd6ad913, type: 3}
+  editorIcon: {fileID: 1429678331038640598, guid: 0dab002cca3a2fb4185a82d809402bf6, type: 3}
