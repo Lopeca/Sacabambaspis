@@ -141,6 +141,7 @@ public class GridMovement : MonoBehaviour
         rollTween?.Complete();
     }
     
+    // 마지막에 mo를 돌려놓는 작업까지는 보편적으로 활용할 수 없는 것으로 보임. 
     public void ForceCancelMove()
     {
         // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
@@ -162,6 +163,9 @@ public class GridMovement : MonoBehaviour
         moveTween?.Kill();
         rollTween?.Kill();
 
+        // pending으로 끌려갔을 수 있음, 이 경우 셀 간섭 권한이 없고 다른 상호작용 영역에서 셀 상태 관리 잘 해줄 것
+        if (mo.GetCurrentCell().matrixObject != mo) return;
+        
         mo.GetCurrentCell().state = MatrixCell.CellState.Empty;
         mo.GetCurrentCell().matrixObject = null;
         
@@ -170,6 +174,13 @@ public class GridMovement : MonoBehaviour
         
         mo.GetCurrentCell().state = MatrixCell.CellState.Filled;
         mo.GetCurrentCell().matrixObject = mo;
+    }
+
+    // 트윈 도중 
+    public void KillTweenOnly()
+    {
+        moveTween?.Kill();
+        rollTween?.Kill();
     }
     public void ForceState(MoveState state)
     {

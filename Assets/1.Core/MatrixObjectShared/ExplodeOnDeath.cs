@@ -11,10 +11,11 @@ public class ExplodeOnDeath : MonoBehaviour
     public bool IsChainingChicken => isChainingChicken;
 
     private Coroutine chainCoroutine;
-    
+
     GridMovement gridMovement;
 
     private bool isExploding;
+
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -33,7 +34,8 @@ public class ExplodeOnDeath : MonoBehaviour
 
         // 1. 프리팹 원본의 컴포넌트를 루프 외부에서 딱 한 번만 캐싱합니다.
         // ** 컴포넌트에 걸고 인스턴스화 처음 접함 ;; 
-        ExplodeElement prefabComponent = GamePlayGridManager.Instance.explodeEffectElementPrefab.GetComponent<ExplodeElement>();
+        ExplodeElement prefabComponent =
+            GamePlayGridManager.Instance.explodeEffectElementPrefab.GetComponent<ExplodeElement>();
 
         if (prefabComponent != null)
         {
@@ -42,9 +44,9 @@ public class ExplodeOnDeath : MonoBehaviour
                 // 2. 컴포넌트 원본을 넣었으므로, Instantiate는 자동으로 ExplodeElement 타입을 반환합니다.
                 // 루프 내부에서는 오직 생성 및 트랜스폼 정렬(자식 등록) 연산만 일어납니다.
                 explodeElements[i] = Instantiate(prefabComponent, transform);
-                
+
                 // 필요하다면 초기화 직후 바로 꺼두기
-                explodeElements[i].gameObject.SetActive(false); 
+                explodeElements[i].gameObject.SetActive(false);
             }
         }
         else
@@ -52,131 +54,121 @@ public class ExplodeOnDeath : MonoBehaviour
             Debug.LogError("explodeEffectElementPrefab에 ExplodeElement 컴포넌트가 없습니다!");
         }
     }
-    
+
     /// <summary>
     /// 지연시간 후 지정구역 폭발을 의도함
     /// </summary>
     /// <param name="isSpreadingChain"></param>
     public void ExplodeByChain(bool isSpreadingChain = false)
     {
+        Debug.Log("explodeByChain");
         // 셀과 연결을 끊음
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
-        currentCell.state = MatrixCell.CellState.Empty;
-        currentCell.matrixObject.OnEliminated?.Invoke();
-        currentCell.matrixObject = null;
-        
+        mo.ForceCancelTween();
+        mo.OnEliminated?.Invoke(); // 이 이벤트는 지금은 matrixObject가 플레이어일 시 게임종료 처리 및 코루틴 외에 하는 것 없음
+
         // 매니저에 등록 후 격자 뒤에서 폭발 프로세스
         GamePlayGridManager.Instance.RegisterPendingObject(gameObject);
+        Debug.Log("등록된 pending object : " + gameObject.name); // 이전 오브젝트가 잘 들어감
+        currentCell.matrixObject = null; // 오브젝트가 pending으로 빠졌기 때문에 셀에서는 비워줌. 
+        currentCell.state = MatrixCell.CellState.Empty;
+        
+        Debug.Log("코루틴 실행 전 Current Cell : " + currentCell.GetPosition() + " || " + currentCell.gameObject.name);
+        Debug.Log("코루틴 실행 전 Current Cell MO : " + currentCell.matrixObject + " || " + currentCell.gameObject.name);
         chainCoroutine = StartCoroutine(ChainExplode(isSpreadingChain));
     }
 
     IEnumerator ChainExplode(bool isSpreadingChain)
     {
-        if (mo == GamePlayGridManager.Instance.player.MO)
-        {
-            Debug.Log("플레이어 체인");
-        }
         mo.SpriteRenderer.enabled = false;
         yield return new WaitForSeconds(0.3f);
         
-        if(isExploding) yield break;
-        
-        if (mo == GamePlayGridManager.Instance.player.MO)
-        {
-            Debug.Log("플레이어 체인2");
-        }
+        if (isExploding) yield break;
+
         // 진행중인 트윈 강제 종료
         if (gridMovement != null)
-            gridMovement.ForceCompleteMove();
-        
+            gridMovement.ForceCancelMove(); 
+
         if (isSpreadingChain) isChainingChicken = true;
+
+        MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
+        
+        currentCell.matrixObject.EliminateMatrixObject();       // 폭발 원소를 지우려고 했는데 양배추 지워짐 신호가 여기서 또 나옴
         SpawnExplodeElements();
         GamePlayGridManager.Instance.UnregisterPendingObject(gameObject);
         mo.OnEliminated?.Invoke();
         Destroy(gameObject);
     }
 
+
     public void Explode(bool isSpreadingChain = false)
     {
         // 진행중인 트윈 강제 종료
         if (gridMovement != null)
             gridMovement.ForceCompleteMove();
-        
+
         if (isSpreadingChain) isChainingChicken = true;
         mo.EliminateMatrixObject();
-        
+
         // 3*3 공간에 공격과 동시에 폭발 엘리먼트 생성(엘리먼트에 체인 속성 넘겨줌)
         SpawnExplodeElements();
-        
     }
 
-   private void SpawnExplodeElements()
-{
-    isExploding = true;
-    int count = 0;
-    // 연쇄 폭발을 일으킬 인접 폭발 컴포넌트들을 모아둘 리스트
-    List<ExplodeOnDeath> chainTargets = new List<ExplodeOnDeath>();
-
-    for (int x = mo.posX - 1; x <= mo.posX + 1; x++)
+    private void SpawnExplodeElements()
     {
-        for (int y = mo.posY - 1; y <= mo.posY + 1; y++)
+        isExploding = true;
+        int count = 0;
+
+        for (int x = mo.posX - 1; x <= mo.posX + 1; x++)
         {
-            ExplodeElement currentExplodeElement = explodeElements[count];
-            MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(x, y);
-            
-            // 유효성 체크 (이미 파괴된 이펙트 원소면 스킵)
-            if (currentExplodeElement == null) 
+            for (int y = mo.posY - 1; y <= mo.posY + 1; y++)
             {
+                ExplodeElement currentExplodeElement = explodeElements[count];
+                MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(x, y);
+
+                // 유효성 체크 (이미 파괴된 이펙트 원소면 스킵)
+                if (currentExplodeElement == null)
+                {
+                    count++;
+                    continue;
+                }
+
+                MatrixObject targetCellObject = targetCell.matrixObject;
+
+                if (targetCellObject == null)
+                {
+                    SetupExplodeElement(targetCell, currentExplodeElement);
+                }
+                else if (targetCellObject.explosionResponse == MatrixObject.ExplosionResponse.Indestructible)
+                {
+                    Destroy(currentExplodeElement.gameObject);
+                }
+                else
+                {
+                    targetCellObject.ForceCompleteTween();
+
+                    if (targetCell.state == MatrixCell.CellState.Moving)
+                    {
+                        targetCell.GetMovingObject().ForceCompleteTween();
+                    }
+
+                    ExplodeOnDeath sweptObjectExplodeComponent = targetCellObject.ExplodeOnDeath;
+                    if (sweptObjectExplodeComponent != null)
+                    {
+                        if (isChainingChicken) sweptObjectExplodeComponent.isChainingChicken = true;
+
+                        sweptObjectExplodeComponent.ExplodeByChain(isChainingChicken);
+                    }
+
+                    // 내 3x3 엘리먼트 배치를 우선 안전하게 완료함
+                    currentExplodeElement.MO.id = count;
+                    SetupExplodeElement(targetCell, currentExplodeElement);
+                }
+
                 count++;
-                continue;
             }
-
-            MatrixObject targetCellObject = targetCell.matrixObject;
-
-            if (targetCellObject == null)
-            {
-                SetupExplodeElement(targetCell, currentExplodeElement);
-            }
-            else if (targetCellObject.explosionResponse == MatrixObject.ExplosionResponse.Indestructible)
-            {
-                Destroy(currentExplodeElement.gameObject);
-            }
-            else
-            {
-                targetCellObject.ForceCompleteTween();
-                
-                if (targetCell.state == MatrixCell.CellState.Moving)
-                {
-                    targetCell.GetMovingObject().ForceCompleteTween();
-                }
-                
-                ExplodeOnDeath sweptObjectExplodeComponent = targetCellObject.ExplodeOnDeath;
-                if (sweptObjectExplodeComponent != null)
-                {
-                    if (isChainingChicken) sweptObjectExplodeComponent.isChainingChicken = true;
-                    // ★ 바로 폭발시키지 않고 리스트에 담아둡니다!
-                    chainTargets.Add(sweptObjectExplodeComponent);
-                    GamePlayGridManager.Instance.RegisterPendingObject(sweptObjectExplodeComponent.gameObject);
-                    sweptObjectExplodeComponent.mo.GetCurrentCell().matrixObject = null;
-                }
-                
-                // 내 3x3 엘리먼트 배치를 우선 안전하게 완료함
-                SetupExplodeElement(targetCell, currentExplodeElement);
-            }
-            
-            count++;
         }
     }
-
-    // ★ 내 3x3 영역의 이펙트 배치가 전부 끝난 "후"에 연쇄 폭발을 순차적으로 호출!
-    foreach (var target in chainTargets)
-    {
-        if (target != null)
-        {
-            target.ExplodeByChain(isChainingChicken);
-        }
-    }
-}
 
     private void SetupExplodeElement(MatrixCell targetCell,
         ExplodeElement currentExplodeElement)
@@ -187,7 +179,7 @@ public class ExplodeOnDeath : MonoBehaviour
             e.CancelChaining();
             // Debug.Log("CancelChain " + targetCell.GetPosition());
         }
-        
+
         //Debug.Log("폭발셀 : " + targetCell.GetPosition());
         targetCell.Clear();
         targetCell.PutMatrixObject(currentExplodeElement.MO);
@@ -196,4 +188,3 @@ public class ExplodeOnDeath : MonoBehaviour
         currentExplodeElement.ExplodeCell(isChainingChicken);
     }
 }
-

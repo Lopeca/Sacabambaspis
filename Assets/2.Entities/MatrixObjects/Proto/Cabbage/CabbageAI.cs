@@ -10,7 +10,10 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
 
     private MatrixObject mo;
     GridMovement gridMovement;
-    Tween rotateTween;
+    Tween passiveRotateTween;
+    private Tween aiRotateTween;
+
+    private Coroutine mainCoroutine;
 
     private readonly Vector2Int[] directionOrder = { Vector2Int.right, Vector2Int.up, Vector2Int.left, Vector2Int.down };
     
@@ -20,7 +23,8 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
     [SerializeField] private int facingDirectionIndex;
 
     private int rotateIntent;
-    
+
+    public bool isLive;
     // 디버그용
     [SerializeField] private MatrixCell scannedCell;
     [SerializeField] private int scannedFrameCount;
@@ -31,24 +35,46 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         isBusy = false;
     }
 
+    private void OnEnable()
+    {
+        mo.OnEliminated += StopAI;
+        isLive = true;
+    }
+
+    private void OnDisable()
+    {
+        mo.OnEliminated -= StopAI;
+        isLive = false;
+    }
+
+    private void StopAI()
+    {
+        isLive = false;
+        passiveRotateTween.Kill();
+        aiRotateTween.Kill();
+        StopCoroutine(mainCoroutine);
+    }
+
     private void Start()
     {
         if (passiveRotate) StartPassiveRotation();
         mo.AppendGridComponent(this);
     }
 
+    
+
     private void StartPassiveRotation()
     {
         // -360도: Z축 기준 양수는 시계방향, 음수는 반시계방향입니다.
         // SetLoops(-1, LoopType.Incremental): 트윈이 끝날 때마다 위치를 리셋하지 않고 계속 360도씩 더 돌립니다.
-        rotateTween = transform.DORotate(new Vector3(0, 0, 360f), durationPerPassiveRotate, RotateMode.FastBeyond360)
+        passiveRotateTween = transform.DORotate(new Vector3(0, 0, 360f), durationPerPassiveRotate, RotateMode.FastBeyond360)
             .SetLoops(-1, LoopType.Incremental)
             .SetEase(Ease.Linear);
     }
 
     public void GridUpdate()
     {
-        if (isBusy || !gridMovement.IsMoveFinished()) return;
+        if (isBusy || !gridMovement.IsMoveFinished() || !isLive) return;
         
         DecideAndExecuteNextAction();
     }
@@ -64,13 +90,13 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
             // 여기서 바라보는 방향이 이미 바뀜
             bool isForward = facingDirectionIndex == validDirIndex;
             facingDirectionIndex = validDirIndex;
-            StartCoroutine(Co_RotateAndMove(facingDirectionIndex, isForward));
+            mainCoroutine = StartCoroutine(Co_RotateAndMove(facingDirectionIndex, isForward));
         }
         else
         {
             // [길 없음 예외]: 제자리 좌회전 코루틴 시작
             facingDirectionIndex = AddToFacingDirectionIndex(1);   // 좌회전
-            StartCoroutine(Co_RotateOnly(facingDirectionIndex));
+            mainCoroutine = StartCoroutine(Co_RotateOnly(facingDirectionIndex));
         }
     }
 
@@ -122,7 +148,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
             float angle = 0;
             if (rotateIntent == 1) angle = 90;
             else if (rotateIntent == -1) angle = -90;
-            transform.DOBlendableLocalRotateBy(new Vector3(0, 0, angle), GameConstants.ENEMY_ROTATE_DURATION,
+            aiRotateTween = transform.DOBlendableLocalRotateBy(new Vector3(0, 0, angle), GameConstants.ENEMY_ROTATE_DURATION,
                 RotateMode.FastBeyond360).SetEase(Ease.Linear);
         }
     }
@@ -208,10 +234,10 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
 
     private void OnDestroy()
     {
-        rotateTween?.Kill();
+        passiveRotateTween?.Kill(); 
+        aiRotateTween?.Kill();
         StopAllCoroutines();
     }
-
     public void Interact(PlayerController player, Vector2Int direction)
     {
         player.Paralyze();

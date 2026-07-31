@@ -27,13 +27,13 @@ public class ExplodeElement : MonoBehaviour
         explodeCoroutine = StartCoroutine(ExplodeCellCoroutine(sourceChainingChicken));
     }
 
-    IEnumerator ExplodeCellCoroutine(bool isChainingChicken)
+    IEnumerator ExplodeCellCoroutine(bool sourceChainingChicken)
     {
         yield return new WaitForSeconds(0.7f);
         
         MatrixCell currentCell = mo.GetCurrentCell();
         
-        if (isChainingChicken || isChainingChicken)
+        if (sourceChainingChicken || this.isChainingChicken)
         {
             MatrixObject chicken = Instantiate(GamePlayGridManager.Instance.chickenPrefab.GetComponent<MatrixObject>());
             currentCell.Clear();
