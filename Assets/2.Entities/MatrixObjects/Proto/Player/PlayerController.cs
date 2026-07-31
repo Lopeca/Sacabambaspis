@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
     
     private double lastXInputTime;
     private double lastYInputTime;
-    private Vector2Int moveInput;
+    [SerializeField] private Vector2Int moveInput;
     private bool escBuffer;
-    private bool spaceBuffer;
+    [SerializeField] private bool spaceBuffer;
     private float spacePressedTime;
+    private bool spaceMoveLock;
+    private float moveTicks;
+    public float MoveTicks => moveTicks;
 
     [SerializeField]private PlayerState state;
     public PlayerState State => state;
@@ -46,10 +49,20 @@ public class PlayerController : MonoBehaviour
         spaceBuffer = false;
 
         movement.AfterOnMoveCompleted += PlayerUpdate;
+        
+    }
+
+    private void Start()
+    {
+        moveTicks = movement.physicsSO.moveDuration / Time.fixedDeltaTime;
     }
 
     public void PlayerUpdate()
     {
+        if (spaceBuffer && state == PlayerState.Uncontrolled)
+        {
+            spacePressedTime = Time.time;
+        }
         if (isAlive && state == PlayerState.Controlled)
         {
             HandleInput();
@@ -78,10 +91,20 @@ public class PlayerController : MonoBehaviour
         }
         else if (spaceBuffer && moveInput != Vector2.zero)
         {
-            spaceBuffer = false;
+            spaceMoveLock = true;
             // 제자리에서 옆칸 먹기
+            MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
+            if (CanCollect(targetCell))
+            {
+                targetCell.matrixObject.CollectibleObject.Collect(Vector2Int.zero);
+            }
+            else if (CanInteract(targetCell))
+            {
+                targetCell.matrixObject.GridInteractable.Interact(this, Vector2Int.zero);
+            }
+
         }
-        else if (moveInput != Vector2.zero)
+        else if (moveInput != Vector2.zero && !spaceMoveLock)
         {
             spaceBuffer = false;
        
@@ -197,8 +220,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnSpacePressed(InputAction.CallbackContext context)
     {
-        if (state == PlayerState.Uncontrolled) return;
-        
         if (context.performed)
         {
             spaceBuffer = true;
@@ -208,6 +229,7 @@ public class PlayerController : MonoBehaviour
         if (context.canceled)
         {
             spaceBuffer = false;
+            spaceMoveLock = false;
         }
     }
     

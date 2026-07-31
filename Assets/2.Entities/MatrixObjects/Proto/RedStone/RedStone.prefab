@@ -115,7 +115,6 @@ MonoBehaviour:
   tileDataSO: {fileID: 11400000, guid: d54aff3235a83c548b0f61e77bdca0d1, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 1
   isVulnerableToFalling: 1
   posX: 0
   posY: 0
@@ -146,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
   state: 0
   lastIntendedDirection: {x: 0, y: 0}
-  physics: {fileID: 11400000, guid: 3f291f2a3e050c648949cdda3c673216, type: 2}
+  physicsSO: {fileID: 11400000, guid: 3f291f2a3e050c648949cdda3c673216, type: 2}
 --- !u!114 &8029237940615536063
 MonoBehaviour:
   m_ObjectHideFlags: 0

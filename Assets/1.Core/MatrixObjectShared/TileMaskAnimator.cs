@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,12 +8,15 @@ public class TileMaskAnimator : MonoBehaviour
     // 기본적으로 플레이어 피직스 SO를 참고해서 속도로 사용할 예정
     public ObjectPhysicsConfigSO speedConfigSO;
     public GameObject mask;
-
-    private Tween maskTween;
     
+    private Tween tileTween;
+    private Coroutine tileCoroutine;
+    
+    int targetTicks;
     private void Awake()
     {
         ResetMask();
+        targetTicks = Mathf.Max(1, Mathf.RoundToInt(speedConfigSO.moveDuration / Time.fixedDeltaTime));
     }
 
     /// <summary>
@@ -31,7 +35,7 @@ public class TileMaskAnimator : MonoBehaviour
     /// 플레이어의 진입 방향에 맞춰 마스크를 이동시키는 연출
     /// </summary>
     /// <param name="direction">플레이어의 진입 방향 (예: 우측 이동 시 Vector2Int.right)</param>
-    public void PlayMaskAnimation(Vector2Int direction, Action onAnimationComplete = null)
+   public void PlayMaskAnimation(Vector2Int direction, Action onAnimationComplete = null)
     {
         if (mask == null) return;
         if (speedConfigSO == null)
@@ -40,35 +44,101 @@ public class TileMaskAnimator : MonoBehaviour
             return;
         }
 
-        // 1. 연출 전 마스크 위치를 중앙으로 초기화 (이전 트윈이 꼬이는 것 방지)
-        mask.transform.localPosition = Vector3.zero;
+        // 이전 동작 중인 트윈과 코루틴 안전하게 중단
+        StopActiveMaskRoutine();
+        int targetTicks = Mathf.Max(1, Mathf.RoundToInt(speedConfigSO.moveDuration / Time.fixedDeltaTime));
+        
+        if (direction == Vector2Int.zero)
+        {
+            tileCoroutine = StartCoroutine(ScaleAnimationRoutine(targetTicks, onAnimationComplete));
+            return;
+        }
 
-        // 2. 플레이어의 진입 방향으로 마스크가 이동해야 할 목표 '로컬' 좌표 계산
-        // 격자 한 칸 크기가 1이므로, 방향 벡터를 그대로 목적지 오프셋으로 사용합니다.
+        // 1. SO의 시간(초)을 기반으로 정확한 '목표 Fixed 틱 수' 계산
+      
         Vector3 targetLocalPos = new Vector3(direction.x, direction.y, 0f);
 
-        // 3. SO에 정의된 moveDuration 동안 마스크를 로컬 좌표계 기준으로 부드럽게 이동시킵니다.
-        // Ease.Linear를 쓰면 플레이어의 등속 격자 이동과 완벽하게 싱크가 맞습니다.
-        maskTween = mask.transform.DOLocalMove(targetLocalPos, speedConfigSO.moveDuration)
-            .SetEase(Ease.Linear)
-            .OnComplete(() =>
-            {
-                // 4. 연출이 끝나면 마스크를 다시 원래대로 되돌리거나, 
-                // 타일 자체를 파괴(Destroy)하는 등 후처리 로직을 여기에 작성합니다.
-                onAnimationComplete?.Invoke();
-            });
+        // 2. 틱 기반 코루틴으로 실행
+        tileCoroutine = StartCoroutine(MaskAnimationRoutine(targetLocalPos, targetTicks, onAnimationComplete));
     }
-    
+
     /// <summary>
-    /// 현재 재생 중인 마스크 트윈을 안전하게 종료합니다.
+    /// 지정된 FixedUpdate 틱 동안 오브젝트의 스케일을 0으로 줄이는 연출 및 후처리 코루틴
     /// </summary>
+    /// <param name="targetTicks">대기할 FixedUpdate 틱 수</param>
+    /// <param name="onAnimationComplete">연출 완수 후 실행할 후처리 콜백 (예: 타일 파괴, 아이템 획득 데이터 처리)</param>
+    private IEnumerator ScaleAnimationRoutine(int targetTicks, Action onAnimationComplete)
+    {
+        // 1. 기존 트윈 및 초기 스케일 정돈 (시작 시 Vector3.one 보장)
+        KillActiveTween();
+        transform.localScale = Vector3.one;
+
+        // 2. 시각 연출: DOTween으로 Vector3.zero까지 스케일 축소 트윈 실행
+        float duration = targetTicks * Time.fixedDeltaTime;
+        tileTween = transform.DOScale(Vector3.zero, duration)
+            .SetEase(Ease.Linear);
+   
+
+        // 3. 논리 대기: 정확히 계산된 targetTicks 수만큼 FixedUpdate 대기
+        for (int i = 0; i < targetTicks; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        // 4. 틱 완수 시점: 트윈 정리 및 스케일 0 강제 Snap (프레임 밀림 방지)
+        KillActiveTween();
+        transform.localScale = Vector3.zero;
+
+        // 5. 로직 후처리 콜백 실행 (데이터 획득, 타일 Clear 처리 등)
+        onAnimationComplete?.Invoke();
+        tileCoroutine = null;
+    }
+
+    private IEnumerator MaskAnimationRoutine(Vector3 targetLocalPos, int targetTicks, Action onAnimationComplete)
+    {
+        // 마스크 중앙 초기화
+        mask.transform.localPosition = Vector3.zero;
+        
+        float duration = targetTicks * Time.fixedDeltaTime;
+        tileTween = mask.transform.DOLocalMove(targetLocalPos, duration)
+            .SetEase(Ease.Linear);
+
+        // 논리적 대기: 정확히 지정된 Fixed 틱만큼 대기
+        for (int i = 0; i < targetTicks; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        // --- 정확히 targetTicks가 지난 시점 ---
+        // 뷰(View) 뒷정리: 혹시 트윈이 잔여 프레임 때문에 덜 끝났다면 즉시 타겟 위치로 Snap 후 종료
+        KillActiveTween();
+        if (mask != null)
+        {
+            mask.transform.localPosition = targetLocalPos;
+        }
+
+        // 데이터/상태(Model) 후처리 실행 (OnComplete 대용)
+        onAnimationComplete?.Invoke();
+        tileCoroutine = null;
+    }
+
+    private void StopActiveMaskRoutine()
+    {
+        if (tileCoroutine != null)
+        {
+            StopCoroutine(tileCoroutine);
+            tileCoroutine = null;
+        }
+        KillActiveTween();
+    }
+
     private void KillActiveTween()
     {
-        if (maskTween != null && maskTween.IsActive())
+        if (tileTween != null && tileTween.IsActive())
         {
-            maskTween.Kill();
+            tileTween.Kill();
         }
-        maskTween = null;
+        tileTween = null;
     }
 
     /// <summary>

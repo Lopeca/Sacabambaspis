@@ -10,6 +10,7 @@ public class GridMovement : MonoBehaviour
 {
     private static readonly int Teleport = Animator.StringToHash("Teleport");
 
+    private int targetTicks;
     public enum MoveState
     {
         Staying,
@@ -26,12 +27,13 @@ public class GridMovement : MonoBehaviour
     public MoveState State => state;
     [SerializeField] private Vector2Int lastIntendedDirection;
     
-    public ObjectPhysicsConfigSO physics;
+    public ObjectPhysicsConfigSO physicsSO;
 
     private Tween moveTween;
     public Tween MoveTween => moveTween;
     Tween rollTween;
 
+    private Coroutine coroutine;
     // 공용 캐싱용 필드
     private MatrixCell startCell;
     private MatrixCell destCell;
@@ -42,6 +44,8 @@ public class GridMovement : MonoBehaviour
     {
         mo = GetComponent<MatrixObject>();
         state = MoveState.Staying;
+        
+        targetTicks = Mathf.Max(1, Mathf.RoundToInt(physicsSO.moveDuration / Time.fixedDeltaTime));
     }
 
     /// <summary>
@@ -89,20 +93,29 @@ public class GridMovement : MonoBehaviour
     /// <param name="OnMoveCompleted"> 마감처리에 필요한 것 </param>
     public void PerformMove(Vector3 destPos, bool isPlayerSpeed = false)
     {
-        moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
-            .SetEase(Ease.Linear)
-            .OnComplete(() =>
-            {
-                CompleteMove();
-                state = MoveState.Staying;
+        moveTween = transform.DOMove(destPos,
+                (isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks) * Time.fixedDeltaTime)
+            .SetEase(Ease.Linear);
+        coroutine = StartCoroutine(PerformMoveCoroutine(isPlayerSpeed));
+    }
+
+    IEnumerator PerformMoveCoroutine(bool isPlayerSpeed)
+    {
+        for (int i = 0; i < (isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks); i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        
+        moveTween.Complete();
+        CompleteMove();
+        state = MoveState.Staying;
                 
-                AfterOnMoveCompleted?.Invoke();
-            });
+        AfterOnMoveCompleted?.Invoke();
     }
     
     public void PerformMove_CustomCompleteAction(Vector3 destPos, bool isPlayerSpeed = false, Action OnMoveCompleted = null)
     {
-        moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration)
+        moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physicsSO.moveDuration)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
@@ -196,7 +209,7 @@ public class GridMovement : MonoBehaviour
     {
         //duration 동안 한바퀴 회전하는 코드. 왼쪽으로 구르면 반시계, 오른쪽은 시계 방향
         float targetAngle = (direction == Vector2Int.left) ? 360f : -360f;
-        float duration = isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physics.moveDuration;
+        float duration = isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physicsSO.moveDuration;
         
         rollTween = transform.DOLocalRotate(new Vector3(0f, 0f, targetAngle), duration, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
@@ -213,7 +226,7 @@ public class GridMovement : MonoBehaviour
 
     IEnumerator RollCoroutine()
     {
-        yield return new WaitForSeconds(physics.moveDuration / 3);
+        yield return new WaitForSeconds(physicsSO.moveDuration / 3);
 
         moveTween.Pause();  // 둘은 DoTween의 트윈들임
         rollTween.Pause();
@@ -249,6 +262,8 @@ public class GridMovement : MonoBehaviour
         {
             rollTween.Kill();
         }
+        
+        if (coroutine != null) StopCoroutine(coroutine);
         
         AfterOnMoveCompleted = null;
     }

@@ -50,7 +50,7 @@ public class GamePlayGridManager : MonoBehaviour
         pendingObjects = new List<GameObject>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //isPlaying 반복 검사는 중간 페이즈에 게임이 끝날 경우 모든 생명주기를 돌 필요가 없기 때문. 턴제게임이 꼭 내턴이 끝나지 않아도 상대가 무너지면 중간에 끝내는 것처럼, 한 주기 안에서 반복 체크하는 건 자연스러운 일이라고 함
        

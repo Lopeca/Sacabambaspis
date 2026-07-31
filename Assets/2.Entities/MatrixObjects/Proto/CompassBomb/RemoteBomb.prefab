@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 379196462046745946}
   - component: {fileID: 6086834479510488527}
   - component: {fileID: 1348672641505335772}
+  - component: {fileID: 5126300659040051138}
   m_Layer: 0
   m_Name: RemoteBomb
   m_TagString: Untagged
@@ -112,7 +113,6 @@ MonoBehaviour:
   tileDataSO: {fileID: 11400000, guid: 4897ee530fa3bd049850c9f751124fb8, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 0
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
@@ -154,3 +154,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792a678d84e7e974f88b13069805f89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RemoteBomb
+--- !u!114 &5126300659040051138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991145011499528023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0376c086dba532842bde32bd1cdf3ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+  state: 0
+  lastIntendedDirection: {x: 0, y: 0}
+  physicsSO: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
