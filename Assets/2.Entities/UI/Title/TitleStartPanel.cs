@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleStartPanel : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void OnClickAdventureBtn()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickCustomMapBtn()
     {
         
+    }
+
+    public void OnClickEditorBtn()
+    {
+        SceneManager.LoadScene("Edit_0LevelEditorHubScene");
+    }
+    
+    public void OnClickUndoBtn()
+    {
+        TitleUI.Instance.ShowMainPanel();
     }
 }

@@ -1,0 +1,559 @@
+{
+    "levelName": "New Level (4)",
+    "autoCountChicken": false,
+    "requiredChickenCount": -1,
+    "tiles": [
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 59
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 60
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 60
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 60
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 60
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 60
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 60
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 60
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 61
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 61
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 61
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 61
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 61
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 61
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 61
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 61
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 62
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 62
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 62
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 62
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 62
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 62
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 62
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 62
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 63
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 63
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 63
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 64
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 64
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 64
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 64
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 64
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 64
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 64
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 65
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 65
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 66
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 66
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 66
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 67
+        },
+        {
+            "tileKey": "Player",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 67
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 67
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 68
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 68
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 68
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 69
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 69
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 70
+        },
+        {
+            "tileKey": "WhiteWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 70
+        }
+    ]
+}

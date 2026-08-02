@@ -4,22 +4,22 @@ using UnityEngine;
 public class TitleUI : MonoBehaviour
 {
     // 씬에 상주하고 씬 바뀌면 터지는 게 확실한 싱글톤이라서 복잡한 처리는 건너뜀
-    public static TitleUI instance;
+    public static TitleUI Instance;
 
     [SerializeField] TitleMainPanel mainPanel;
     [SerializeField] TitleStartPanel startPanel;
     [SerializeField] SettingPanel settingPanel;
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     private void Start()
     {
-        ShowMainMenu();
+        ShowMainPanel();
     }
 
-    public void ShowMainMenu()
+    public void ShowMainPanel()
     {
         SetAllPanelsActive(false);
         mainPanel.gameObject.SetActive(true);

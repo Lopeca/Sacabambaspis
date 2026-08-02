@@ -12,4 +12,5 @@ EditorBuildSettings:
     path: Assets/0.Scenes/LevelEditor/0LevelEditorHubScene/Edit_0LevelEditorHubScene.unity
     guid: a9c4c2466f098da44bb638cd9562dbf2
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8718f3a6af3112747900231c36c3b0cb, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
