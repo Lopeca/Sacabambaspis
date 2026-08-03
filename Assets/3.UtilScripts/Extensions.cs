@@ -12,3 +12,15 @@ public static class GameObjectExtensions
         }
     }
 }
+
+public static class ColorExtensions
+{
+    /// <summary>
+    /// 기존 색상에서 Alpha 값만 변경된 새로운 Color를 반환합니다.
+    /// </summary>
+    public static Color WithAlpha(this Color color, float alpha)
+    {
+        color.a = alpha;
+        return color; // 복사본의 a를 수정 후 새 Color 구조체로 반환
+    }
+}

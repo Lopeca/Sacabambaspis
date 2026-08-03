@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa98cd3235d204abe4d6d9d4d2737d, type: 3}
   m_Name: GameSessionSO
   m_EditorClassIdentifier: Assembly-CSharp::GameSessionSO
+  isExploringOriginalLevel: 1
+  selectedOriginalLevelIndex: 0
+  selectedOriginalLevelData: {fileID: 0}
+  selectedCustomLevelPath: 

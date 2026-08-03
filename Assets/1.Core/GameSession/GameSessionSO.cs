@@ -13,7 +13,7 @@ public class GameSessionSO : ScriptableObject
     public OriginalLevelData selectedOriginalLevelData; // 실제 불러올 레벨 데이터 파일 어드레서블 주소를 참조할 수 있는 필드
 
     public string selectedCustomLevelPath;
-
+    
     private LevelSaveData currentLoadedLevelData;    // 실제 레벨 파일 json 안의 데이터. 
     public LevelSaveData CurrentLoadedLevelData => currentLoadedLevelData;
     

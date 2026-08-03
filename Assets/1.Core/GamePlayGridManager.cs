@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 // 생성할 일 없는 플레이씬 고유 싱글톤. 방어코드 없이, 오류 발생하면 코드로 해결할 게 아니라 에디터에서 무결하게 맞춰갈 것
+// 격자판 위에서 일어나는 판정만을 다룸. 즉 게임의 승패까지 다뤄지는 건 상당히 상위의 역할이지만 그걸 세이브파일에 기록하거나, 에디터로 돌려보내는 건 상위 매니저의 몫
 public class GamePlayGridManager : MonoBehaviour
 {
     static GamePlayGridManager instance;
@@ -83,6 +84,11 @@ public class GamePlayGridManager : MonoBehaviour
         loadedLevelData = levelSaveData;
     }
 
+    public void InstantiateOriginalLevel(LevelSaveData currentLoadedLevelData)
+    {
+        loadedLevelData = currentLoadedLevelData;
+        ConvertLevelDataToGrid();
+    }
     public void LoadCustomLevel()
     {
         loadedLevelData = CustomLevelExplorer.Instance.LoadedLevel;

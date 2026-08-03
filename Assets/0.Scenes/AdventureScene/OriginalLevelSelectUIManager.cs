@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OriginalLevelSelectUIManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     private void OnEnable()
     {
         LevelSelectButton.OnClickToFocus += FocusLevelButton;
+        LevelSelectButton.OnClickToPlay += ExecuteLevelButton;
         
         gameSessionSO.isExploringOriginalLevel = true;
     }
@@ -26,6 +28,8 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     private void OnDisable()
     {
         LevelSelectButton.OnClickToFocus -= FocusLevelButton;
+        LevelSelectButton.OnClickToPlay -= ExecuteLevelButton;
+        
         
         gameSessionSO.isExploringOriginalLevel = false;
     }
@@ -50,12 +54,12 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         gameSessionSO.selectedOriginalLevelIndex = index;
         
         // 2. 비동기 작업 시작
-        SelectStageRoutineAsync(gameSessionSO.selectedOriginalLevelData, _selectCts.Token).Forget();
+        SelectStageRoutineAsync(_selectCts.Token).Forget();
 
         
     }
-    
-    private async UniTaskVoid SelectStageRoutineAsync(OriginalLevelData levelData, CancellationToken token)
+
+    private async UniTaskVoid SelectStageRoutineAsync(CancellationToken token)
     {
         // [핵심] 시작하자마자 스크롤 취소 토큰(token) + GameObject 파괴 토큰을 결합!
         // 이렇게 만들어둔 linkedCts는 나중에 Dispose 해주는 것이 정석입니다.
@@ -91,9 +95,11 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
             // 스크롤을 넘겼거나, 0.1초 만에 오브젝트가 파괴되어 취소된 경우 모두 이쪽으로 안전하게 진입
         }
     }
+    
 
     void ExecuteLevelButton(OriginalLevelData levelData)
     {
         gameSessionSO.selectedOriginalLevelData = levelData;
+        SceneManager.LoadScene("GameScene");
     }
 }
