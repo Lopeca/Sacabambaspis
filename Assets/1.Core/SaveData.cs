@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -18,7 +20,7 @@ public class LevelSaveData
 
     public bool autoCountChicken;
     public int requiredChickenCount;
- 
+
     public List<TileSaveData> tiles = new List<TileSaveData>();
 }
 
@@ -56,6 +58,29 @@ public class UserSaveData
             clearRecords.Add(new LevelRecord(levelID, time));
         }
     }
+
+    public LevelState GetLevelState(int targetIndex)
+    {
+        // 1. 최고 해금 인덱스보다 뒤에 있는 레벨은 무조건 잠김
+        if (targetIndex > highestUnlockedIndex)
+        {
+            return LevelState.Locked;
+        }
+
+        // 2. 스킵한 리스트에 들어있는 경우
+        else if (skippedList != null && skippedList.Contains(targetIndex))
+        {
+            return LevelState.Skipped;
+        }
+        
+        else if (targetIndex == highestUnlockedIndex)
+        {
+            return LevelState.Unlocked;
+        }
+
+        return LevelState.Cleared;
+    }
+
 }
 
 [System.Serializable]
@@ -68,5 +93,40 @@ public struct LevelRecord
     {
         this.levelID = levelID;
         this.clearTime = clearTime;
+    }
+}
+
+public enum LevelState
+{
+    Locked, // 잠김 (진행 불가)
+    Unlocked, // 해금됨 (아직 클리어 안 함 / 도전 가능)
+    Cleared, // 클리어함
+    Skipped // 스킵권으로 넘어감 (나중에 다시 클리어 가능)
+}
+
+public static class LevelStateExtensions
+{
+    public static string ToString(this LevelState state)
+    {
+        return state switch
+        {
+            LevelState.Locked => "잠김",
+            LevelState.Unlocked => "열림",
+            LevelState.Cleared => "성공",
+            LevelState.Skipped => "건너뜀",
+            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
+        };
+    }
+    
+    public static Color ToColor(this LevelState state)
+    {
+        return state switch
+        {
+            LevelState.Locked => Color.gray,
+            LevelState.Unlocked => Color.dodgerBlue,
+            LevelState.Cleared => Color.aquamarine,
+            LevelState.Skipped => Color.mediumVioletRed,
+            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
+        };
     }
 }

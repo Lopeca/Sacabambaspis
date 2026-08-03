@@ -1,14 +1,18 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 public class LevelSelectButton : MonoBehaviour
 {
+    [SerializeField] UserRuntimeData userData;
+    [SerializeField] private LevelState buttonState;
     [SerializeField] OriginalLevelData originalLevelData;
     [SerializeField] private int index;
     public int Index => index;
     [SerializeField] private TMP_Text levelIndexText;
+    [SerializeField] private Image levelIndexFrame;
     [SerializeField] TMP_Text levelName;
     [SerializeField] private Image background;
 
@@ -25,6 +29,18 @@ public class LevelSelectButton : MonoBehaviour
         this.originalLevelData = originalLevelData;
         levelIndexText.text = index.ToString("D3");
         this.levelName.text = originalLevelData.levelName;
+        buttonState = userData.Data.GetLevelState(index);
+        
+        InitColor();
+    }
+
+    private void InitColor()
+    {
+        Color targetColor = buttonState.ToColor();
+        
+        levelIndexFrame.color = targetColor;
+        levelName.color = targetColor;
+        levelIndexText.color = targetColor;
     }
 
     public void OnClick()
@@ -53,9 +69,13 @@ public class LevelSelectButton : MonoBehaviour
     {
         isSelected = false;
         
-        levelIndexText.color = Color.white;
-        levelName.color = Color.white;
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0);
         
+        InitColor();
+    }
+
+    public OriginalLevelData GetLevelData()
+    {
+        return originalLevelData;
     }
 }

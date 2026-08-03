@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,21 +7,27 @@ using UnityEngine.UI;
 public class LevelSelectPanel : MonoBehaviour
 {
     [Header("Save Data & References")]
-    [SerializeField] private SaveRuntimeData saveDataSO;
+    [SerializeField] private UserRuntimeData userDataSo;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private GameObject contentBox;
     [SerializeField] private GameObject levelSelectButtonPrefab;
 
     [Header("State")]
     [SerializeField] private LevelSelectButton currentSelectedButton;
+    public LevelSelectButton CurrentSelectedButton => currentSelectedButton;
 
-    private List<LevelSelectButton> levelSelectButtons = new List<LevelSelectButton>();
+    private List<LevelSelectButton> levelSelectButtons;
     private Coroutine scrollCoroutine;
+
+    private void Awake()
+    {
+        levelSelectButtons = new List<LevelSelectButton>();
+    }
 
     public void Init(OriginalLevelDatabase levelDB)
     {
         // 1. SO 데이터 로드는 최우선으로 진행
-        saveDataSO.Init();
+        userDataSo.Init();
 
         contentBox.ClearChildren();
         levelSelectButtons.Clear(); 
@@ -37,7 +44,7 @@ public class LevelSelectPanel : MonoBehaviour
         }
 
         // 저장된 해금 단계 버튼 포커스
-        FocusButton(saveDataSO.Data.highestUnlockedIndex);
+        FocusButton(userDataSo.Data.highestUnlockedIndex);
     }
 
     public void FocusButton(int index)

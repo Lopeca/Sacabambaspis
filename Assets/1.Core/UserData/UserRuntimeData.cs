@@ -2,7 +2,7 @@ using System.IO;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SaveRuntimeData", menuName = "Scriptable Objects/Save Runtime Data")]
-public class SaveRuntimeData : ScriptableObject
+public class UserRuntimeData : ScriptableObject
 {
     // 1. 인스펙터 노출용 필드
     [SerializeField] private UserSaveData data = new UserSaveData();
@@ -33,6 +33,7 @@ public class SaveRuntimeData : ScriptableObject
         else
         {
             data = new UserSaveData();
+            data.remainedSkipCouponCount = 5;
             Save();
         }
     }

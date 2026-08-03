@@ -91,9 +91,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69a8deb4c94ae341a54b2c7363cc492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectButton
+  userData: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
+  buttonState: 0
   originalLevelData: {fileID: 0}
   index: 0
   levelIndexText: {fileID: 7301250638122208156}
+  levelIndexFrame: {fileID: 5630974729645685210}
   levelName: {fileID: 5566468587082610102}
   background: {fileID: 4464939326104867319}
 --- !u!114 &5726997716329798653

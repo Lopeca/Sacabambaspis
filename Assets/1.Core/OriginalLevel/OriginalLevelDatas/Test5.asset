@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OriginalLevelData
   levelName: Test1
   levelAddress:
-    m_AssetGUID: c912340d154ea5f41a0da12a2e6d8bd9
+    m_AssetGUID: 8cca789b253274d43a9f08ac32ed43f0
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
