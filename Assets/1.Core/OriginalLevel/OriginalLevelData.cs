@@ -6,4 +6,6 @@ public class OriginalLevelData : ScriptableObject
 {
     public string levelName;
     public AssetReference levelAddress;
+
+    public string LevelID => levelAddress.AssetGUID;
 }

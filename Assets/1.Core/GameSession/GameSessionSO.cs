@@ -14,7 +14,8 @@ public class GameSessionSO : ScriptableObject
 
     public string selectedCustomLevelPath;
 
-    public LevelSaveData currentLoadedLevelData;    // 실제 레벨 파일 json 안의 데이터
+    private LevelSaveData currentLoadedLevelData;    // 실제 레벨 파일 json 안의 데이터. 
+    public LevelSaveData CurrentLoadedLevelData => currentLoadedLevelData;
     
     private AsyncOperationHandle<TextAsset> _currentLoadHandle;
     

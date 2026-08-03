@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelSelectPanel : MonoBehaviour
 {
     [Header("Save Data & References")]
-    [SerializeField] private UserRuntimeData userDataSo;
+    [SerializeField] private UserRuntimeDataSO userDataSo;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private GameObject contentBox;
     [SerializeField] private GameObject levelSelectButtonPrefab;
@@ -26,7 +26,7 @@ public class LevelSelectPanel : MonoBehaviour
 
     public void Init(OriginalLevelDatabase levelDB)
     {
-        // 1. SO 데이터 로드는 최우선으로 진행
+        // 1. SO 데이터 로드는 최우선으로 진행(이 초기화 함수 나중에 게임 첫 로딩 수준의 영역으로 넘겨둘 것)
         userDataSo.Init();
 
         contentBox.ClearChildren();
@@ -42,9 +42,9 @@ public class LevelSelectPanel : MonoBehaviour
             
             levelSelectButtons.Add(button);
         }
-
-        // 저장된 해금 단계 버튼 포커스
-        FocusButton(userDataSo.Data.highestUnlockedIndex);
+        
+        currentSelectedButton = levelSelectButtons[userDataSo.Data.highestUnlockedIndex];
+        currentSelectedButton.OnClick();
     }
 
     public void FocusButton(int index)

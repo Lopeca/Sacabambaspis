@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelSelectButton : MonoBehaviour
 {
-    [SerializeField] UserRuntimeData userData;
+    [SerializeField] UserRuntimeDataSO userDataSo;
     [SerializeField] private LevelState buttonState;
     [SerializeField] OriginalLevelData originalLevelData;
     [SerializeField] private int index;
@@ -29,7 +29,7 @@ public class LevelSelectButton : MonoBehaviour
         this.originalLevelData = originalLevelData;
         levelIndexText.text = index.ToString("D3");
         this.levelName.text = originalLevelData.levelName;
-        buttonState = userData.Data.GetLevelState(index);
+        buttonState = userDataSo.Data.GetLevelState(index);
         
         InitColor();
     }

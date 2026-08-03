@@ -81,6 +81,34 @@ public class UserSaveData
         return LevelState.Cleared;
     }
 
+    public Dictionary<string, List<float>> ConvertRecordListToDictionary()
+    {
+        Dictionary<string, List<float>> dictionary = new Dictionary<string, List<float>>();
+
+        foreach (var clearRecord in clearRecords)
+        {
+            if (!dictionary.TryGetValue(clearRecord.levelID, out List<float> timeList))
+            {
+                timeList = new List<float>();
+                dictionary.Add(clearRecord.levelID, timeList);
+            }
+
+            timeList.Add(clearRecord.clearTime);
+        }
+
+        // 각 레벨별 기록 정렬 및 상위 5개 자르기
+        foreach (var timeList in dictionary.Values)
+        {
+            timeList.Sort(); // 오름차순 정렬 (빠른 기록이 앞으로)
+
+            if (timeList.Count > 5)
+            {
+                timeList.RemoveRange(5, timeList.Count - 5); // 5위 이후 기록 제거
+            }
+        }
+
+        return dictionary;
+    }
 }
 
 [System.Serializable]

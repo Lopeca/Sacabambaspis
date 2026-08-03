@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69a8deb4c94ae341a54b2c7363cc492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectButton
-  userData: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
+  userDataSo: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
   buttonState: 0
   originalLevelData: {fileID: 0}
   index: 0

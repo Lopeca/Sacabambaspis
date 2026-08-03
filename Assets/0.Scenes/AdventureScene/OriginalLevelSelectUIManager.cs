@@ -12,6 +12,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     [Header("UI Panels")]
     [SerializeField] private LevelSelectPanel levelSelectPanel;
     [SerializeField] private LevelInfoPanel levelInfoPanel;
+    [SerializeField] private LevelRecordPanel levelRecordPanel;
     
     // 비동기 작업 취소용 토큰 소스
     private CancellationTokenSource _selectCts;
@@ -32,6 +33,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     private void Start()
     {
         levelSelectPanel.Init(levelDB);
+        
     }
 
     void FocusLevelButton(int index)
@@ -45,7 +47,8 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         _selectCts = new CancellationTokenSource();
        
         gameSessionSO.selectedOriginalLevelData = levelSelectPanel.CurrentSelectedButton.GetLevelData();
-
+        gameSessionSO.selectedOriginalLevelIndex = index;
+        
         // 2. 비동기 작업 시작
         SelectStageRoutineAsync(gameSessionSO.selectedOriginalLevelData, _selectCts.Token).Forget();
 
@@ -70,16 +73,17 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: linkedToken);
 
             // [단계 2] SO에 선택된 레벨 정보 세팅
-            gameSessionSO.selectedOriginalLevelData = levelData;
+            //gameSessionSO.selectedOriginalLevelData = levelData;
 
             // [단계 3] 어드레서블 로드 실행
             bool isSuccess = await gameSessionSO.LoadSelectedLevelAsync(linkedToken);
 
             // [단계 4] 로드 완료 후 UI 갱신
-            if (isSuccess && gameSessionSO.currentLoadedLevelData != null)
+            if (isSuccess && gameSessionSO.CurrentLoadedLevelData != null)
             {
-                levelInfoPanel.ShowLevelInfo(gameSessionSO.currentLoadedLevelData, levelSelectPanel.CurrentSelectedButton.Index);
+                levelInfoPanel.ShowLevelInfo(gameSessionSO.CurrentLoadedLevelData, levelSelectPanel.CurrentSelectedButton.Index);
                 // TODO: 기록 패널에 기록 보여주기
+                levelRecordPanel.ShowRecords(gameSessionSO.selectedOriginalLevelData);
             }
         }
         catch (OperationCanceledException)

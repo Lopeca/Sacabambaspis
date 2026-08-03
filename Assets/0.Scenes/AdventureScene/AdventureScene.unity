@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -395.35205, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1550,6 +1550,7 @@ MonoBehaviour:
   gameSessionSO: {fileID: 11400000, guid: 0f54299592fdcc74d8d46e1e2db66b82, type: 2}
   levelSelectPanel: {fileID: 1289070542}
   levelInfoPanel: {fileID: 728126333}
+  levelRecordPanel: {fileID: 2089267198}
 --- !u!4 &1022066842
 Transform:
   m_ObjectHideFlags: 0
@@ -1652,7 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad718c9936577504cbd655fe817a5300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectPanel
-  userDataSo: {fileID: 0}
+  userDataSo: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
   scrollRect: {fileID: 1424597022}
   contentBox: {fileID: 575658453}
   levelSelectButtonPrefab: {fileID: 581945452317453713, guid: 627eb84e82f04f349bbf3b4949fa29fb, type: 3}
@@ -3482,6 +3483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089267197}
+  - component: {fileID: 2089267198}
   m_Layer: 5
   m_Name: RecordBoard
   m_TagString: Untagged
@@ -3511,6 +3513,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -293}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2089267198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089267196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af7bc994583c784cb7c6ecec63a95cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelRecordPanel
+  userData: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
+  recordTextList:
+  - {fileID: 813495321}
+  - {fileID: 1599021408}
+  - {fileID: 1543603389}
+  - {fileID: 484957762}
+  - {fileID: 1774788612}
 --- !u!1 &2105075055
 GameObject:
   m_ObjectHideFlags: 0
