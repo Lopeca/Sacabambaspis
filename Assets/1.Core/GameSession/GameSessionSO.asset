@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GameSessionSO
   m_EditorClassIdentifier: Assembly-CSharp::GameSessionSO
   isExploringOriginalLevel: 1
-  selectedOriginalLevelIndex: 0
-  selectedOriginalLevelData: {fileID: 0}
+  selectedOriginalLevelIndex: -1
+  selectedOriginalLevelData: {fileID: 11400000, guid: adce0829348bacb478df5524af9d67db, type: 2}
   selectedCustomLevelPath: 

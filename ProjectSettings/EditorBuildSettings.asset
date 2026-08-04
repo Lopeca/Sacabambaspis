@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0.Scenes/GameScene/GameScene.unity
     guid: f1ef393f3bec35a4eb1f6df3011eaa7d
+  - enabled: 1
+    path: Assets/0.Scenes/AdventureScene/AdventureScene.unity
+    guid: 5660d352d216e2b47a08e6c767ed8a0e
+  - enabled: 1
+    path: Assets/0.Scenes/TitleScene/TitleScene.unity
+    guid: 53dd49873d9b88c46a4afee3d168028d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8718f3a6af3112747900231c36c3b0cb, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

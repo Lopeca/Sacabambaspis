@@ -39,26 +39,6 @@ public class UserSaveData
     // JsonUtility와 Unity Serializer 모두에서 100% 안전한 리스트 구조
     public List<LevelRecord> clearRecords = new List<LevelRecord>();
 
-    // 💡 런타임 조회를 위해 딕셔너리가 필요하다면 헬퍼 메서드로 변환해서 사용
-    public float GetClearTime(string levelID)
-    {
-        var record = clearRecords.Find(r => r.levelID == levelID);
-        return record.levelID != null ? record.clearTime : -1f;
-    }
-
-    public void SetClearTime(string levelID, float time)
-    {
-        int index = clearRecords.FindIndex(r => r.levelID == levelID);
-        if (index >= 0)
-        {
-            clearRecords[index] = new LevelRecord(levelID, time);
-        }
-        else
-        {
-            clearRecords.Add(new LevelRecord(levelID, time));
-        }
-    }
-
     public LevelState GetLevelState(int targetIndex)
     {
         // 1. 최고 해금 인덱스보다 뒤에 있는 레벨은 무조건 잠김

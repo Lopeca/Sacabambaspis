@@ -1,6 +1,6 @@
 {
-    "levelName": "New Level",
-    "autoCountChicken": false,
+    "levelName": "Demo Level",
+    "autoCountChicken": true,
     "requiredChickenCount": -1,
     "tiles": [
         {

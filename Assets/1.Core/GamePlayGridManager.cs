@@ -12,7 +12,8 @@ public class GamePlayGridManager : MonoBehaviour
     public static GamePlayGridManager Instance => instance;
 
     
-    LevelSaveData loadedLevelData;
+    [SerializeField] LevelSaveData loadedLevelData;
+    public LevelSaveData LoadedLevelData => loadedLevelData;
 
     // 그리드 셀들을 담는 부모
     public Transform playGridRoot;
@@ -33,9 +34,12 @@ public class GamePlayGridManager : MonoBehaviour
     public GameObject chickenPrefab;
     
     public bool isPlaying;
+    public bool isCleared;
     
     [Header("스코어보드")]
     [SerializeField] int requiredChickenCount;
+    public int RequiredChickenCount => requiredChickenCount;
+    
     // 플레이 타임
     // 레드 디스크 수
 
@@ -185,6 +189,7 @@ public class GamePlayGridManager : MonoBehaviour
             }
         }
         
+        Debug.Log("autoCountChicken : " + loadedLevelData.autoCountChicken);
         if(loadedLevelData.autoCountChicken) requiredChickenCount = chickenCount;
         else requiredChickenCount = loadedLevelData.requiredChickenCount;
     }
@@ -192,6 +197,7 @@ public class GamePlayGridManager : MonoBehaviour
     private void ExitEventListener()
     {
         player = null;
+        isCleared = true;
         StartCoroutine(SendGameOverAfterSeconds(1.5f));
     }
 

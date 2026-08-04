@@ -31,7 +31,9 @@ public class SceneTransitionManager : MonoBehaviour
         blackScreen.gameObject.SetActive(true);
         
         blackScreen.DOColor(blackScreen.color.WithAlpha(1), duration).OnComplete(()=>SceneManager.LoadScene(sceneName));
+        Debug.Log("SceneName : " + sceneName);
     }
+    
 
     public IEnumerator FadeIn()
     {
@@ -42,6 +44,7 @@ public class SceneTransitionManager : MonoBehaviour
         currentTween = blackScreen.DOColor(blackScreen.color.WithAlpha(0), duration);
         
         yield return currentTween.WaitForCompletion();
+        blackScreen.gameObject.SetActive(false);
     }
 
     private void OnDisable()

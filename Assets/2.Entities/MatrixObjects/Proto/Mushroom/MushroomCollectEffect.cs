@@ -6,5 +6,6 @@ public class MushroomCollectEffect : CollectibleEffect
     public override void ApplyEffect()
     {
         GamePlayGridManager.Instance.player.ObtainMushroom();
+        base.ApplyEffect();
     }
 }

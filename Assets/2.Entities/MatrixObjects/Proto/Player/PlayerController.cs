@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject mushroomPrefab; 
     private int mushroomCount;
+    public int MushroomCount => mushroomCount;
 
     private Coroutine controlCoroutine;
     public Action OnDeath;

@@ -179,8 +179,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         targetDir = directionOrder[targetDirectionIndex];
         targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + targetDir);
         if (targetCell.state == MatrixCell.CellState.Empty || targetCell.state == MatrixCell.CellState.Falling
-                                                           //|| (targetCell.HasPlayer() &&targetCell.state == MatrixCell.CellState.Filled))
-                                                           || (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO))
+                                                           || (GamePlayGridManager.Instance.player != null && (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO)))
         {
             return targetDirectionIndex;
         }
@@ -190,7 +189,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         targetDir = directionOrder[targetDirectionIndex];
         targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + targetDir);
         if (targetCell.state == MatrixCell.CellState.Empty || targetCell.state == MatrixCell.CellState.Falling
-                                                           || (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO))
+                                                           || (GamePlayGridManager.Instance.player != null && (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO)))
 
         {
             return targetDirectionIndex;
@@ -201,7 +200,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable
         targetDir = directionOrder[targetDirectionIndex];
         targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + targetDir);
         if (targetCell.state == MatrixCell.CellState.Empty || targetCell.state == MatrixCell.CellState.Falling
-                                                           || (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO))
+                                                           || (GamePlayGridManager.Instance.player != null && (targetCell.matrixObject != null && targetCell.matrixObject == GamePlayGridManager.Instance.player.MO)))
 
         {
             return targetDirectionIndex;

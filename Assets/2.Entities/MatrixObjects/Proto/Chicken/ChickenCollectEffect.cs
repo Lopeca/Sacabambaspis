@@ -8,5 +8,6 @@ public class ChickenCollectEffect : CollectibleEffect
         if (GamePlayGridManager.Instance == null) return;
 
         GamePlayGridManager.Instance.ObtainChicken();
+        base.ApplyEffect();
     }
 }

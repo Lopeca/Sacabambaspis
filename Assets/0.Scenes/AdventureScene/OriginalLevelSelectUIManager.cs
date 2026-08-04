@@ -9,6 +9,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     [Header("Data References")]
     [SerializeField] private OriginalLevelDatabase levelDB;
     [SerializeField] private GameSessionSO gameSessionSO;
+    [SerializeField] private SceneTransitionSO sceneTransitionSO;
 
     [Header("UI Panels")]
     [SerializeField] private LevelSelectPanel levelSelectPanel;
@@ -29,15 +30,13 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     {
         LevelSelectButton.OnClickToFocus -= FocusLevelButton;
         LevelSelectButton.OnClickToPlay -= ExecuteLevelButton;
-        
-        
-        gameSessionSO.isExploringOriginalLevel = false;
     }
 
     private void Start()
     {
         levelSelectPanel.Init(levelDB);
-        
+        sceneTransitionSO.EnsureWarmup();
+        StartCoroutine(sceneTransitionSO.FadeIn());
     }
 
     void FocusLevelButton(int index)

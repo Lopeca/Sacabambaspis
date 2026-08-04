@@ -18,7 +18,9 @@ public class GameSessionSO : ScriptableObject
     public LevelSaveData CurrentLoadedLevelData => currentLoadedLevelData;
     
     private AsyncOperationHandle<TextAsset> _currentLoadHandle;
+
     
+
     /// <summary>
     /// 현재 선택된 맵 조건(오리지널 vs 커스텀)에 따라 LevelSaveData를 채우는 통합 로드 메서드
     /// </summary>

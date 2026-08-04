@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SceneTransitionSO", menuName = "Scriptable Objects/SceneTransitionSO")]
@@ -9,6 +10,7 @@ public class SceneTransitionSO : ScriptableObject
     // NonSerialized를 붙여주면 에디터가 꺼져도 런타임 캐시가 직렬화되어 남는 것을 방지합니다.
     [System.NonSerialized] 
     private SceneTransitionManager runtimeInstance;
+    public SceneTransitionManager RuntimeInstance => runtimeInstance;
 
     private void OnEnable()
     {

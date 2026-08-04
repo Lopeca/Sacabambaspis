@@ -1149,11 +1149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelInfoPanel
   levelNameText: {fileID: 4700807}
   levelStateText: {fileID: 682606379}
-  userSaveData:
-    highestUnlockedIndex: 0
-    skippedList: 
-    remainedSkipCouponCount: 0
-    clearRecords: []
+  userSaveData: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
 --- !u!1 &754366775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,6 +1544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OriginalLevelSelectUIManager
   levelDB: {fileID: 11400000, guid: d14d02a086dc7194892b6b154cfb8af7, type: 2}
   gameSessionSO: {fileID: 11400000, guid: 0f54299592fdcc74d8d46e1e2db66b82, type: 2}
+  sceneTransitionSO: {fileID: 11400000, guid: e75f3183a0649e644b6e52b981c9db2e, type: 2}
   levelSelectPanel: {fileID: 1289070542}
   levelInfoPanel: {fileID: 728126333}
   levelRecordPanel: {fileID: 2089267198}

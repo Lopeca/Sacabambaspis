@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -5,27 +6,59 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SaveRuntimeData", menuName = "Scriptable Objects/Save Runtime Data")]
 public class UserRuntimeDataSO : ScriptableObject
 {
-    // 1. 인스펙터 노출용 필드
     [SerializeField] private UserSaveData data = new UserSaveData();
+    private Dictionary<string, List<float>> recordDictionary = new Dictionary<string, List<float>>();
 
-    private Dictionary<string, List<float>> recordDictionary;
-    // 2. 외부 읽기 전용 프로퍼티
     public UserSaveData Data => data;
-
-    
-    // ⭕ [안전] SavePath를 부르는 '그 순간(런타임)'에 경로를 생성하도록 프로퍼티로 작성
     private string SavePath => Path.Combine(Application.persistentDataPath, "savefile.json");
 
     public void Init()
     {
         Load();
     }
+
+    // 레벨 클리어 시 호출
+    public void AddRecord(string levelID, float clearTime)
+    {
+        // 1. 메모리(딕셔너리) 갱신 및 상위 5개 정렬/자르기
+        if (!recordDictionary.TryGetValue(levelID, out var timeList))
+        {
+            timeList = new List<float>();
+            recordDictionary.Add(levelID, timeList);
+        }
+        timeList.Add(clearTime);
+        timeList.Sort();
+        if (timeList.Count > 5) timeList.RemoveRange(5, timeList.Count - 5);
+    }
+
+    // 2. 조회
+    public IReadOnlyList<float> GetRecords(string levelID)
+    { 
+        if (recordDictionary.TryGetValue(levelID, out List<float> records))
+        {
+            return records;
+        }
+        return Array.Empty<float>();
+    }
+
     public void Save()
     {
-        string json = JsonUtility.ToJson(Data, true);
+        // JSON 작성을 위해 딕셔너리를 리스트로 갈아치움
+        data.clearRecords.Clear();
+        foreach (var pair in recordDictionary)
+        {
+            foreach (var time in pair.Value)
+            {
+                data.clearRecords.Add(new LevelRecord(pair.Key, time));
+            }
+        }
+
+        // 파일로 영구 저장
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(SavePath, json);
     }
 
+    // 4. 로드 시점에만 List -> Dictionary 변환
     public void Load()
     {
         if (File.Exists(SavePath))
@@ -39,18 +72,42 @@ public class UserRuntimeDataSO : ScriptableObject
             data.remainedSkipCouponCount = 5;
             Save();
         }
-        
-        recordDictionary = data.ConvertRecordListToDictionary();
-    }
 
-    public IReadOnlyList<float> GetRecords(string levelAddressAssetGuid)
-    {
-        if (recordDictionary.TryGetValue(levelAddressAssetGuid, out List<float> records))
+        // 복원 로직
+        recordDictionary.Clear();
+        foreach (var record in data.clearRecords)
         {
-            return records;
+            if (!recordDictionary.TryGetValue(record.levelID, out var timeList))
+            {
+                timeList = new List<float>();
+                recordDictionary.Add(record.levelID, timeList);
+            }
+            timeList.Add(record.clearTime);
         }
 
-        // 메모리 할당 없이 빈 배열 반환 (System.Array.Empty 사용)
-        return System.Array.Empty<float>(); 
+        // 안전을 위해 로드 후 한 번 더 정렬 및 Cut
+        foreach (var timeList in recordDictionary.Values)
+        {
+            timeList.Sort();
+            if (timeList.Count > 5) timeList.RemoveRange(5, timeList.Count - 5);
+        }
+    }
+
+    public void UnlockOriginalStage(int selectedOriginalLevelIndex)
+    {
+        if (data.highestUnlockedIndex == selectedOriginalLevelIndex)
+        {
+            data.highestUnlockedIndex++;
+        }
+        else if (IsSkippedLevel(selectedOriginalLevelIndex))
+        {
+            data.skippedList.Remove(selectedOriginalLevelIndex);
+            data.remainedSkipCouponCount++;
+        }
+    }
+
+    private bool IsSkippedLevel(int selectedOriginalLevelIndex)
+    {
+        return data.skippedList.Contains(selectedOriginalLevelIndex);
     }
 }
