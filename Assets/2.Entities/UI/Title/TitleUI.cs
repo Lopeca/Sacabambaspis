@@ -8,10 +8,11 @@ public class TitleUI : MonoBehaviour
 
     [SerializeField] TitleMainPanel mainPanel;
     [SerializeField] TitleStartPanel startPanel;
-    [SerializeField] SettingPanel settingPanel;
+    [SerializeField] GameSettingSO gameSetting;
     private void Awake()
     {
         Instance = this;
+        gameSetting.EnsureUIWarmup();
     }
 
     private void Start()
@@ -33,16 +34,13 @@ public class TitleUI : MonoBehaviour
 
     public void ShowSettingPanel()
     {
-        SetAllPanelsActive(false);
-        settingPanel.gameObject.SetActive(true);
-        // setting 패널 액션 처리 필요
+        gameSetting.RuntimeInstance.gameObject.SetActive(true);
     }
 
     private void SetAllPanelsActive(bool isActive)
     {
         mainPanel.gameObject.SetActive(isActive);
         startPanel.gameObject.SetActive(isActive);
-        settingPanel.gameObject.SetActive(isActive);
     }
 
     public void OnClickQuitBtn()

@@ -110,4 +110,14 @@ public class UserRuntimeDataSO : ScriptableObject
     {
         return data.skippedList.Contains(selectedOriginalLevelIndex);
     }
+
+    // 스킵 버튼은 무조건 스킵 가능한 조건에서 활성화됨. 오류 발생 시 부적절하게 스킵 권한을 쥐어주지 않는지 흐름에서 살피기
+    public void SkipLevel()
+    {
+        data.skippedList.Add(data.highestUnlockedIndex);
+        data.highestUnlockedIndex++;
+        data.remainedSkipCouponCount--;
+        
+        Save();
+    }
 }

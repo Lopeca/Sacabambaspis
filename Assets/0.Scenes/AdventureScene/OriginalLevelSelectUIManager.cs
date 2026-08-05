@@ -1,8 +1,11 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class OriginalLevelSelectUIManager : MonoBehaviour
 {
@@ -10,11 +13,21 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     [SerializeField] private OriginalLevelDatabase levelDB;
     [SerializeField] private GameSessionSO gameSessionSO;
     [SerializeField] private SceneTransitionSO sceneTransitionSO;
+    [SerializeField] private UserRuntimeDataSO userRuntimeDataSO;
 
     [Header("UI Panels")]
     [SerializeField] private LevelSelectPanel levelSelectPanel;
     [SerializeField] private LevelInfoPanel levelInfoPanel;
     [SerializeField] private LevelRecordPanel levelRecordPanel;
+
+    [Header("UI Elements")] 
+    [SerializeField] private TMP_Text skipCountText;
+    [SerializeField] private Button skipButton;
+    [SerializeField] private Button startToPlayButton;
+
+    [Header("Scene Assets")]
+    [SerializeField] private SceneAsset titleScene;
+    [SerializeField] private SceneAsset gameScene;
     
     // 비동기 작업 취소용 토큰 소스
     private CancellationTokenSource _selectCts;
@@ -37,12 +50,29 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         levelSelectPanel.Init(levelDB);
         sceneTransitionSO.EnsureWarmup();
         StartCoroutine(sceneTransitionSO.FadeIn());
+        RefreshSkipCountText();
     }
 
     void FocusLevelButton(int index)
     {
         levelSelectPanel.FocusButton(index);
         
+       
+        if (index != levelDB.originalLevels.Count-1 
+            && index == userRuntimeDataSO.Data.highestUnlockedIndex
+            && userRuntimeDataSO.Data.remainedSkipCouponCount > 0) 
+            skipButton.gameObject.SetActive(true);
+        else 
+            skipButton.gameObject.SetActive(false);
+
+        if (index > userRuntimeDataSO.Data.highestUnlockedIndex)
+        {
+            startToPlayButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            startToPlayButton.gameObject.SetActive(true);
+        }
         
         // 1. 이전 진행 중이던 0.1초 대기 및 로드 작업을 "진짜로" 즉시 끊어버림
         _selectCts?.Cancel();
@@ -54,8 +84,6 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         
         // 2. 비동기 작업 시작
         SelectStageRoutineAsync(_selectCts.Token).Forget();
-
-        
     }
 
     private async UniTaskVoid SelectStageRoutineAsync(CancellationToken token)
@@ -99,6 +127,34 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     void ExecuteLevelButton(OriginalLevelData levelData)
     {
         gameSessionSO.selectedOriginalLevelData = levelData;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(gameScene.name);
+    }
+
+    public void OnClickBackButton()
+    {
+        sceneTransitionSO.LoadSceneWithFade(titleScene.name);
+    }
+
+    public void OnClickToPlayButton()
+    {
+        levelSelectPanel.CurrentSelectedButton.OnClick();
+    }
+
+    public void OnClickSkipButton()
+    {
+        userRuntimeDataSO.SkipLevel();
+        levelSelectPanel.CurrentSelectedButton.Refresh();
+        levelSelectPanel.SelectNextLevelButton();
+        levelSelectPanel.CurrentSelectedButton.Refresh();
+        RefreshSkipCountText();
+    }
+
+    public void RefreshSkipCountText()
+    {
+        int remainingSkipCouponCount = userRuntimeDataSO.Data.remainedSkipCouponCount;
+        skipCountText.text = remainingSkipCouponCount.ToString();
+        
+        if(remainingSkipCouponCount == 0) skipCountText.color = Color.red;
+        else skipCountText.color = Color.darkViolet;
     }
 }

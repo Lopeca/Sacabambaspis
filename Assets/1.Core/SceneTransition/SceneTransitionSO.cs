@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SceneTransitionSO", menuName = "Scriptable Objects/SceneTransitionSO")]

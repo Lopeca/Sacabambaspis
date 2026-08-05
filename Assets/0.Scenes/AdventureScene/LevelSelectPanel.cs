@@ -14,6 +14,7 @@ public class LevelSelectPanel : MonoBehaviour
 
     [Header("State")]
     [SerializeField] private LevelSelectButton currentSelectedButton;
+    [SerializeField] private int currentSelectedButtonIndex;
     public LevelSelectButton CurrentSelectedButton => currentSelectedButton;
 
     private List<LevelSelectButton> levelSelectButtons;
@@ -50,11 +51,12 @@ public class LevelSelectPanel : MonoBehaviour
     public void FocusButton(int index)
     {
         if (index < 0 || index >= levelSelectButtons.Count) return;
-
+        
         if (currentSelectedButton != null)
             currentSelectedButton.DeSelect();
 
         currentSelectedButton = levelSelectButtons[index];
+        currentSelectedButtonIndex = index;
         currentSelectedButton.Select();
 
         // 💡 [수정] 스크롤 이동을 한 프레임 뒤로 미루어서 완벽한 UI 레이아웃 좌표를 보장받음
@@ -113,5 +115,12 @@ public class LevelSelectPanel : MonoBehaviour
         }
 
         scrollRect.verticalNormalizedPosition = targetPos;
+    }
+
+    public void SelectNextLevelButton()
+    {
+        if (currentSelectedButtonIndex + 1 >= levelSelectButtons.Count) return;
+        currentSelectedButtonIndex++;
+        levelSelectButtons[currentSelectedButtonIndex].OnClick();
     }
 }

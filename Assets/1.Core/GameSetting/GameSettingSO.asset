@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb8428ccfaee5e41927d9578db4b366, type: 3}
+  m_Name: GameSettingSO
+  m_EditorClassIdentifier: Assembly-CSharp::GameSettingSO
+  settingPanelPrefab: {fileID: 1892504572413055851, guid: 02919d6051db8194788fb0f3ec713292, type: 3}
+  settingData:
+    masterVolume: 0.3880562
+    bgmVolume: 0.7526637
+    sfxVolume: 0.80443424
+  audioMixer: {fileID: 24100000, guid: 55c698448efe157499a9c1ac0c5ca401, type: 2}
+  bgmClip: {fileID: 8300000, guid: e50dbbbbc47014e4a90774e837e4ac2b, type: 3}

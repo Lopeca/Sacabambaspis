@@ -34,6 +34,13 @@ public class LevelSelectButton : MonoBehaviour
         InitColor();
     }
 
+    public void Refresh()
+    {
+        buttonState = userDataSo.Data.GetLevelState(index);
+        
+        InitColor();
+    }
+
     private void InitColor()
     {
         Color targetColor = buttonState.ToColor();
@@ -52,7 +59,8 @@ public class LevelSelectButton : MonoBehaviour
         }
         else
         {
-            OnClickToPlay?.Invoke(originalLevelData);
+            if(buttonState != LevelState.Locked)
+                OnClickToPlay?.Invoke(originalLevelData);
         }
     }
 
