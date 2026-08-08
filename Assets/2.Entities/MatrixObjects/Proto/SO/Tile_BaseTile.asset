@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
   tileKey: BaseTile
   prefab: {fileID: 3747991996826339677, guid: d146d99bba90b0249a7f1e7530995874, type: 3}
-  editorIcon: {fileID: -1769221510388302223, guid: 3af61eb1f220cea45916a16501573e2d, type: 3}
+  editorIcon: {fileID: 853379669184167763, guid: 027be0bc040a1854c848340a9338cc2a, type: 3}

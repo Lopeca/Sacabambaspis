@@ -17,8 +17,8 @@ public class StoneAI : MonoBehaviour, IGridComponent
         rollable = GetComponent<GridRollable>();
         pushable = GetComponent<GridPushable>();
         
+        
         mo.AppendGridComponent(this);
-        mo.AppendGridComponent(pushable);
 
         gridMovement.AfterOnMoveCompleted += ObserveSurroundingAreaAndAct;
     }

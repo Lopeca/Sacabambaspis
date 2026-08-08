@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class MatrixObject : MonoBehaviour
@@ -23,6 +24,7 @@ public class MatrixObject : MonoBehaviour
     public GridGravity GridGravity => gridGravity;
     public CollectibleObject CollectibleObject { get; private set; }
     public IGridInteractable GridInteractable { get; private set; }
+    public IGridCreature GridCreature { get; private set; }
     public ExplodeOnDeath ExplodeOnDeath { get; private set; }
     
     public SpriteRenderer SpriteRenderer { get; private set; }
@@ -38,6 +40,10 @@ public class MatrixObject : MonoBehaviour
 
     public Action OnEliminated;
     
+    
+    [Header("Debug Inspector")]
+    [SerializeField] private bool traceDestruction = false; // 인스펙터에서 켜고 끌 수 있는 체크박스
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -50,6 +56,7 @@ public class MatrixObject : MonoBehaviour
         
         CollectibleObject = GetComponent<CollectibleObject>();
         GridInteractable = GetComponent<IGridInteractable>();
+        GridCreature = GetComponent<IGridCreature>();
         ExplodeOnDeath = GetComponent<ExplodeOnDeath>();
     }
 
@@ -91,11 +98,13 @@ public class MatrixObject : MonoBehaviour
 
     public void EliminateMatrixObject()
     {
-        OnEliminated?.Invoke();
         if(gridMovement != null) gridMovement.ForceCompleteMove();
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(posX, posY);
         
+        StopAllCoroutines();
+        transform.DOKill();
         currentCell.Clear();
+        OnEliminated?.Invoke();
     }
 
     public MatrixCell GetCurrentCell()
@@ -116,5 +125,18 @@ public class MatrixObject : MonoBehaviour
         
         currentCell.Clear();
         targetCell.PutMatrixObject(this);
+    }
+
+    private void OnDisable()
+    {
+        if (traceDestruction)
+        {
+            Debug.LogWarning($"<color=#FF3333>[Frame {Time.frameCount}] {gameObject.name} 파괴 호출됨!</color>\n" +
+                             $"위치 좌표: ({posX}, {posY})\n" +
+                             $"<color=#AAAAAA>호출 스택:\n{UnityEngine.StackTraceUtility.ExtractStackTrace()}</color>");
+
+            // ★ 핵심: 파괴가 호출된 '바로 그 프레임'에 유니티 에디터를 일시정지시킵니다!
+            Debug.Break(); 
+        }
     }
 }

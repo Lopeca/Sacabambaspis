@@ -9,6 +9,7 @@ public class TitleUI : MonoBehaviour
     [SerializeField] TitleMainPanel mainPanel;
     [SerializeField] TitleStartPanel startPanel;
     [SerializeField] GameSettingSO gameSetting;
+    [SerializeField] SceneTransitionSO sceneTransition;
     private void Awake()
     {
         Instance = this;
@@ -18,6 +19,8 @@ public class TitleUI : MonoBehaviour
     private void Start()
     {
         ShowMainPanel();
+        sceneTransition.EnsureWarmup();
+        StartCoroutine(sceneTransition.FadeIn());
     }
 
     public void ShowMainPanel()

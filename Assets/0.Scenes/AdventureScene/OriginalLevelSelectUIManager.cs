@@ -12,6 +12,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     [Header("Data References")]
     [SerializeField] private OriginalLevelDatabase levelDB;
     [SerializeField] private GameSessionSO gameSessionSO;
+    [SerializeField] private GameSettingSO gameSetting;
     [SerializeField] private SceneTransitionSO sceneTransitionSO;
     [SerializeField] private UserRuntimeDataSO userRuntimeDataSO;
 
@@ -127,7 +128,8 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     void ExecuteLevelButton(OriginalLevelData levelData)
     {
         gameSessionSO.selectedOriginalLevelData = levelData;
-        SceneManager.LoadScene(gameScene.name);
+
+        sceneTransitionSO.LoadSceneWithFade(gameScene.name);
     }
 
     public void OnClickBackButton()
@@ -147,6 +149,12 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         levelSelectPanel.SelectNextLevelButton();
         levelSelectPanel.CurrentSelectedButton.Refresh();
         RefreshSkipCountText();
+    }
+    
+    
+    public void OnClickSettingButton()
+    {
+        gameSetting.OpenSettingPanel();
     }
 
     public void RefreshSkipCountText()

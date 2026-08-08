@@ -46,7 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   gameSetting: {fileID: 11400000, guid: dcbbd9b5949c3284a84a9ab4c064fbb2, type: 2}
   bgmGroup: {fileID: 5139432529101264468, guid: 55c698448efe157499a9c1ac0c5ca401, type: 2}
+  uiGroup: {fileID: 2338762255719192785, guid: 55c698448efe157499a9c1ac0c5ca401, type: 2}
   sfxGroup: {fileID: 2956708143282624427, guid: 55c698448efe157499a9c1ac0c5ca401, type: 2}
   sfxAudioSourcePrefab: {fileID: 4360879179983583484, guid: 5f7f517d4334e45468b6f4a49048d895, type: 3}
   initialPoolSize: 15
   maxPoolSize: 30
+  explodeSFX: {fileID: 8300000, guid: 9a3b0f76f5c5cf24eae1256fba8a4a1f, type: 3}
+  buttonSFX1: {fileID: 8300000, guid: 07307d0b66356074aac43dc7f8659cce, type: 3}
+  landingSound: {fileID: 8300000, guid: 3e81cdecd28828c4ab62412988aedf5d, type: 3}

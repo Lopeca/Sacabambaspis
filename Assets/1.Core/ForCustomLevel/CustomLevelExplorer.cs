@@ -14,7 +14,7 @@ public class CustomLevelExplorer : MonoBehaviour
 
     private Stack<CustomLevelFileSystem.LevelFolderNode> nodeList;
 
-    private LevelSaveData loadedLevel;
+    [SerializeField] private LevelSaveData loadedLevel;
     public LevelSaveData LoadedLevel => loadedLevel;
 
     [SerializeField] GameObject contentRoot;
@@ -30,6 +30,8 @@ public class CustomLevelExplorer : MonoBehaviour
     [Header("팝업")] 
     public GameObject createFolderPopup;
 
+    [Header("Etc")]
+    [SerializeField] private GameSettingSO gameSetting;
 
     // 레벨 작업을 하다가 돌아왔을 때 마지막 탐색하던 폴더를 계속 보기 위한 싱글톤 보존 플래그
     // 즉 편집 모드를 나갔을 때는 싱글톤 파괴로 폴더 탐색 현황이 초기화되도록대응할 예정
@@ -204,4 +206,9 @@ public class CustomLevelExplorer : MonoBehaviour
         HubUI.SetActive(true);
     }
     #endregion
+
+    public void OnClickGameSettingBtn()
+    {
+        gameSetting.OpenSettingPanel();
+    }
 }

@@ -3,12 +3,13 @@ using UnityEngine;
 
 public enum LookDirection
 {
-    None = 0, // 방향이 없는 오브젝트 (벽, 빈 공간, 기본 아이템 등)
+    None = 0,
     Up,
     Down,
     Left,
     Right
 }
+
 public class MatrixCell : MonoBehaviour
 {
     public enum CellState
@@ -25,16 +26,44 @@ public class MatrixCell : MonoBehaviour
     [SerializeField] private int y;
     public MatrixObject matrixObject; 
 
-    // 그리드 매니저가 핸들링하기 쉽게 그냥 public 설정함
-    public CellState state;
+    // ★ [1] 추적하고 싶은 특정 셀 좌표를 지정하세요 (예: Vector2Int.zero)
+    // -1로 두면 모든 셀의 변경 로그를 출력합니다.
+    [Header("Debug Inspector")]
+    [SerializeField] private bool enableStateLog = true;
+    [SerializeField] private Vector2Int debugTargetPos = new Vector2Int(-2, -2); 
+
+    // ★ [2] private 캡슐화 + 프로퍼티화
+    [SerializeField] private CellState _state;
+    
+    public CellState state
+    {
+        get => _state;
+        set
+        {
+            if (_state != value)
+            {
+                // 타겟 좌표 검사 (debugTargetPos가 -1, -1이거나 현재 좌표와 일치할 때)
+                
+                if (enableStateLog && (debugTargetPos.x == -1 || (debugTargetPos.x == x && debugTargetPos.y == y)))
+                {
+                    // 프레임수(Time.frameCount), 좌표, 이전상태 -> 변경상태, 그리고 호출한 스크립트 위치 출력
+                    Debug.Log($"<color=#FFD700>[Frame {Time.frameCount}] Cell({x},{y}) State Changed:</color> " +
+                              $"<b>{_state}</b> ➔ <color=#00FF00><b>{value}</b></color>\n" +
+                              $"<color=#888888>CallStack: {UnityEngine.StackTraceUtility.ExtractStackTrace()}</color>");
+                }
+
+                _state = value;
+            }
+        }
+    }
+
     public Vector2Int moveStateDirection;
 
     private void Awake()
     {
-        state = CellState.Empty;
+        _state = CellState.Empty;
     }
 
-    
     public void SetPosition(int x, int y)
     {
         this.x = x;
@@ -73,13 +102,13 @@ public class MatrixCell : MonoBehaviour
         this.matrixObject = matrixObject;
         matrixObject.transform.SetParent(transform);
         matrixObject.transform.localPosition = Vector3.zero;
-        matrixObject.posX =x;
-        matrixObject.posY =y;
+        matrixObject.posX = x;
+        matrixObject.posY = y;
     }
 
     private void OnDestroy()
     {
-        if(matrixObject!=null) 
+        if (matrixObject != null) 
             Destroy(matrixObject);
     }
 

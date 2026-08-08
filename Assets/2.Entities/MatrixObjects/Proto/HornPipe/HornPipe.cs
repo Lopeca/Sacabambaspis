@@ -15,6 +15,7 @@ public class HornPipe : MonoBehaviour, IGridInteractable
     [SerializeField] private PipeDirection allowedDirections;
 
     private MatrixObject mo;
+    public AudioClip warpSFX;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class HornPipe : MonoBehaviour, IGridInteractable
     private void PlayerEnter(PlayerController player, Vector2Int direction)
     {
         player.Movement.EnterPipe(direction);
+        SoundManager.Instance.PlayGameSFX(warpSFX, player.transform.position);
     }
 
     private bool IsDirectionAllowedToEnter(Vector2Int direction)

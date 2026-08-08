@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HornPipe
   allowedDirections: 10
+  warpSFX: {fileID: 8300000, guid: 6630d79c04f51dc44978ae6820f351c9, type: 3}

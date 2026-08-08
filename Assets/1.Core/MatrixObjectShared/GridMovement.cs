@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using DG.Tweening;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class GridMovement : MonoBehaviour
         Falling // 필요 없을 수도
     }
     private Vector2Int startPos;
+    
     private Vector2Int destPos;
 
     private MatrixObject mo;
@@ -35,11 +37,15 @@ public class GridMovement : MonoBehaviour
 
     private Coroutine coroutine;
     // 공용 캐싱용 필드
-    private MatrixCell startCell;
-    private MatrixCell destCell;
+    [SerializeField] private MatrixCell startCell;
+    [SerializeField] private MatrixCell destCell;
 
     // 주로 트윈 완료 후 Filled 상태 여지 없이 다음 동작을 수행하도록 할 때
     public event Action AfterOnMoveCompleted;
+    
+    [Header("Debug Inspector")]
+    [SerializeField] private bool trace = false; // 인스펙터에서 켜고 끌 수 있는 체크박스
+
     void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -65,7 +71,8 @@ public class GridMovement : MonoBehaviour
         
         state = targetState;
         
-        MatrixCell destCell = GamePlayGridManager.Instance.GetCell(destPos);
+        startCell = GamePlayGridManager.Instance.GetCell(startPos);
+        destCell = GamePlayGridManager.Instance.GetCell(destPos);
         if (destCell.matrixObject != null)
         {
             Debug.LogError($"ID : {mo.id} - movent로부터 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.\n" +
@@ -138,57 +145,82 @@ public class GridMovement : MonoBehaviour
     
     public void ForceCompleteMove()
     {
-        // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
-        bool isMoving = (moveTween != null && moveTween.IsActive() && moveTween.IsPlaying()) 
-                        || (rollTween != null && rollTween.IsActive() && rollTween.IsPlaying());
-
-        if (isMoving)
+        if (moveTween == null) return;
+        if (startCell == null) return; // 한번도 움직이지 않은 경우 없을 수 있음
+        if (coroutine != null) 
         {
-            Debug.Log("[ForceCompleteMove] 진행 중인 이동/구르기 트윈을 강제로 완료시킵니다.");
+            StopCoroutine(coroutine);
+            coroutine = null;
         }
 
+        if (moveTween != null && moveTween.IsActive()) moveTween.Kill();
+        if (rollTween != null && rollTween.IsActive()) rollTween.Kill();
+
         AfterOnMoveCompleted = null;
-        
-        // 트윈 강제 완료 (OnComplete 즉시 호출됨)
-        moveTween?.Complete();
-        rollTween?.Complete();
+
+        // [핵심] 폭발로 인해 강제 종료될 때는 CompleteMove()를 거쳐 destPos를 Filled로 만드는 대신,
+        // 출발지 셀만 깨끗이 비워주고 잔여 트윈을 털어냅니다.
+        if (startCell.matrixObject == mo)
+        {
+            startCell.matrixObject = null;
+        }
+
+        if (startCell == null)
+        {
+            
+        }
+        startCell.state = startCell.matrixObject != null ? MatrixCell.CellState.Filled : MatrixCell.CellState.Empty;
+
+        if (trace)
+        {
+            Debug.Log($"<color=#FF3333>[Frame {Time.frameCount}] startPos : {startPos}, {startCell.state}");
+        }
+
+        state = MoveState.Staying;
     }
-    
-    // 마지막에 mo를 돌려놓는 작업까지는 보편적으로 활용할 수 없는 것으로 보임. 
     public void ForceCancelMove()
     {
-        // 이동 관련 트윈 중 하나라도 살아있고 재생 중이었는지 확인
-        bool isMoving = (moveTween != null && moveTween.IsActive() && moveTween.IsPlaying()) 
-                        || (rollTween != null && rollTween.IsActive() && rollTween.IsPlaying());
+        if (moveTween == null) return;
+        // 1. 코루틴 및 트윈 즉시 중단
+        if (coroutine != null) 
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
 
-        if (isMoving)
-        {
-            Debug.Log("[ForceCancelMove] 진행 중인 이동/구르기 트윈을 강제로 취소시킵니다.");
-        }
-        else
-        {
-            Debug.Log("[ForceCancelMove] 이동/구르기 트윈이 진행중이 아닙니다.");
-        }
+        if (moveTween != null && moveTween.IsActive()) moveTween.Kill();
+        if (rollTween != null && rollTween.IsActive()) rollTween.Kill();
 
         AfterOnMoveCompleted = null;
-        
-        // 트윈 강제 완료 (OnComplete 즉시 호출됨)
-        moveTween?.Kill();
-        rollTween?.Kill();
+        state = MoveState.Staying;
 
-        // pending으로 끌려갔을 수 있음, 이 경우 셀 간섭 권한이 없고 다른 상호작용 영역에서 셀 상태 관리 잘 해줄 것
-        if (mo.GetCurrentCell().matrixObject != mo) return;
-        
-        mo.GetCurrentCell().state = MatrixCell.CellState.Empty;
-        mo.GetCurrentCell().matrixObject = null;
-        
-        mo.posX -= lastIntendedDirection.x;
-        mo.posY -= lastIntendedDirection.y;
-        
-        mo.GetCurrentCell().state = MatrixCell.CellState.Filled;
-        mo.GetCurrentCell().matrixObject = mo;
+        // 2. [핵심] 자신이 이동을 시작했던 출발지 셀(startPos)의 Moving 상태를 직접 해제
+        if (startCell != null && startCell.matrixObject == mo)
+        {
+            startCell.matrixObject = null;
+            startCell.state = MatrixCell.CellState.Empty;
+        }
+
+        // 3. 내부 좌표 원복 (출발지 위치로)
+        if (mo != null)
+        {
+            mo.posX = startPos.x;
+            mo.posY = startPos.y;
+
+            MatrixCell originalCell = GamePlayGridManager.Instance.GetCell(startPos);
+            if (originalCell != null)
+            {
+                transform.position = originalCell.transform.position;
+            }
+
+            destPos = startPos;
+        }
     }
 
+        // NOTE: 폭발 시스템(ExplodeOnDeath)이나 Pending 처리 로직에서 
+        // 셀의 CellState와 matrixObject 참조를 별도로 정리하므로, 
+        // 이곳에서 GetCurrentCell().state = CellState.Filled 등의 셀 상태 수정은 절대 하지 않습니다.
+   
     // 트윈 도중 
     public void KillTweenOnly()
     {
@@ -289,7 +321,7 @@ public class GridMovement : MonoBehaviour
 
     private IEnumerator TeleportCoroutine()
     {
-        mo.Animator.SetBool(Teleport, true);
+        mo.Animator.Play("Teleport");
         state = MoveState.Moving;
         
         yield return new WaitForSeconds(0.1f);

@@ -9,6 +9,7 @@ public class Mushroom : MonoBehaviour
     public MatrixObject MO => mo;
 
 
+    public AudioClip installSound;
     ExplodeOnDeath explodeComponent;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class Mushroom : MonoBehaviour
     private void Start()
     {
         explodeComponent = mo.ExplodeOnDeath;
+        SoundManager.Instance.PlayGameSFX(installSound, transform.position, 0.7f);
     }
 
     private void OnEnable()

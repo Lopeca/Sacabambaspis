@@ -16,6 +16,7 @@ public class GridGravity : MonoBehaviour, IGridComponent
 
     public event Action OnStartFalling;
     public event Action OnEndFalling;
+    
 
     private void Awake()
     {
@@ -28,25 +29,39 @@ public class GridGravity : MonoBehaviour, IGridComponent
     public bool CanProcess()
     {
         if (gridMovement.State != GridMovement.MoveState.Staying) return false;
+
         MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down);
+        if (targetCell == null) return false;
+
         belowObject = GetBelowAttackableObject();
-        bool canProcess;
+        bool canProcess = false;
 
-        if (targetCell.state == MatrixCell.CellState.Empty) canProcess = true; // 아래칸이 비어있으면
-        else if (isFalling && belowObject != null && belowObject.isVulnerableToFalling) canProcess = true;
-        else canProcess = false;
+        // 1. 아래칸이 완전히 비어있는 경우
+        if (targetCell.state == MatrixCell.CellState.Empty) 
+        {
+            canProcess = true;
+        }
+        // 2. 이미 낙하 중이고, 아래에 짓눌릴 수 있는 대상(양배추 등)이 들어온 경우 (셀 상태 불문)
+        else if (isFalling && belowObject != null && belowObject.isVulnerableToFalling) 
+        {
+            canProcess = true;
+        }
 
+        // 낙하 불가 판정 시 낙하 상태 정지
         if (!canProcess)
         {
             if (isFalling)
             {
-                if (!isSensitive) OnEndFalling?.Invoke(); // 아직 isSensitive가 false면서 이 이벤트에 구독을 거는 오브젝트는 없어서 지워도 무방함
+                if (!isSensitive) 
+                {
+                    SoundManager.Instance.PlayGameSFX(SoundManager.Instance.landingSound, transform.position);
+                    OnEndFalling?.Invoke();
+                }
                 else
                 {
                     if (targetCell.state == MatrixCell.CellState.Filled)
                     {
-                        Debug.Log("리제");
-                        explodeOnDeath.Explode(); // 일단은 약한 물체는 낙하 후 터지는 걸 전제함
+                        explodeOnDeath.Explode();
                     }
                 }
             }
@@ -65,23 +80,30 @@ public class GridGravity : MonoBehaviour, IGridComponent
         {
             MatrixCell bottomCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down);
 
-            // 아래 오브젝트가 플레이어가 아닐 때
-            if (belowObject != GamePlayGridManager.Instance.player.MO)
+            // 아래 오브젝트가 플레이어가 아닌 경우 (양배추 등)
+            if (GamePlayGridManager.Instance.player == null || belowObject != GamePlayGridManager.Instance.player.MO)
             {
-                // 이동중인 오브젝트면 트윈 강제 종료 후 원위치로 끌어당기기
-                if (bottomCell.state ==
-                    MatrixCell.CellState.Moving)
+                // 이동/공격 시도 중인 유닛이면 이동 트윈 취소 및 위치 정돈
+                if (bottomCell.state == MatrixCell.CellState.Moving)
                 {
                     belowObject.ForceCancelTween();
-                    //belowObject.MoveToTargetCell(GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down));
+                }
+                else if (bottomCell.state == MatrixCell.CellState.Attacking)
+                {
+                    belowObject.ForceCompleteTween();
                 }
 
+                // 피격 유닛 폭발
                 belowObject.ExplodeOnDeath.Explode();  
             }
-            else if (belowObject == GamePlayGridManager.Instance.player.MO &&
-                     bottomCell.state == MatrixCell.CellState.Filled) // 플레이어면 안움직이면 터뜨림
+            // 아래 오브젝트가 플레이어인 경우
+            else if (belowObject == GamePlayGridManager.Instance.player.MO)
             {
-                belowObject.ExplodeOnDeath.Explode();
+                // 플레이어가 가만히 있을 때만 덮쳐서 터뜨림
+                if (bottomCell.state == MatrixCell.CellState.Filled)
+                {
+                    belowObject.ExplodeOnDeath.Explode();
+                }
             }
         }
         else
@@ -95,6 +117,7 @@ public class GridGravity : MonoBehaviour, IGridComponent
     {
         if (gridMovement.State != GridMovement.MoveState.Staying) return;
 
+        // 아래칸이 비어있으면 다음 턴 낙하 후보로 등록
         if (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).state == MatrixCell.CellState.Empty)
             isFalling = true;
     }
@@ -102,13 +125,24 @@ public class GridGravity : MonoBehaviour, IGridComponent
     public MatrixObject GetBelowAttackableObject()
     {
         MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down);
-        MatrixObject _belowObject;
+        if (targetCell == null) return null;
 
+        MatrixObject _belowObject = null;
+
+        // 1. 이미 칸에 차있는 경우
         if (targetCell.state == MatrixCell.CellState.Filled)
+        {
             _belowObject = targetCell.matrixObject;
-        else if (targetCell.state == MatrixCell.CellState.Moving && targetCell.moveStateDirection != Vector2Int.down)
-            _belowObject = targetCell.GetMovingObject();
-        else return null;
+        }
+        // 2. 다른 방향에서 기어들어오는 중인 경우 (Moving / Attacking)
+        else if (targetCell.state == MatrixCell.CellState.Moving || targetCell.state == MatrixCell.CellState.Attacking)
+        {
+            // 위에서 아래로 떨어지는 게 아닌, 옆/밑에서 진입하는 객체 감지
+            if (targetCell.moveStateDirection != Vector2Int.down)
+            {
+                _belowObject = targetCell.matrixObject != null ? targetCell.matrixObject : targetCell.GetMovingObject();
+            }
+        }
 
         return _belowObject;
     }

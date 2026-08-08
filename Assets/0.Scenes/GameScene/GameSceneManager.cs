@@ -18,6 +18,7 @@ public class GameSceneManager : MonoBehaviour
     [Header("참조")]
     [SerializeField] GameCamera gameCamera;
     [SerializeField] GameSceneUI gameSceneUI;
+    [SerializeField] AudioClip helloSound;
 
     [Header("Collect Effects")]
     [SerializeField]  ChickenCollectEffect chickenCollectEffect;
@@ -126,6 +127,8 @@ public class GameSceneManager : MonoBehaviour
         
         gameCamera.SetTarget(GamePlayGridManager.Instance.player.transform);
         yield return sceneTransitionSO.FadeIn();
+        
+        SoundManager.Instance.PlayGlobalGameSFX(helloSound);
         isPlaying = true;
         GamePlayGridManager.Instance.isPlaying = true;
         
@@ -171,15 +174,18 @@ public class GameSceneManager : MonoBehaviour
         // 기록 저장
         if (gameSessionSO.isExploringOriginalLevel)
         {
-            userRuntimeDataSO.UnlockOriginalStage(gameSessionSO.selectedOriginalLevelIndex);
-            userRuntimeDataSO.AddRecord(gameSessionSO.selectedOriginalLevelData.LevelID, playTime);
-            userRuntimeDataSO.Save();
+            if (GamePlayGridManager.Instance.isCleared)
+            {
+                userRuntimeDataSO.UnlockOriginalStage(gameSessionSO.selectedOriginalLevelIndex);
+                userRuntimeDataSO.AddRecord(gameSessionSO.selectedOriginalLevelData.LevelID, playTime);
+                userRuntimeDataSO.Save();
+            }
         }
         // TODO : 유저 커스텀맵일 경우 AddRecord 할 때 MD5 Hash 방식 고려하기(+오리지널 데이터도 이 방식을 써도 되지만 일단 코드를 다 짜서 패스)
         
         // 진행도 저장
-        
-        
+
+        gameSessionSO.gameSceneEnded = true;
         sceneTransitionSO.LoadSceneWithFade("AdventureScene");
     }
 }

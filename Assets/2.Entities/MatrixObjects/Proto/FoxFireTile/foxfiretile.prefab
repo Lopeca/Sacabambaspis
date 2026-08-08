@@ -5108,7 +5108,6 @@ MonoBehaviour:
   tileDataSO: {fileID: 11400000, guid: 8c6e987e54df6374ab145141185b56cd, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 1
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
@@ -5139,6 +5138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
   collectibleEffect: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: 3bc29583bde867b478cf1d0ac2fe3f88, type: 3}
   isTrap: 0
 --- !u!114 &3147365398720225006
 MonoBehaviour:

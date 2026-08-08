@@ -110,7 +110,6 @@ MonoBehaviour:
   tileDataSO: {fileID: 11400000, guid: f6715052779c0d748b1af40f6134400a, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 1
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
@@ -127,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HornPipe
   allowedDirections: -1
+  warpSFX: {fileID: 8300000, guid: 6630d79c04f51dc44978ae6820f351c9, type: 3}

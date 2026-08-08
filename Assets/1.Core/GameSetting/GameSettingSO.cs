@@ -22,6 +22,7 @@ public class GameSettingSO : ScriptableObject
     public AudioClip BGMClip => bgmClip;
     private const string MASTER_PARAM = "MasterVolume";
     private const string BGM_PARAM = "BgmVolume";
+    private const string UI_PARAM = "UIVolume";
     private const string SFX_PARAM = "SfxVolume";
 
     private string SaveFilePath => Path.Combine(Application.persistentDataPath, "game_settings.json");
@@ -96,7 +97,14 @@ public class GameSettingSO : ScriptableObject
         Debug.Log("모든 볼륨 셋팅 " + settingData.masterVolume);
         SetAudioMixerVolume(MASTER_PARAM, SettingData.masterVolume);
         SetAudioMixerVolume(BGM_PARAM, SettingData.bgmVolume);
+        SetAudioMixerVolume(UI_PARAM, SettingData.uiVolume);
         SetAudioMixerVolume(SFX_PARAM, SettingData.sfxVolume);
+    }
+
+    public void OpenSettingPanel()
+    {
+        if(runtimeInstance == null) EnsureUIWarmup();
+        runtimeInstance.gameObject.SetActive(true);
     }
 }
 
@@ -106,6 +114,7 @@ public class GameSettingData
     // 나중에 설정 항목이 추가되더라도 데이터 클래스만 확장하면 됨
     public float masterVolume = 1.0f;
     public float bgmVolume = 0.8f;
+    public float uiVolume = 0.8f;
     public float sfxVolume = 0.8f;
     
     // 예: 추후 추가될 수 있는 항목들

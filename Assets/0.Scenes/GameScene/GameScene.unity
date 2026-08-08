@@ -1724,9 +1724,10 @@ MonoBehaviour:
   userRuntimeDataSO: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
   gameCamera: {fileID: 1901837976}
   gameSceneUI: {fileID: 549914099}
+  helloSound: {fileID: 8300000, guid: 673bf152f061dba4ea5bcadaf4a93cb0, type: 3}
   chickenCollectEffect: {fileID: 11400000, guid: 6001572304a720b4d96887a7710ed567, type: 2}
   mushroomCollectEffect: {fileID: 11400000, guid: 28a36e72a7b7eac4baabeab514ae2158, type: 2}
-  demoLevelData: {fileID: 11400000, guid: adce0829348bacb478df5524af9d67db, type: 2}
+  demoLevelData: {fileID: 11400000, guid: 3a93eb7d9e12ffb4ca1bcedd022a715f, type: 2}
 --- !u!1001 &7463516800748392744
 PrefabInstance:
   m_ObjectHideFlags: 0

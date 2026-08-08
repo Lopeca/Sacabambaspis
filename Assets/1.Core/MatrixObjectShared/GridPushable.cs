@@ -18,9 +18,13 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
     private Tween backObject;
 
     private Vector2Int direction;
+    
+    [SerializeField] private bool debug = false;
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();
+        
+        mo.AppendGridComponent(this);
         movement = GetComponent<GridMovement>();
         gravity = GetComponent<GridGravity>();
     }
@@ -28,13 +32,19 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
     // 플레이어 입력 페이즈에 들어옴. 물체 고유 AI, 즉 GridUpdate가 있는 곳에서 플래그를 보고 초기화를 담당해줌
     public void Interact(PlayerController player, Vector2Int direction)
     {
+        if (debug) Debug.Log("뇨"  + endureCumulativeTime);
+        player.MO.Animator.Play("Push");
+        player.MO.Animator.SetBool("Push", true);
         // 중력의 적용을 받는 물체는 수평 방향으로만 밀 기회가 있음
         if (gravity != null && !(direction == Vector2Int.left || direction == Vector2Int.right)) return;
         
         Continuous = true;
-        
+
         if (endureDuration < endureCumulativeTime && CanPush(direction))
+        {
             ExecutePush(direction);
+            SoundManager.Instance.PlayGameSFX(player.pushVoice, player.transform.position);
+        }
         
         endureCumulativeTime += Time.deltaTime;
     }
@@ -90,9 +100,13 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
 
     public void GridUpdate()
     {
-        if(!Continuous)
+        if (!Continuous)
+        {
             endureCumulativeTime = 0;
-        
+            if (debug) Debug.Log("뇨엥" + endureCumulativeTime);
+            if (GamePlayGridManager.Instance.player != null) GamePlayGridManager.Instance.player.MO.Animator.SetBool("Push", false);
+        }
+
         Continuous = false;
     }
 }

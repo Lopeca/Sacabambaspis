@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 5be2c953129dd8d4aaa7022c3110e25e, type: 3}
+  m_Sprite: {fileID: 8793639957104055765, guid: a324d645c59efd94995e21499bc4dec5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   isVulnerableToFalling: 1
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &6571452089137253918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,8 +276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d7a3f5dacec834d847bc05e8c84f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveInput: {x: 0, y: 0}
+  spaceBuffer: 0
   state: 0
   mushroomPrefab: {fileID: 9128175508974058391, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+  deathSound: {fileID: 8300000, guid: 6f13bc3ff1d08d04fae6482430afd232, type: 3}
+  pushVoice: {fileID: 8300000, guid: 41551ebac941fb14ea95644d81c0b16c, type: 3}
+  suicideVoice: {fileID: 8300000, guid: 23b4db042b89ae4499cfa2e9c637c337, type: 3}
 --- !u!114 &6877192983326455588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +298,7 @@ MonoBehaviour:
   state: 0
   lastIntendedDirection: {x: 0, y: 0}
   physicsSO: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
+  trace: 0
 --- !u!114 &55396539852076065
 MonoBehaviour:
   m_ObjectHideFlags: 0

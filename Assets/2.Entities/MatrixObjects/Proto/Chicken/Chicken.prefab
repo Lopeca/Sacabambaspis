@@ -210,6 +210,7 @@ MonoBehaviour:
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &-5665427716769480528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   state: 0
   lastIntendedDirection: {x: 0, y: 0}
   physicsSO: {fileID: 11400000, guid: 3f291f2a3e050c648949cdda3c673216, type: 2}
+  trace: 0
 --- !u!114 &7533297238520802590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
   collectibleEffect: {fileID: 11400000, guid: 6001572304a720b4d96887a7710ed567, type: 2}
+  collectSound: {fileID: 8300000, guid: d315ba4b7e640f248bd5d3ec1e6c86d0, type: 3}
   isTrap: 0
 --- !u!114 &1372224828749643693
 MonoBehaviour:

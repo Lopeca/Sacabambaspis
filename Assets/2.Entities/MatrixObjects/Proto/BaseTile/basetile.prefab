@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 1
-  m_Sprite: {fileID: -1769221510388302223, guid: 3af61eb1f220cea45916a16501573e2d, type: 3}
+  m_Sprite: {fileID: 853379669184167763, guid: 027be0bc040a1854c848340a9338cc2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,13 +199,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28948d4894f2ab7419a6e8f96fbbc353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
+  id: 0
   tileDataSO: {fileID: 11400000, guid: 2e00ee356348fcb469b893c4465f6124, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 1
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &719345078193648484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d703000755e1e64da3f6648ac862803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
+  collectibleEffect: {fileID: 0}
+  collectSound: {fileID: 0}
+  isTrap: 0

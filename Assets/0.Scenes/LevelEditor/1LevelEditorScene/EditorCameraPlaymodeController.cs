@@ -22,7 +22,6 @@ public class EditorCameraPlaymodeController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[Camera] Start 실행됨. Instance ID: {GetHashCode()}", gameObject);
         // 에디터 매니저가 존재할 때만 이벤트를 구독 (느슨한 결합)
         if (LevelEditorManager.Instance != null)
         {
@@ -33,11 +32,8 @@ public class EditorCameraPlaymodeController : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log($"[Camera] OnDestroy 실행됨. Instance ID: {GetHashCode()}");
-
         LevelEditorManager.OnPlayModeStarted -= EnablePlayModeCamera;
         LevelEditorManager.OnPlayModeStopped -= DisablePlayModeCamera;
-        
     }
 
     private void LateUpdate()

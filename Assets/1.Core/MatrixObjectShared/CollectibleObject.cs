@@ -7,6 +7,7 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
     TileMaskAnimator tileMaskAnimator;
     public bool Continuous { get; set; }
     public CollectibleEffect collectibleEffect;
+    public AudioClip collectSound;
 
     public bool isTrap;
     private void Awake()
@@ -33,6 +34,8 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
 
     public void Collect(Vector2Int direction)
     {
+        SoundManager.Instance.PlayGameSFX(collectSound, transform.position);
+        
         if (isTrap)
         {
             GamePlayGridManager.Instance.player.PlayerExplode();

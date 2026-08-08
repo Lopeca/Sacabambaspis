@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5d07b4059e34043be1bd8679ad8152, type: 3}
+  m_Name: Tile_Boundary
+  m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
+  tileKey: Boundary
+  prefab: {fileID: 6013160330743888007, guid: 8a96c6eb8565a6b45aa44d440c194f8d, type: 3}
+  editorIcon: {fileID: -6548472342012956453, guid: cff3d9220d376ca429fb66c1f8061c66, type: 3}

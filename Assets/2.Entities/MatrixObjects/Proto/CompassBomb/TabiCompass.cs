@@ -9,6 +9,7 @@ public class TabiCompass : MonoBehaviour, IGridInteractable
 
     private MatrixObject mo;
     [SerializeField] Sprite deactivatedSprite;
+    [SerializeField] AudioClip deactivationSound;
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -31,6 +32,7 @@ public class TabiCompass : MonoBehaviour, IGridInteractable
     void ShutDown()
     {
         hasInteracted = true;
+        SoundManager.Instance.PlayGameSFX(deactivationSound, transform.position);
         if (deactivatedSprite != null && mo != null && mo.SpriteRenderer != null)
         {
             mo.SpriteRenderer.sprite = deactivatedSprite;

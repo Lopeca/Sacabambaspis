@@ -15,6 +15,7 @@ public class ExplodeOnDeath : MonoBehaviour
     GridMovement gridMovement;
 
     private bool isExploding;
+    
 
     private void Awake()
     {
@@ -61,23 +62,23 @@ public class ExplodeOnDeath : MonoBehaviour
     /// <param name="isSpreadingChain"></param>
     public void ExplodeByChain(bool isSpreadingChain = false)
     {
-        Debug.Log("explodeByChain");
-        // 셀과 연결을 끊음
-        MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
-        mo.ForceCancelTween();
-        mo.OnEliminated?.Invoke(); // 이 이벤트는 지금은 matrixObject가 플레이어일 시 게임종료 처리 및 코루틴 외에 하는 것 없음
+        // 트윈 및 코루틴 즉시 정지 (셀 상태 복구 시도 안 함)
+        if (gridMovement != null) 
+            gridMovement.ForceCompleteMove();
 
-        // 매니저에 등록 후 격자 뒤에서 폭발 프로세스
+        mo.OnEliminated?.Invoke();
+
+        // 셀 연결 해제
+        MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
+        if (mo.GridCreature != null) mo.GridCreature.IsLive = false;
         GamePlayGridManager.Instance.RegisterPendingObject(gameObject);
-        Debug.Log("등록된 pending object : " + gameObject.name); // 이전 오브젝트가 잘 들어감
-        currentCell.matrixObject = null; // 오브젝트가 pending으로 빠졌기 때문에 셀에서는 비워줌. 
+    
+        currentCell.matrixObject = null; 
         currentCell.state = MatrixCell.CellState.Empty;
-        
-        Debug.Log("코루틴 실행 전 Current Cell : " + currentCell.GetPosition() + " || " + currentCell.gameObject.name);
-        Debug.Log("코루틴 실행 전 Current Cell MO : " + currentCell.matrixObject + " || " + currentCell.gameObject.name);
+    
         chainCoroutine = StartCoroutine(ChainExplode(isSpreadingChain));
     }
-
+    
     IEnumerator ChainExplode(bool isSpreadingChain)
     {
         mo.SpriteRenderer.enabled = false;
@@ -87,14 +88,14 @@ public class ExplodeOnDeath : MonoBehaviour
 
         // 진행중인 트윈 강제 종료
         if (gridMovement != null)
-            gridMovement.ForceCancelMove(); 
+            gridMovement.ForceCancelMove();
 
         if (isSpreadingChain) isChainingChicken = true;
-
-        MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
         
-        currentCell.matrixObject.EliminateMatrixObject();       // 폭발 원소를 지우려고 했는데 양배추 지워짐 신호가 여기서 또 나옴
+        mo.EliminateMatrixObject();
+        
         SpawnExplodeElements();
+
         GamePlayGridManager.Instance.UnregisterPendingObject(gameObject);
         mo.OnEliminated?.Invoke();
         Destroy(gameObject);
@@ -117,6 +118,7 @@ public class ExplodeOnDeath : MonoBehaviour
     private void SpawnExplodeElements()
     {
         isExploding = true;
+        SoundManager.Instance.PlayExplodeSFX(transform.position);
         int count = 0;
 
         for (int x = mo.posX - 1; x <= mo.posX + 1; x++)
@@ -181,7 +183,8 @@ public class ExplodeOnDeath : MonoBehaviour
         }
 
         //Debug.Log("폭발셀 : " + targetCell.GetPosition());
-        targetCell.Clear();
+        
+        if(targetCell.matrixObject != null) targetCell.matrixObject.EliminateMatrixObject();    // 폭발물은 앞서 pending으로 옮겨서 비어있음 
         targetCell.PutMatrixObject(currentExplodeElement.MO);
         currentExplodeElement.gameObject.SetActive(true);
         targetCell.state = MatrixCell.CellState.Attacking;

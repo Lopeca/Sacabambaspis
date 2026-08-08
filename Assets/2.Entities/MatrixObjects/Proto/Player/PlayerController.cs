@@ -8,6 +8,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private static readonly int IsEww = Animator.StringToHash("IsEww");
+    private static readonly int InputX = Animator.StringToHash("InputX");
+    private static readonly int InputY = Animator.StringToHash("InputY");
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+    private static readonly int IsMovingL = Animator.StringToHash("IsMovingL");
+
     public enum PlayerState
     {
         Controlled,  // 제어 하에 있는
@@ -39,6 +45,12 @@ public class PlayerController : MonoBehaviour
     private Coroutine controlCoroutine;
     public Action OnDeath;
     private bool isAlive;
+    
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] public AudioClip pushVoice;
+    [SerializeField] private AudioClip suicideVoice;
+
+    private int horizontalDirection;
     private void Awake()
     {
         state = PlayerState.Uncontrolled;
@@ -74,8 +86,16 @@ public class PlayerController : MonoBehaviour
     {
         if (escBuffer)
         {
+            SoundManager.Instance.PlayGlobalGameSFX(suicideVoice, 1f, 1, 1, 1);
             PlayerExplode();
             return;
+        }
+
+        if (!spaceBuffer)
+        {
+            MO.Animator.SetBool(IsEww, false);
+            MO.Animator.SetFloat(InputX, 0);
+            MO.Animator.SetFloat(InputY, 0);
         }
         
         // 어떤 이유로든 이동 중이면 조작을 일단 막음
@@ -85,14 +105,34 @@ public class PlayerController : MonoBehaviour
             controlCoroutine = StartCoroutine(WaitMovement());
             return;
         }
-        if (mushroomCount > 0 && spaceBuffer && Time.time - spacePressedTime >= GameConstants.MUSHROOM_SPIT_TIME)
+        
+        MO.Animator.SetBool(IsMoving, false);
+        MO.Animator.SetBool(IsMovingL, false);
+        MO.SpriteRenderer.flipX = false;
+
+        if (moveInput.x > 0) horizontalDirection = 1;
+        else if (moveInput.x < 0) horizontalDirection = -1;
+        
+
+        if (mushroomCount > 0 && spaceBuffer && Time.time - spacePressedTime >= GameConstants.MUSHROOM_EWW_TIME)
+        {
+            MO.Animator.SetBool(IsEww, true);
+            MO.Animator.Play("Eww");
+        }
+        else if (mushroomCount > 0 && spaceBuffer && Time.time - spacePressedTime >= GameConstants.MUSHROOM_SPIT_TIME)
         {
             UseMushroom();
+            MO.Animator.SetBool(IsEww, false);
+            
             spaceBuffer = false;
         }
         else if (spaceBuffer && moveInput != Vector2.zero)
         {
             spaceMoveLock = true;
+            MO.Animator.SetBool(IsEww, false);
+            
+            MO.Animator.SetFloat(InputX, moveInput.x);
+            MO.Animator.SetFloat(InputY, moveInput.y);
             // 제자리에서 옆칸 먹기
             MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
             if (CanCollect(targetCell))
@@ -108,8 +148,8 @@ public class PlayerController : MonoBehaviour
         else if (moveInput != Vector2.zero && !spaceMoveLock)
         {
             spaceBuffer = false;
-       
-            
+            MO.Animator.SetFloat(InputX, 0);
+            MO.Animator.SetFloat(InputY, 0);
             // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기
             // 다른 오브젝트들은 조건을 보고 틀리면 다른 선택을 해야해서 이 요청 함수 안에 들어가서 이동 가능한지 검사하고 이동까지 다 하면 모듈화가 꼬임
              MatrixCell targetCell = GamePlayGridManager.Instance.GetCell(mo.posX + moveInput.x, mo.posY + moveInput.y);
@@ -123,9 +163,25 @@ public class PlayerController : MonoBehaviour
             else if (IsDestinationEmpty(targetCell))
             {
                 movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Receiving);
+                if (horizontalDirection == -1)
+                {
+                    MO.Animator.SetBool(IsMovingL, true);
+                }
+                else
+                {
+                    MO.Animator.SetBool(IsMoving, true);
+                }
             }
             else if (CanCollect(targetCell))
             {
+                if (horizontalDirection == -1)
+                {
+                    MO.Animator.SetBool(IsMovingL, true);
+                }
+                else
+                {
+                    MO.Animator.SetBool(IsMoving, true);
+                }
                 targetCell.matrixObject.CollectibleObject.Collect(moveInput);
                 if(isAlive) // collectible이 trap인경우 이동명령 불가
                     movement.ExecuteMove(moveInput, GridMovement.MoveState.Moving, MatrixCell.CellState.Receiving);
@@ -237,6 +293,7 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Debug.Log("플레이어 죽음");
+        if(isAlive) SoundManager.Instance.PlayGameSFX(deathSound, transform.position);
         isAlive = false;
         OnDeath?.Invoke();
     }

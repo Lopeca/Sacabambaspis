@@ -111,10 +111,10 @@ MonoBehaviour:
   tileDataSO: {fileID: 11400000, guid: 43d50c02ab060fe42a9c37ff719bd42c, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 1
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &3975651388020047128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,3 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c7ad947c5ff1640a18ee9d99436550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mushroom
+  installSound: {fileID: 8300000, guid: 0df22cc25319e1847be4fec7a50bcde7, type: 3}

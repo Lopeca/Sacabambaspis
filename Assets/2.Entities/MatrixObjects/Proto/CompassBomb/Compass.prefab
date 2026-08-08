@@ -110,10 +110,10 @@ MonoBehaviour:
   tileDataSO: {fileID: 11400000, guid: e6f0ed25bdf1af746ae57f330f25d675, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 0
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &6402883904635717236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TabiCompass
   deactivatedSprite: {fileID: -2485611489447313231, guid: 0af8e46d527fc2146837c7fc65d9bcd0, type: 3}
+  deactivationSound: {fileID: 8300000, guid: 93a8b59cc8523734e8fc6815c5b37175, type: 3}

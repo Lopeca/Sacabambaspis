@@ -11,6 +11,7 @@ public class LevelSelectPanel : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private GameObject contentBox;
     [SerializeField] private GameObject levelSelectButtonPrefab;
+    [SerializeField] private GameSessionSO gameSession;
 
     [Header("State")]
     [SerializeField] private LevelSelectButton currentSelectedButton;
@@ -44,7 +45,27 @@ public class LevelSelectPanel : MonoBehaviour
             levelSelectButtons.Add(button);
         }
         
-        currentSelectedButton = levelSelectButtons[userDataSo.Data.highestUnlockedIndex];
+        Debug.Log(userDataSo.Data.highestUnlockedIndex + ":: " + levelDB.originalLevels.Count);
+        
+        
+        // 포커싱할 레벨 조율
+
+        int targetIndex;
+        if (gameSession.gameSceneEnded)
+        {
+            gameSession.gameSceneEnded = false;
+            targetIndex = gameSession.selectedOriginalLevelIndex;
+        }
+        else
+        {
+            if (userDataSo.Data.highestUnlockedIndex >= levelDB.originalLevels.Count)
+                targetIndex = levelDB.originalLevels.Count - 1;
+            else
+                targetIndex = userDataSo.Data.highestUnlockedIndex;
+        }
+
+        Debug.Log(targetIndex+ "<=targetIndex");
+        currentSelectedButton = levelSelectButtons[targetIndex];
         currentSelectedButton.OnClick();
     }
 
@@ -123,4 +144,5 @@ public class LevelSelectPanel : MonoBehaviour
         currentSelectedButtonIndex++;
         levelSelectButtons[currentSelectedButtonIndex].OnClick();
     }
+
 }
