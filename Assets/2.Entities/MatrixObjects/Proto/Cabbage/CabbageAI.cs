@@ -110,7 +110,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable, IGrid
         if (targetCell.HasPlayer() && targetCell.state == MatrixCell.CellState.Filled)
         {
             mo.ExplodeOnDeath.Explode();
-            SoundManager.Instance.PlayUISFX(playerReactionSFX, 1, 1);
+            SoundManager.Instance.PlayGlobalGameSFX(playerReactionSFX, 1, 1, delay:1);
             
             yield break;
         }
@@ -222,7 +222,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable, IGrid
     public void Interact(PlayerController player, Vector2Int direction)
     {
         player.Paralyze();
-        SoundManager.Instance.PlayUISFX(playerReactionSFX, 1, 1);
+        SoundManager.Instance.PlayGlobalGameSFX(playerReactionSFX, 1, 1, delay:1);
         player.MO.ExplodeOnDeath.Explode();
     }
 

@@ -16,6 +16,7 @@ public class LevelSelectPanel : MonoBehaviour
     [Header("State")]
     [SerializeField] private LevelSelectButton currentSelectedButton;
     [SerializeField] private int currentSelectedButtonIndex;
+    public int CurrentSelectedButtonIndex => currentSelectedButtonIndex;
     public LevelSelectButton CurrentSelectedButton => currentSelectedButton;
 
     private List<LevelSelectButton> levelSelectButtons;

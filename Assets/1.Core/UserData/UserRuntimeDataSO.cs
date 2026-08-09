@@ -69,7 +69,6 @@ public class UserRuntimeDataSO : ScriptableObject
         else
         {
             data = new UserSaveData();
-            data.remainedSkipCouponCount = 5;
             Save();
         }
 
@@ -102,7 +101,6 @@ public class UserRuntimeDataSO : ScriptableObject
         else if (IsSkippedLevel(selectedOriginalLevelIndex))
         {
             data.skippedList.Remove(selectedOriginalLevelIndex);
-            data.remainedSkipCouponCount++;
         }
     }
 
@@ -116,7 +114,6 @@ public class UserRuntimeDataSO : ScriptableObject
     {
         data.skippedList.Add(data.highestUnlockedIndex);
         data.highestUnlockedIndex++;
-        data.remainedSkipCouponCount--;
         
         Save();
     }

@@ -1,0 +1,3697 @@
+{
+    "levelName": "용의 창자",
+    "autoCountChicken": false,
+    "requiredChickenCount": -1,
+    "tiles": [
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 79,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 81,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 83,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 46
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 46
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 46
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 46
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 46
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 46
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 46
+        },
+        {
+            "tileKey": "Exit",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 46
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 46
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 47
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 47
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 47
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 48
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 48
+        },
+        {
+            "tileKey": "Wolf",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 48
+        },
+        {
+            "tileKey": "Cabbage",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 48
+        },
+        {
+            "tileKey": "Wolf",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 48
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 48
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 48
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 48
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 48
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 48
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 48
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 49
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 49
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 49
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 50
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 50
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 50
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 50
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 79,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 51
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 51
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 51
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 52
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 52
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 52
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 52
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 79,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 53
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 53
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 54
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 54
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 55
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 55
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 56
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 56
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 57
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 57
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 83,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 58
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 58
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 59
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 59
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 81,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 83,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 60
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 60
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 60
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 61
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 61
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 79,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 81,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 83,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 62
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 62
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 63
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 63
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 63
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 63
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 63
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 63
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 63
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 79,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 81,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 83,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 64
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 64
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 65
+        },
+        {
+            "tileKey": "Player",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 65
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 65
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 65
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 65,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 66,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 67,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 68,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 69,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 70,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 71,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 72,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 73,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 74,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 75,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 76,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 77,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 78,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 79,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 80,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 81,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 82,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 83,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 84,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 85,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 86,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 87,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 88,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 89,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 90,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 91,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 92,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 93,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 94,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 95,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 96,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 97,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 98,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 99,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 100,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 101,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 102,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 103,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 104,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 105,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 106,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 107,
+            "posY": 66
+        }
+    ]
+}

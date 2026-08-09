@@ -4,39 +4,40 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OriginalLevelSelectUIManager : MonoBehaviour
 {
-    [Header("Data References")]
-    [SerializeField] private OriginalLevelDatabase levelDB;
+    [Header("Data References")] [SerializeField]
+    private OriginalLevelDatabase levelDB;
     [SerializeField] private GameSessionSO gameSessionSO;
     [SerializeField] private GameSettingSO gameSetting;
     [SerializeField] private SceneTransitionSO sceneTransitionSO;
     [SerializeField] private UserRuntimeDataSO userRuntimeDataSO;
 
-    [Header("UI Panels")]
-    [SerializeField] private LevelSelectPanel levelSelectPanel;
+    [Header("UI Panels")] [SerializeField] private LevelSelectPanel levelSelectPanel;
     [SerializeField] private LevelInfoPanel levelInfoPanel;
     [SerializeField] private LevelRecordPanel levelRecordPanel;
 
-    [Header("UI Elements")] 
-    [SerializeField] private TMP_Text skipCountText;
+    [Header("UI Elements")] [SerializeField]
+    private TMP_Text skipCountText;
     [SerializeField] private Button skipButton;
     [SerializeField] private Button startToPlayButton;
 
-    [Header("Scene Assets")]
-    [SerializeField] private SceneAsset titleScene;
+    [Header("Scene Assets")] [SerializeField]
+    private SceneAsset titleScene;
     [SerializeField] private SceneAsset gameScene;
-    
+
     // 비동기 작업 취소용 토큰 소스
     private CancellationTokenSource _selectCts;
+
     private void OnEnable()
     {
         LevelSelectButton.OnClickToFocus += FocusLevelButton;
         LevelSelectButton.OnClickToPlay += ExecuteLevelButton;
-        
+
         gameSessionSO.isExploringOriginalLevel = true;
     }
 
@@ -57,13 +58,14 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     void FocusLevelButton(int index)
     {
         levelSelectPanel.FocusButton(index);
-        
-       
-        if (index != levelDB.originalLevels.Count-1 
+
+        int remainingSkipCouponCount = 5 - userRuntimeDataSO.Data.skippedList.Count;
+
+        if (index != levelDB.originalLevels.Count - 1
             && index == userRuntimeDataSO.Data.highestUnlockedIndex
-            && userRuntimeDataSO.Data.remainedSkipCouponCount > 0) 
+            && remainingSkipCouponCount > 0)
             skipButton.gameObject.SetActive(true);
-        else 
+        else
             skipButton.gameObject.SetActive(false);
 
         if (index > userRuntimeDataSO.Data.highestUnlockedIndex)
@@ -74,15 +76,15 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         {
             startToPlayButton.gameObject.SetActive(true);
         }
-        
+
         // 1. 이전 진행 중이던 0.1초 대기 및 로드 작업을 "진짜로" 즉시 끊어버림
         _selectCts?.Cancel();
         _selectCts?.Dispose();
         _selectCts = new CancellationTokenSource();
-       
+
         gameSessionSO.selectedOriginalLevelData = levelSelectPanel.CurrentSelectedButton.GetLevelData();
         gameSessionSO.selectedOriginalLevelIndex = index;
-        
+
         // 2. 비동기 작업 시작
         SelectStageRoutineAsync(_selectCts.Token).Forget();
     }
@@ -92,10 +94,10 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         // [핵심] 시작하자마자 스크롤 취소 토큰(token) + GameObject 파괴 토큰을 결합!
         // 이렇게 만들어둔 linkedCts는 나중에 Dispose 해주는 것이 정석입니다.
         using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
-            token, 
+            token,
             this.GetCancellationTokenOnDestroy()
         );
-    
+
         var linkedToken = linkedCts.Token;
 
         try
@@ -113,7 +115,8 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
             // [단계 4] 로드 완료 후 UI 갱신
             if (isSuccess && gameSessionSO.CurrentLoadedLevelData != null)
             {
-                levelInfoPanel.ShowLevelInfo(gameSessionSO.CurrentLoadedLevelData, levelSelectPanel.CurrentSelectedButton.Index);
+                levelInfoPanel.ShowLevelInfo(gameSessionSO.CurrentLoadedLevelData,
+                    levelSelectPanel.CurrentSelectedButton.Index);
                 // TODO: 기록 패널에 기록 보여주기
                 levelRecordPanel.ShowRecords(gameSessionSO.selectedOriginalLevelData);
             }
@@ -123,7 +126,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
             // 스크롤을 넘겼거나, 0.1초 만에 오브젝트가 파괴되어 취소된 경우 모두 이쪽으로 안전하게 진입
         }
     }
-    
+
 
     void ExecuteLevelButton(OriginalLevelData levelData)
     {
@@ -150,8 +153,8 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         levelSelectPanel.CurrentSelectedButton.Refresh();
         RefreshSkipCountText();
     }
-    
-    
+
+
     public void OnClickSettingButton()
     {
         gameSetting.OpenSettingPanel();
@@ -159,10 +162,38 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
 
     public void RefreshSkipCountText()
     {
-        int remainingSkipCouponCount = userRuntimeDataSO.Data.remainedSkipCouponCount;
+        int remainingSkipCouponCount = 5 - userRuntimeDataSO.Data.skippedList.Count;
         skipCountText.text = remainingSkipCouponCount.ToString();
-        
-        if(remainingSkipCouponCount == 0) skipCountText.color = Color.red;
+
+        if (remainingSkipCouponCount == 0) skipCountText.color = Color.red;
         else skipCountText.color = Color.darkViolet;
     }
+
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+        // KeyDown처럼 누르는 '순간'에만 1회 실행
+        if (!context.performed) return;
+
+        Vector2 input = context.ReadValue<Vector2>();
+
+        // Y축 값이 유의미할 때만 위/아래 인덱스 변경
+        if (input.y > 0.5f)
+        {
+            int targetIndex = levelSelectPanel.CurrentSelectedButtonIndex - 1;
+            if (targetIndex >= 0) FocusLevelButton(targetIndex); // 위쪽 (이전 레벨)
+        }
+        else if (input.y < -0.5f)
+        {
+            int targetIndex = levelSelectPanel.CurrentSelectedButtonIndex + 1;
+            if (targetIndex < levelDB.originalLevels.Count) FocusLevelButton(targetIndex);
+        }
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        OnClickToPlayButton();
+    }
+
 }

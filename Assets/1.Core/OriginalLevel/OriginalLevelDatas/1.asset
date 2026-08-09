@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb46d12bc60d69a44be21894ca5a2e13, type: 3}
-  m_Name: Test5
+  m_Name: 1
   m_EditorClassIdentifier: Assembly-CSharp::OriginalLevelData
-  levelName: Test1
+  levelName: "\uC6A9\uC758 \uCC3D\uC790"
   levelAddress:
-    m_AssetGUID: 8cca789b253274d43a9f08ac32ed43f0
+    m_AssetGUID: b2e1b849bb1c2b347a2f14d4bd92df22
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

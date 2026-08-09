@@ -32,7 +32,6 @@ public class UserSaveData
     public int highestUnlockedIndex = 0;
 
     public List<int> skippedList;
-    public int remainedSkipCouponCount;
 
     // 2. 기록: 각 레벨 ID별 최단 기록 (순서가 바뀌어도 유지됨)
     // Key: LevelID (AssetGUID 또는 레벨명), Value: ClearTime

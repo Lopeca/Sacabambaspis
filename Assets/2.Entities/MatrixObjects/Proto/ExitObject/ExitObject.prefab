@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 8d0692258aa810d47bb8e3c20e76f2e8, type: 3}
-  m_Color: {r: 1, g: 0.96448624, b: 0, a: 1}
+  m_Sprite: {fileID: -1922979618149193216, guid: ec20afaa171b4ce4cba590e297e1990d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,13 +106,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28948d4894f2ab7419a6e8f96fbbc353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatrixObject
+  id: 0
   tileDataSO: {fileID: 11400000, guid: ff81884cd2991f64694e54168003aeb2, type: 2}
   explosionResponse: 0
   isRounded: 0
-  isCrushable: 1
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &6066895986032910056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b71c3e3212ef9145bc16a30096dbb22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitObject
+  exitSound: {fileID: 8300000, guid: 66af57552b6d9b344b496ff9338c8807, type: 3}

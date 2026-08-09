@@ -138,6 +138,7 @@ MonoBehaviour:
   isVulnerableToFalling: 1
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &4704279630423195528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +167,7 @@ MonoBehaviour:
   isBusy: 0
   passiveRotate: 0
   facingDirectionIndex: 0
-  isLive: 0
-  scannedCell: {fileID: 0}
-  scannedFrameCount: 0
+  playerReactionSFX: {fileID: 8300000, guid: 4cc87128c8e445645baaff6837d8ab2d, type: 3}
 --- !u!114 &7939481914412317921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +183,6 @@ MonoBehaviour:
   state: 0
   lastIntendedDirection: {x: 0, y: 0}
   physicsSO: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
+  startCell: {fileID: 0}
+  destCell: {fileID: 0}
+  trace: 0
