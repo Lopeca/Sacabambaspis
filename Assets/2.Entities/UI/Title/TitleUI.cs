@@ -15,6 +15,8 @@ public class TitleUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+        gameSetting.LoadSettings();
         gameSetting.EnsureUIWarmup();
     }
 

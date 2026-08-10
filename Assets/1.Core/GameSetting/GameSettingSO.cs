@@ -76,12 +76,13 @@ public class GameSettingSO : ScriptableObject
         }
         else
         {
+            Debug.Log("여기");
             // 파일이 없으면 기본값으로 저장 파일 생성
             settingData = new GameSettingData();
             SaveSettings();
         }
         
-        ApplyAllVolumes();
+        // ApplyAllVolumes();
     }
 
     public void SetAudioMixerVolume(string parameterName, float linearValue)
@@ -114,7 +115,7 @@ public class GameSettingSO : ScriptableObject
 public class GameSettingData
 {
     // 나중에 설정 항목이 추가되더라도 데이터 클래스만 확장하면 됨
-    public float masterVolume = 1.0f;
+    public float masterVolume = 0.8f;
     public float bgmVolume = 0.8f;
     public float uiVolume = 0.8f;
     public float sfxVolume = 0.8f;
