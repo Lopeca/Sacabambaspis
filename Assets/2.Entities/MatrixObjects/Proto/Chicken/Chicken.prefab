@@ -102,12 +102,12 @@ GameObject:
   - component: {fileID: 4570441969733433269}
   - component: {fileID: 6392476552696071140}
   - component: {fileID: 1876120450126864304}
-  - component: {fileID: -5665427716769480528}
   - component: {fileID: 4479358555023437173}
   - component: {fileID: 7533297238520802590}
   - component: {fileID: 1164328899865935170}
   - component: {fileID: 1957827430515329418}
   - component: {fileID: 1372224828749643693}
+  - component: {fileID: -6861857230727838697}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -211,18 +211,6 @@ MonoBehaviour:
   posX: 0
   posY: 0
   traceDestruction: 0
---- !u!114 &-5665427716769480528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3530293220241765761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecbf708d10304fd479f2bc40697a0ca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChickenAI
 --- !u!114 &4479358555023437173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +226,8 @@ MonoBehaviour:
   state: 0
   lastIntendedDirection: {x: 0, y: 0}
   physicsSO: {fileID: 11400000, guid: 3f291f2a3e050c648949cdda3c673216, type: 2}
+  startCell: {fileID: 0}
+  destCell: {fileID: 0}
   trace: 0
 --- !u!114 &7533297238520802590
 MonoBehaviour:
@@ -280,6 +270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
   collectibleEffect: {fileID: 11400000, guid: 6001572304a720b4d96887a7710ed567, type: 2}
   collectSound: {fileID: 8300000, guid: d315ba4b7e640f248bd5d3ec1e6c86d0, type: 3}
+  trapKillSound: {fileID: 0}
+  collected: 0
   isTrap: 0
 --- !u!114 &1372224828749643693
 MonoBehaviour:
@@ -295,3 +287,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileMaskAnimator
   speedConfigSO: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
   mask: {fileID: 2164097260362933904}
+--- !u!114 &-6861857230727838697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530293220241765761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ca9357a30cfd946a2fa9b05a022595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoneAI

@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2Int moveInput;
     private bool escBuffer;
     [SerializeField] private bool spaceBuffer;
+    [SerializeField] private bool spaceBufferUsed;
+    
     private float spacePressedTime;
     private bool spaceMoveLock;
     private float moveTicks;
@@ -96,6 +98,7 @@ public class PlayerController : MonoBehaviour
             MO.Animator.SetBool(IsEww, false);
             MO.Animator.SetFloat(InputX, 0);
             MO.Animator.SetFloat(InputY, 0);
+            spaceBufferUsed = false;
         }
         
         // 어떤 이유로든 이동 중이면 조작을 일단 막음
@@ -112,14 +115,15 @@ public class PlayerController : MonoBehaviour
 
         if (moveInput.x > 0) horizontalDirection = 1;
         else if (moveInput.x < 0) horizontalDirection = -1;
-        
 
-        if (mushroomCount > 0 && spaceBuffer && Time.time - spacePressedTime >= GameConstants.MUSHROOM_EWW_TIME)
+        float spaceChargedTime = Time.time - spacePressedTime;
+
+        if (mushroomCount > 0 && spaceBuffer  && !spaceBufferUsed && spaceChargedTime is >= GameConstants.MUSHROOM_EWW_TIME and < GameConstants.MUSHROOM_SPIT_TIME)
         {
             MO.Animator.SetBool(IsEww, true);
             MO.Animator.Play("Eww");
         }
-        else if (mushroomCount > 0 && spaceBuffer && Time.time - spacePressedTime >= GameConstants.MUSHROOM_SPIT_TIME)
+        else if (mushroomCount > 0 && spaceBuffer && !spaceBufferUsed && spaceChargedTime >= GameConstants.MUSHROOM_SPIT_TIME)
         {
             UseMushroom();
             MO.Animator.SetBool(IsEww, false);
@@ -129,6 +133,7 @@ public class PlayerController : MonoBehaviour
         else if (spaceBuffer && moveInput != Vector2.zero)
         {
             spaceMoveLock = true;
+            spaceBufferUsed = true;
             MO.Animator.SetBool(IsEww, false);
             
             MO.Animator.SetFloat(InputX, moveInput.x);
@@ -148,6 +153,7 @@ public class PlayerController : MonoBehaviour
         else if (moveInput != Vector2.zero && !spaceMoveLock)
         {
             spaceBuffer = false;
+            spaceBufferUsed = true;
             MO.Animator.SetFloat(InputX, 0);
             MO.Animator.SetFloat(InputY, 0);
             // 나중에 무턱대고 요청이 아니라 움직일 수 있는지 여기서 확인하고 움직이는 식으로 바꾸기
@@ -215,7 +221,12 @@ public class PlayerController : MonoBehaviour
     {
         if (targetCell.state == MatrixCell.CellState.Filled)
         {
-            if (targetCell.matrixObject.CollectibleObject != null) return true;
+            if (targetCell.matrixObject.CollectibleObject != null &&
+                targetCell.matrixObject.CollectibleObject.collected == false)
+            {
+                Debug.Log("Collectable");
+                return true;
+            }
         }
 
         return false;
@@ -295,7 +306,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("플레이어 죽음");
         if(isAlive) SoundManager.Instance.PlayGameSFX(deathSound, transform.position);
         isAlive = false;
-        OnDeath?.Invoke();
+        if(!GamePlayGridManager.Instance.isCleared) OnDeath?.Invoke();
     }
     
     public void SetReady()

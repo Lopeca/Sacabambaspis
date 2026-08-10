@@ -71,7 +71,7 @@ public class GamePlayGridManager : MonoBehaviour
                 var cell = mapGrid[x, y];
                 if (cell.state == MatrixCell.CellState.Filled)
                 {
-                    if(cell.matrixObject == null) Debug.Log("filled인데 오브젝트가 없음 : " + cell.GetPosition());
+//                    if(cell.matrixObject == null) Debug.Log("filled인데 오브젝트가 없음 : " + cell.GetPosition());
                     cell.matrixObject.GridUpdate();
                 }
             }
@@ -196,8 +196,8 @@ public class GamePlayGridManager : MonoBehaviour
 
     private void ExitEventListener()
     {
-        player = null;
         isCleared = true;
+        player.Paralyze();
         StartCoroutine(SendGameOverAfterSeconds(1.5f));
     }
 

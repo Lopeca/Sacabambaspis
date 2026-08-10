@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
   tileKey: Exit
   prefab: {fileID: 8622401671639851952, guid: 82c2de36607b59b429c2a8c7b24edba3, type: 3}
-  editorIcon: {fileID: -1922979618149193216, guid: ec20afaa171b4ce4cba590e297e1990d, type: 3}
+  editorIcon: {fileID: -8640420410460771583, guid: 577d1f5d414143e44bec8b019a9bea72, type: 3}

@@ -9,8 +9,11 @@ public class ExitObject : MonoBehaviour, IGridInteractable
     
     public void Interact(PlayerController player, Vector2Int direction)
     {
-        SoundManager.Instance.PlayGlobalGameSFX(exitSound);
-        OnTryExit?.Invoke();
+        if (GamePlayGridManager.Instance.RequiredChickenCount == 0)
+        {
+            SoundManager.Instance.PlayGlobalGameSFX(exitSound);
+            OnTryExit?.Invoke();
+        }
     }
 
 }

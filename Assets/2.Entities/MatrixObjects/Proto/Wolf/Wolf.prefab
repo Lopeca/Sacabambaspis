@@ -167,7 +167,7 @@ MonoBehaviour:
   isBusy: 0
   passiveRotate: 0
   facingDirectionIndex: 0
-  playerReactionSFX: {fileID: 8300000, guid: 4cc87128c8e445645baaff6837d8ab2d, type: 3}
+  playerReactionSFX: {fileID: 8300000, guid: 07d2acd1020a22c45bb40e2a9b152a44, type: 3}
 --- !u!114 &7939481914412317921
 MonoBehaviour:
   m_ObjectHideFlags: 0

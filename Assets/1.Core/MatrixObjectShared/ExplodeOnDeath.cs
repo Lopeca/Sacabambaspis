@@ -15,7 +15,8 @@ public class ExplodeOnDeath : MonoBehaviour
     GridMovement gridMovement;
 
     private bool isExploding;
-    
+
+    public bool debugTrace;
 
     private void Awake()
     {
@@ -68,6 +69,11 @@ public class ExplodeOnDeath : MonoBehaviour
 
         mo.OnEliminated?.Invoke();
 
+        if (debugTrace)
+        {
+            Debug.Log("mo Pos : " + mo.GetPos());
+        }
+            
         // 셀 연결 해제
         MatrixCell currentCell = GamePlayGridManager.Instance.GetCell(mo.GetPos());
         if (mo.GridCreature != null) mo.GridCreature.IsLive = false;
@@ -85,10 +91,6 @@ public class ExplodeOnDeath : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         
         if (isExploding) yield break;
-
-        // 진행중인 트윈 강제 종료
-        if (gridMovement != null)
-            gridMovement.ForceCancelMove();
 
         if (isSpreadingChain) isChainingChicken = true;
         
@@ -149,10 +151,10 @@ public class ExplodeOnDeath : MonoBehaviour
                 {
                     targetCellObject.ForceCompleteTween();
 
-                    if (targetCell.state == MatrixCell.CellState.Moving)
-                    {
-                        targetCell.GetMovingObject().ForceCompleteTween();
-                    }
+                    // if (targetCell.state == MatrixCell.CellState.Moving)
+                    // {
+                    //     targetCell.GetMovingObject().ForceCompleteTween();
+                    // }
 
                     ExplodeOnDeath sweptObjectExplodeComponent = targetCellObject.ExplodeOnDeath;
                     if (sweptObjectExplodeComponent != null)

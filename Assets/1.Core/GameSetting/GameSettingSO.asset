@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameSettingSO
   settingPanelPrefab: {fileID: 1892504572413055851, guid: 02919d6051db8194788fb0f3ec713292, type: 3}
   settingData:
-    masterVolume: 0.3880562
-    bgmVolume: 0.7526637
-    sfxVolume: 0.80443424
+    masterVolume: 0.6610938
+    bgmVolume: 0.3139845
+    uiVolume: 0.6000831
+    sfxVolume: 0.45888913
   audioMixer: {fileID: 24100000, guid: 55c698448efe157499a9c1ac0c5ca401, type: 2}
-  bgmClip: {fileID: 8300000, guid: e50dbbbbc47014e4a90774e837e4ac2b, type: 3}
+  bgmClip: {fileID: 8300000, guid: 133b86b6d1554e543b787a9bb57db853, type: 3}

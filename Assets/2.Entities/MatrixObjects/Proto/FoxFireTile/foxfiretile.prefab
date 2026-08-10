@@ -5081,7 +5081,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 1
-  m_Sprite: {fileID: -1769221510388302223, guid: 3af61eb1f220cea45916a16501573e2d, type: 3}
+  m_Sprite: {fileID: 853379669184167763, guid: 027be0bc040a1854c848340a9338cc2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5111,6 +5111,7 @@ MonoBehaviour:
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &719345078193648484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5138,7 +5139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
   collectibleEffect: {fileID: 0}
-  collectSound: {fileID: 8300000, guid: 3bc29583bde867b478cf1d0ac2fe3f88, type: 3}
+  collectSound: {fileID: 0}
+  trapKillSound: {fileID: 8300000, guid: 3bc29583bde867b478cf1d0ac2fe3f88, type: 3}
   isTrap: 0
 --- !u!114 &3147365398720225006
 MonoBehaviour:

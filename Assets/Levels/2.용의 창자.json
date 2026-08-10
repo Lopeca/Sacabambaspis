@@ -1,6 +1,6 @@
 {
     "levelName": "용의 창자",
-    "autoCountChicken": false,
+    "autoCountChicken": true,
     "requiredChickenCount": -1,
     "tiles": [
         {

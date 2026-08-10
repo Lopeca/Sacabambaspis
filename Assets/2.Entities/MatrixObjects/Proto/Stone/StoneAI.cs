@@ -7,7 +7,6 @@ public class StoneAI : MonoBehaviour, IGridComponent
     GridMovement gridMovement;
     private GridGravity gravity;
     private GridRollable rollable;
-    private GridPushable pushable;
     
     private void Awake()
     {
@@ -15,7 +14,6 @@ public class StoneAI : MonoBehaviour, IGridComponent
         gridMovement = GetComponent<GridMovement>();
         gravity = GetComponent<GridGravity>();
         rollable = GetComponent<GridRollable>();
-        pushable = GetComponent<GridPushable>();
         
         
         mo.AppendGridComponent(this);

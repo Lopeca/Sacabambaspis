@@ -55,6 +55,8 @@ public class LevelEditorManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TilePaletteWindow tilePaletteWindow;
     public TilePaletteWindow TilePaletteWindow => tilePaletteWindow;
+    public EditorChickenCountText chickenCountText;
+    
     public bool IsInteractingWithUI { get; set; } = false;
     [SerializeField] private MatrixCell playerCell;
     
@@ -76,9 +78,17 @@ public class LevelEditorManager : MonoBehaviour
         mapGrid = new MatrixCell[MAX_WIDTH, MAX_HEIGHT];
         
         editorMode = EditorMode.Edit;
+        chickenCountText.gameObject.SetActive(false);
         
         GenerateInitialGrid();
     }
+    
+    private void OnDisable()
+    {
+        GamePlayGridManager.Instance.OnGameOver -= StopPlaying;
+
+    }
+
     private void Start()
     {
         if (CustomLevelExplorer.Instance.LoadedLevel == null)
@@ -90,7 +100,6 @@ public class LevelEditorManager : MonoBehaviour
             ConvertLevelDataToMapGrid();
         }
         
-        GamePlayGridManager.Instance.OnGameOver += StopPlaying;
     }
 
     private void ConvertLevelDataToMapGrid()
@@ -106,6 +115,7 @@ public class LevelEditorManager : MonoBehaviour
         }
 
         TilePaletteWindow.Init();
+        chickenCountText.SetText(CustomLevelExplorer.Instance.LoadedLevel.requiredChickenCount.ToString());
     }
 
   
@@ -326,7 +336,7 @@ public class LevelEditorManager : MonoBehaviour
         }
 
         if (enabledAutoChickenCount) loadedData.requiredChickenCount = chickenCount;
-        else loadedData.requiredChickenCount = -1;
+        else loadedData.requiredChickenCount = TilePaletteWindow.GetCustomChickenCount();
     }
 
     public void StartPlaying()
@@ -338,10 +348,14 @@ public class LevelEditorManager : MonoBehaviour
         GamePlayGridManager.Instance.isPlaying = true;
         GamePlayGridManager.Instance.LoadCustomLevel();
 
-        ExitObject.OnTryExit += TryClearGame;
+        //ExitObject.OnTryExit += TryClearGame;
+        GamePlayGridManager.Instance.OnGameOver += StopPlaying;
+        
         
         OnPlayModeStarted?.Invoke();
         editorMode = EditorMode.Play;
+        tilePaletteWindow.gameObject.SetActive(false);
+        chickenCountText.gameObject.SetActive(true);
     }
 
     public void StopPlaying()
@@ -354,9 +368,13 @@ public class LevelEditorManager : MonoBehaviour
         ExitObject.OnTryExit -= TryClearGame;
         
         OnPlayModeStopped?.Invoke();
+        GamePlayGridManager.Instance.OnGameOver -= StopPlaying;
         
         editorMode = EditorMode.Edit;
+        chickenCountText.gameObject.SetActive(false);
+        tilePaletteWindow.gameObject.SetActive(true);
         TilePaletteWindow.SetPlayButtonTextToPlay();
+        
     }
 
     private void TryClearGame()

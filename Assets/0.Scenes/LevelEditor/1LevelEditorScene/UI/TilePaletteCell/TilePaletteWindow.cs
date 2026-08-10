@@ -21,6 +21,8 @@ public class TilePaletteWindow : MonoBehaviour
     public GameObject tileCellPrefab;
     public CheckBox autoCountChickenCheckBox;
     
+    [SerializeField] private TMP_InputField inputField;
+    
     public void Init()
     {
         GenerateTileButtons();
@@ -124,5 +126,17 @@ public class TilePaletteWindow : MonoBehaviour
         playButtonText.text = "Play";
     }
 
-  
+    public int GetCustomChickenCount()
+    {
+        // 1. 인풋필드의 문자열 값 가져오기
+        string inputText = inputField.text;
+
+        // 2. 정수로 안전하게 변환 (int.TryParse)
+        if (int.TryParse(inputText, out int numberValue))
+        {
+            return numberValue;
+        }
+
+        return 9999;
+    }
 }

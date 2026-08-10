@@ -102,7 +102,8 @@ public class GridMovement : MonoBehaviour
     {
         moveTween = transform.DOMove(destPos,
                 (isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks) * Time.fixedDeltaTime)
-            .SetEase(Ease.Linear);
+            .SetEase(Ease.Linear)
+            .SetUpdate(UpdateType.Fixed);
         coroutine = StartCoroutine(PerformMoveCoroutine(isPlayerSpeed));
     }
 
