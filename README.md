@@ -15,5 +15,5 @@
 
 ---
 세이브 파일은 
-C:\Users\(username)\AppData\LocalLow\DefaultCompany\Saca-Labyrinth 에서 조작할 수 있습니다. </br>
+C:\Users\\(username)\AppData\LocalLow\DefaultCompany\Saca-Labyrinth 에서 조작할 수 있습니다. </br>
 스테이지 추가하면서 인게임 버튼으로 넣을 예정
