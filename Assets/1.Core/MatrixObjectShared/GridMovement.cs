@@ -46,6 +46,7 @@ public class GridMovement : MonoBehaviour
     [Header("Debug Inspector")]
     [SerializeField] private bool trace = false; // 인스펙터에서 켜고 끌 수 있는 체크박스
 
+    private bool paused;
     void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -100,27 +101,34 @@ public class GridMovement : MonoBehaviour
     /// <param name="OnMoveCompleted"> 마감처리에 필요한 것 </param>
     public void PerformMove(Vector3 destPos, bool isPlayerSpeed = false)
     {
-        moveTween = transform.DOMove(destPos,
-                (isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks) * Time.fixedDeltaTime)
-            .SetEase(Ease.Linear)
-            .SetUpdate(UpdateType.Fixed);
-        coroutine = StartCoroutine(PerformMoveCoroutine(isPlayerSpeed));
+        // 틱 수 계산 (플레이어 틱 or 일반 오브젝트 틱)
+        int ticks = isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks;
+        float duration = ticks * Time.fixedDeltaTime;
+
+        // [중요] 비주얼 트윈은 Update 타임라인에서 부드럽게 움직이도록 SetUpdate(Fixed)를 제거합니다.
+        moveTween = transform.DOMove(destPos, duration)
+            .SetEase(Ease.Linear);
+
+        // 논리적 틱 카운팅 및 동기화는 코루틴이 담당합니다.
+        coroutine = StartCoroutine(PerformMoveCoroutine(ticks));
     }
 
-    IEnumerator PerformMoveCoroutine(bool isPlayerSpeed)
+    IEnumerator PerformMoveCoroutine(int totalTicks)
     {
-        for (int i = 0; i < (isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks); i++)
+        // 슈파플렉스 턴제 박자에 맞춰 exact tick 수만큼 정확히 FixedUpdate를 기다립니다.
+        for (int i = 0; i < totalTicks; i++)
         {
             yield return new WaitForFixedUpdate();
+            if (paused) i--; // Pause 시 틱 차감 유예
         }
-        
-        moveTween.Complete();
+    
+        // 틱 연산이 끝나는 정확한 순간 트윈을 완결짓고 논리 상태를 정리합니다.
+        moveTween?.Complete();
         CompleteMove();
         state = MoveState.Staying;
-                
+            
         AfterOnMoveCompleted?.Invoke();
     }
-    
     public void PerformMove_CustomCompleteAction(Vector3 destPos, bool isPlayerSpeed = false, Action OnMoveCompleted = null)
     {
         moveTween =transform.DOMove(destPos, isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physicsSO.moveDuration)
@@ -238,41 +246,82 @@ public class GridMovement : MonoBehaviour
     /// </summary>
     /// <param name="direction"></param>
     /// <param name="isPlayerSpeed"></param>
-    public void ExecuteRoll(Vector2Int direction, bool isPlayerSpeed = false, bool isPushed = false)
+    /// <summary>
+    /// 구르기 전용 통합 실행 함수 (이동 + 회전 트윈 동시 제어)
+    /// </summary>
+    public void ExecuteRollMove(Vector2Int direction, float speedMultiplier = 0.65f)
     {
-        //duration 동안 한바퀴 회전하는 코드. 왼쪽으로 구르면 반시계, 오른쪽은 시계 방향
-        float targetAngle = (direction == Vector2Int.left) ? 360f : -360f;
-        float duration = isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physicsSO.moveDuration;
-        
-        rollTween = transform.DOLocalRotate(new Vector3(0f, 0f, targetAngle), duration, RotateMode.FastBeyond360)
+        lastIntendedDirection = direction;
+        startPos = new Vector2Int(mo.posX, mo.posY);
+        destPos = startPos + direction;
+        Vector3 destWorldPos = GamePlayGridManager.Instance.GetCell(destPos).transform.position;
+    
+        state = MoveState.Rolling;
+    
+        startCell = GamePlayGridManager.Instance.GetCell(startPos);
+        destCell = GamePlayGridManager.Instance.GetCell(destPos);
+    
+        // 1. 셀 상태 및 위치 데이터 즉시 반영 (Attacking/Rolling 상태)
+        mo.GetCurrentCell().moveStateDirection = direction;
+        GamePlayGridManager.Instance.MoveMatrixObjectPosition(mo, direction);
+        GamePlayGridManager.Instance.SetCellState(startPos, MatrixCell.CellState.Moving);
+        GamePlayGridManager.Instance.SetCellState(destPos, MatrixCell.CellState.Attacking);
+
+        // 2. 구르기 전용 Ticks (플레이어 속도보다 speedMultiplier 배율만큼 빠르게)
+        int rollTicks = Mathf.Max(1, Mathf.RoundToInt(GamePlayGridManager.Instance.player.MoveTicks * speedMultiplier));
+        float rollDuration = rollTicks * Time.fixedDeltaTime;
+
+        // 3. 이동 트윈 & 회전 트윈 동시 실행
+        moveTween = transform.DOMove(destWorldPos, rollDuration)
             .SetEase(Ease.Linear)
+            .SetUpdate(UpdateType.Fixed);
+
+        float targetAngle = (direction == Vector2Int.left) ? 360f : -360f;
+        rollTween = transform.DOLocalRotate(new Vector3(0f, 0f, targetAngle), rollDuration, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .SetUpdate(UpdateType.Fixed)
             .OnComplete(() =>
             {
-                // 4. 회전이 끝나면 다음 구르기를 위해 로컬 회전값을 깔끔하게 0으로 리셋
                 transform.localRotation = Quaternion.identity;
                 rollTween = null;
             });
 
-        if (isPushed) return;
-        StartCoroutine(RollCoroutine());
+        // 4. 기존 Pause 검사 로직이 포함된 코루틴 실행
+        coroutine = StartCoroutine(RollWithPauseCoroutine(rollTicks, rollDuration));
     }
 
-    IEnumerator RollCoroutine()
+    private IEnumerator RollWithPauseCoroutine(int totalTicks, float totalDuration)
     {
-        yield return new WaitForSeconds(physicsSO.moveDuration / 3);
+        // A. 구르기 시작 후 약 1/3 지점까지 진행 대기 (틱 기준 또는 시간 기준)
+        float pauseWaitTime = totalDuration / 3f;
+        yield return new WaitForSeconds(pauseWaitTime);
 
-        moveTween.Pause();  // 둘은 DoTween의 트윈들임
-        rollTween.Pause();
-        
-        while (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).matrixObject !=
-               null)
+        // B. 바닥이 차있다면 트윈 일시정지 (Pause)
+        //    (플레이어가 비키거나 아래 칸이 비어있지 않은 동안 대기)
+        if (moveTween != null && moveTween.IsActive())
         {
-            
-            yield return null;
+            moveTween.Pause();
+            rollTween?.Pause();
+
+            // 바닥 셀의 matrixObject가 존재하면 비어질 때까지 대기
+            while (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).matrixObject != null)
+            {
+                yield return null;
+            }
+
+            // 바닥이 비었으므로 트윈 재개
+            moveTween.Play();
+            rollTween?.Play();
         }
-        
-        moveTween.Play();
-        rollTween.Play();
+
+        // C. 남은 이동 트윈이 완전히 완료될 때까지 대기
+        yield return moveTween.WaitForCompletion();
+
+        // D. 이동 마감 처리
+        CompleteMove();
+        state = MoveState.Staying;
+            
+        AfterOnMoveCompleted?.Invoke();
     }
 
     // FSM에서 "이동 끝났나?" 체크용 (다음 상태 전환 조건)
@@ -337,4 +386,45 @@ public class GridMovement : MonoBehaviour
         startCell.state = MatrixCell.CellState.Empty;
         destCell.state = MatrixCell.CellState.Filled;
     }
+    /// <summary>
+    /// 이동에 관여하지 않고 회전트윈만 담당하겠다는 뜻
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <param name="isPlayerSpeed"></param>
+    public void ExecuteRoll(Vector2Int direction, bool isPlayerSpeed = false, bool isPushed = false)
+    {
+        //duration 동안 한바퀴 회전하는 코드. 왼쪽으로 구르면 반시계, 오른쪽은 시계 방향
+        float targetAngle = (direction == Vector2Int.left) ? 360f : -360f;
+        float duration = isPlayerSpeed ? GamePlayGridManager.Instance.playerConfigSO.moveDuration : physicsSO.moveDuration;
+        
+        rollTween = transform.DOLocalRotate(new Vector3(0f, 0f, targetAngle), duration, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                // 4. 회전이 끝나면 다음 구르기를 위해 로컬 회전값을 깔끔하게 0으로 리셋
+                transform.localRotation = Quaternion.identity;
+                rollTween = null;
+            });
+
+        //if (isPushed) return;
+        //StartCoroutine(RollCoroutine());
+        
+    }
+    // IEnumerator RollCoroutine()
+    // {
+    //     yield return new WaitForSeconds(physicsSO.moveDuration / 3);
+    //
+    //     moveTween.Pause();  // 둘은 DoTween의 트윈들임
+    //     rollTween.Pause();
+    //     
+    //     while (GamePlayGridManager.Instance.GetCell(mo.GetPos() + Vector2Int.down).matrixObject !=
+    //            null)
+    //     {
+    //         
+    //         yield return null;
+    //     }
+    //     
+    //     moveTween.Play();
+    //     rollTween.Play();
+    // }
 }

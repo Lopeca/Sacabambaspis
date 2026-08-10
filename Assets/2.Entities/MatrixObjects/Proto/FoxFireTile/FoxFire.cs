@@ -35,22 +35,21 @@ public class FoxFire : MonoBehaviour
 
     private IEnumerator FoxFireRoutine()
     {
+        ps.Play();
+        collectible.isTrap = true;
+
         while (true)
         {
-            // 1. 4~5초 사이의 랜덤한 대기 시간 계산 후 대기
+            yield return new WaitForSeconds(activeDuration);
+            
+            collectible.isTrap = false;
+
             float randomCooldown = Random.Range(minWaitTime, maxWaitTime);
             yield return new WaitForSeconds(randomCooldown);
-
-            // 2. 파티클 재생 및 피격 가능 상태(ON) 전환
+            
             ps.Play();
             collectible.isTrap = true;
-
-
-            // 3. 1초 동안 유지
-            yield return new WaitForSeconds(activeDuration);
-
-            // 4. 피격 가능 상태(OFF) 전환
-            collectible.isTrap = false;
+            
         }
     }
 }

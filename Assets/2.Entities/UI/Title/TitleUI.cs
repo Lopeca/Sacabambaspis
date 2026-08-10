@@ -10,6 +10,8 @@ public class TitleUI : MonoBehaviour
     [SerializeField] TitleStartPanel startPanel;
     [SerializeField] GameSettingSO gameSetting;
     [SerializeField] SceneTransitionSO sceneTransition;
+    
+    [SerializeField] GameObject manualPanel;
     private void Awake()
     {
         Instance = this;
@@ -27,6 +29,7 @@ public class TitleUI : MonoBehaviour
     {
         SetAllPanelsActive(false);
         mainPanel.gameObject.SetActive(true);
+        manualPanel.SetActive(false);
     }
 
     public void ShowStartPanel()
@@ -49,5 +52,14 @@ public class TitleUI : MonoBehaviour
     public void OnClickQuitBtn()
     {
         Application.Quit();
+    }
+
+    public void OnClickManualBtn()
+    {
+        manualPanel.SetActive(true);
+    }
+    public void OnClickManualCloseBtn()
+    {
+        manualPanel.SetActive(false);
     }
 }

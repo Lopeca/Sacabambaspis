@@ -5,7 +5,6 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OriginalLevelSelectUIManager : MonoBehaviour
@@ -25,10 +24,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     private TMP_Text skipCountText;
     [SerializeField] private Button skipButton;
     [SerializeField] private Button startToPlayButton;
-
-    [Header("Scene Assets")] [SerializeField]
-    private SceneAsset titleScene;
-    [SerializeField] private SceneAsset gameScene;
+    
 
     // 비동기 작업 취소용 토큰 소스
     private CancellationTokenSource _selectCts;
@@ -132,12 +128,12 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     {
         gameSessionSO.selectedOriginalLevelData = levelData;
 
-        sceneTransitionSO.LoadSceneWithFade(gameScene.name);
+        sceneTransitionSO.LoadSceneWithFade("GameScene");
     }
 
     public void OnClickBackButton()
     {
-        sceneTransitionSO.LoadSceneWithFade(titleScene.name);
+        sceneTransitionSO.LoadSceneWithFade("TitleScene");
     }
 
     public void OnClickToPlayButton()

@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 public class TitleStartPanel : MonoBehaviour
 {
     [SerializeField] SceneTransitionSO _sceneTransitionSO;
-    [SerializeField] SceneAsset adventureScene;
     public void OnClickAdventureBtn()
     {
-        _sceneTransitionSO.LoadSceneWithFade(adventureScene.name);
+        _sceneTransitionSO.LoadSceneWithFade("AdventureScene");
     }
 
     public void OnClickCustomMapBtn()
     {
         
+    }
+
+    public void OnClickManualBtn()
+    {
+        TitleUI.Instance.OnClickManualBtn();
     }
 
     public void OnClickEditorBtn()

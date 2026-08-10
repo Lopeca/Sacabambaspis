@@ -21,7 +21,7 @@ public class TilePaletteWindow : MonoBehaviour
     public GameObject tileCellPrefab;
     public CheckBox autoCountChickenCheckBox;
     
-    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] public TMP_InputField inputField;
     
     public void Init()
     {

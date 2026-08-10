@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     
     private float spacePressedTime;
     private bool spaceMoveLock;
-    private float moveTicks;
-    public float MoveTicks => moveTicks;
+    private int moveTicks;
+    public int MoveTicks => moveTicks;
 
     [SerializeField]private PlayerState state;
     public PlayerState State => state;
@@ -64,12 +64,11 @@ public class PlayerController : MonoBehaviour
         spaceBuffer = false;
 
         movement.AfterOnMoveCompleted += PlayerUpdate;
-        
     }
 
     private void Start()
     {
-        moveTicks = movement.physicsSO.moveDuration / Time.fixedDeltaTime;
+        moveTicks = Mathf.RoundToInt(movement.physicsSO.moveDuration / Time.fixedDeltaTime);
     }
 
     public void PlayerUpdate()

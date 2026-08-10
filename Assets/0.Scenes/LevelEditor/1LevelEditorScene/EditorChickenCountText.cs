@@ -36,5 +36,6 @@ public class EditorChickenCountText : MonoBehaviour
    public void SetText(string text)
    {
       chickenCountText.text = text;
+      Debug.Log(text);
    }
 }

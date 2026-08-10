@@ -43,7 +43,7 @@ public class GameSceneUI : MonoBehaviour
     public void ShowLevelInfo(LevelSaveData instanceLoadedLevelData)
     {
         Debug.Log("레벨 인덱스 : " + gameSession.selectedOriginalLevelIndex);
-        levelNameText.text = gameSession.selectedOriginalLevelIndex.ToString();
+        levelNumText.text = gameSession.selectedOriginalLevelIndex.ToString();
         levelNameText.text = instanceLoadedLevelData.levelName;
     }
 }

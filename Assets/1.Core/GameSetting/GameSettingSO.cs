@@ -80,6 +80,8 @@ public class GameSettingSO : ScriptableObject
             settingData = new GameSettingData();
             SaveSettings();
         }
+        
+        ApplyAllVolumes();
     }
 
     public void SetAudioMixerVolume(string parameterName, float linearValue)

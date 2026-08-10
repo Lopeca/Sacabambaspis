@@ -9,7 +9,7 @@ public class LevelEditorCameraController : MonoBehaviour
 
     private const float baseSize = 6;
     private const float maxSize = 4;
-    private const float minSize = 8;
+    private const float minSize = 16;
 
     [Header("카메라 이동 제어 변수")]
     private bool isSpacePressed = false;

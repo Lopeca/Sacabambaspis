@@ -1,0 +1,3493 @@
+{
+    "levelName": "여우불 직화구이",
+    "autoCountChicken": true,
+    "requiredChickenCount": 50,
+    "tiles": [
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 40
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 41
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 41
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 41
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 41
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 41
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 41
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 41
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 41
+        },
+        {
+            "tileKey": "HornPipe_Right",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 41
+        },
+        {
+            "tileKey": "HornPipe_Left",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 41
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 41
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 41
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 41
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 41
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 42
+        },
+        {
+            "tileKey": "HornPipe_Bottom",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 42
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 42
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 42
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 42
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 42
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 42
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 42
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 42
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 42
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 42
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 42
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 42
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 42
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 42
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 43
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 43
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 43
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 43
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 43
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 43
+        },
+        {
+            "tileKey": "HornPipe_Bottom",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 43
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 43
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 44
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 44
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 44
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 44
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 44
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 44
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 44
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 44
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 45
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 45
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 45
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 45
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 45
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 45
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 46
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 46
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 46
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 46
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 46
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 46
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 46
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 47
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 47
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 47
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 47
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 47
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 47
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 47
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 48
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 48
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 48
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 48
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 48
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 48
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 48
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 48
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 49
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 49
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 49
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 49
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 49
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 49
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 49
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 50
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 50
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 50
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 50
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 50
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 50
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 50
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 50
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 51
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 51
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 51
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 51
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 51
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 51
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 52
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 52
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 52
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 52
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 52
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 52
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 52
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 52
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 52
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 52
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 53
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 53
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 53
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 53
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 53
+        },
+        {
+            "tileKey": "HornPipe_Bottom",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 53
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 53
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 53
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 54
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 54
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 54
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 54
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 54
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 54
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 54
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 54
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 54
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 54
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 54
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 55
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 55
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 55
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 55
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 55
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 55
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 55
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 55
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 55
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 55
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 56
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 56
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 56
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 56
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 56
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 56
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 56
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 56
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 56
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 57
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 57
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 57
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 57
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 57
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 57
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 57
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 57
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 57
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 57
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 58
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 58
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 58
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 58
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 58
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 58
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 58
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 58
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 58
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 58
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 58
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 59
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 59
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 59
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 59
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 59
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 59
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 59
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 59
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 59
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 59
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 59
+        },
+        {
+            "tileKey": "HornPipe_Bottom",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 59
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 59
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 59
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 60
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 60
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 60
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 60
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 60
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 60
+        },
+        {
+            "tileKey": "HornPipe_Right",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 60
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 60
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 60
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 60
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 60
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 60
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 60
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 61
+        },
+        {
+            "tileKey": "RedStone",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 61
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 61
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 61
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 61
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 61
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 61
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 61
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 61
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 61
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 61
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 62
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 62
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 62
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 62
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 62
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 62
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 62
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 63
+        },
+        {
+            "tileKey": "Exit",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 63
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 63
+        },
+        {
+            "tileKey": "HornPipe_Right",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 63
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 63
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 63
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 63
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 63
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 63
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 63
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 63
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 63
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 64
+        },
+        {
+            "tileKey": "StrongWall",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 64
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 64
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 64
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 64
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 64
+        },
+        {
+            "tileKey": "Player",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 64
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 64
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 64
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 65
+        },
+        {
+            "tileKey": "Chicken",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 65
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 65
+        },
+        {
+            "tileKey": "HornPipe_Horizontal",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 65
+        },
+        {
+            "tileKey": "HornPipe_Right",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 65
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 65
+        },
+        {
+            "tileKey": "Stone",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 65
+        },
+        {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 65
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 65
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 65
+        },
+        {
+            "tileKey": "FoxFire",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 65
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 65
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 42,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 43,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 44,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 45,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 46,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 47,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 48,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 49,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 50,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 51,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 52,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 53,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 54,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 55,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 56,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 57,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 59,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 60,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 61,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 62,
+            "posY": 66
+        },
+        {
+            "tileKey": "Boundary",
+            "initDirection": 0,
+            "posX": 63,
+            "posY": 66
+        }
+    ]
+}

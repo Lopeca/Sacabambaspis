@@ -115,7 +115,7 @@ public class LevelEditorManager : MonoBehaviour
         }
 
         TilePaletteWindow.Init();
-        chickenCountText.SetText(CustomLevelExplorer.Instance.LoadedLevel.requiredChickenCount.ToString());
+        TilePaletteWindow.inputField.text = CustomLevelExplorer.Instance.LoadedLevel.requiredChickenCount.ToString();
     }
 
   
