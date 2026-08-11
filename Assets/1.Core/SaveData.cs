@@ -31,7 +31,7 @@ public class UserSaveData
     // 예: 4라면, 0~4번 인덱스까지 총 5개 스테이지가 해금된 상태
     public int highestUnlockedIndex = 0;
 
-    public List<int> skippedList;
+    public List<int> skippedList = new List<int>();
 
     // 2. 기록: 각 레벨 ID별 최단 기록 (순서가 바뀌어도 유지됨)
     // Key: LevelID (AssetGUID 또는 레벨명), Value: ClearTime

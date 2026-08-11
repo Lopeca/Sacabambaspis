@@ -24,6 +24,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
     [Header("UI Elements")] [SerializeField]
     private TMP_Text skipCountText;
     [SerializeField] private Button skipButton;
+    [SerializeField] private AudioClip skipVoice;
     [SerializeField] private Button startToPlayButton;
     
 
@@ -153,6 +154,8 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         levelSelectPanel.CurrentSelectedButton.Refresh();
         levelSelectPanel.SelectNextLevelButton();
         levelSelectPanel.CurrentSelectedButton.Refresh();
+        SoundManager.Instance.PlayUISFX(skipVoice);
+        
         RefreshSkipCountText();
     }
 

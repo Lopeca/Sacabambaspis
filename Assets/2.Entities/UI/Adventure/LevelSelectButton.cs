@@ -16,7 +16,7 @@ public class LevelSelectButton : MonoBehaviour
     [SerializeField] TMP_Text levelName;
     [SerializeField] private Image background;
 
-    readonly Color selectedColor = Color.cyan;
+    readonly Color selectedColor = Color.gold;
 
     private bool isSelected;
 

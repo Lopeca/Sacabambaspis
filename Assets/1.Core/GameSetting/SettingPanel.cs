@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 public class SettingPanel : MonoBehaviour
 {
     [SerializeField] private GameSettingSO gameSetting;
+    [SerializeField] private UserRuntimeDataSO userRuntimeData;
+
+    [SerializeField] private GameObject dataResetNotice;
 
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider bgmVolumeSlider;
@@ -21,6 +25,7 @@ public class SettingPanel : MonoBehaviour
     void OnEnable()
     {
         LoadSliderValues();
+        dataResetNotice.SetActive(false);
     }
 
     private void LoadSliderValues()
@@ -67,5 +72,11 @@ public class SettingPanel : MonoBehaviour
     private void OnDisable()
     {
         gameSetting.SaveSettings();
+    }
+
+    public void OnClickResetSaveDataButton()
+    {
+        userRuntimeData.ClearAllData();
+        dataResetNotice.SetActive(true);
     }
 }

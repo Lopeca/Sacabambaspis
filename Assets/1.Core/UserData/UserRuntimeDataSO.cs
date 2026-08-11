@@ -117,4 +117,16 @@ public class UserRuntimeDataSO : ScriptableObject
         
         Save();
     }
+    public void ClearAllData()
+    {
+        // 1. 메모리 데이터 초기화
+        data = new UserSaveData();
+        recordDictionary.Clear();
+
+        // 2. 저장된 파일 삭제
+        if (File.Exists(SavePath))
+        {
+            File.Delete(SavePath);
+        }
+    }
 }
