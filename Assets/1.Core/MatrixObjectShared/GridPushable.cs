@@ -19,7 +19,7 @@ public class GridPushable : MonoBehaviour, IGridInteractable, IGridComponent
 
     private Vector2Int direction;
     
-    [SerializeField] private bool debug = false;
+    //[SerializeField] private bool debug = false;
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();

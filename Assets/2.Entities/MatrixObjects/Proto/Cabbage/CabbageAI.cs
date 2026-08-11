@@ -120,7 +120,7 @@ public class CabbageAI : MonoBehaviour, IGridComponent, IGridInteractable, IGrid
         {
             gridMovement.ExecuteMove(directionOrder[targetDirIndex], GridMovement.MoveState.Moving, MatrixCell.CellState.Attacking);
 
-            yield return gridMovement.MoveTween.WaitForCompletion();
+            yield return new WaitUntil(() => gridMovement.IsMoveFinished());
 
             // ★ [핵심 2] 코루틴 내부에서 DecideAndExecuteNextAction()을 즉시 재귀 호출하던 로직 제거!
             // isBusy를 해제하여 다음 프레임의 GridUpdate() 턴까지 행동을 유예함.
