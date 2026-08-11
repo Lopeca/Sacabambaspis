@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TitleUI : MonoBehaviour
@@ -20,10 +21,15 @@ public class TitleUI : MonoBehaviour
         gameSetting.EnsureUIWarmup();
     }
 
-    private void Start()
+    public void Start()
     {
-        ShowMainPanel();
         sceneTransition.EnsureWarmup();
+        sceneTransition.EnsureDark();
+        //yield return null;
+        //yield return new WaitForSeconds(2);
+        
+        ShowMainPanel();
+        
         StartCoroutine(sceneTransition.FadeIn());
     }
 

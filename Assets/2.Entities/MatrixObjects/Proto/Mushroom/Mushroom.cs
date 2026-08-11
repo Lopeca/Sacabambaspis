@@ -12,7 +12,7 @@ public class Mushroom : MonoBehaviour
     public AudioClip installSound;
     ExplodeOnDeath explodeComponent;
 
-    private void Awake()
+    public void Init()
     {
         mo = GetComponent<MatrixObject>();
     }

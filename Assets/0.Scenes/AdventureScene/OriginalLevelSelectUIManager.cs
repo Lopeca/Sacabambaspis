@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using TMPro;
@@ -28,6 +29,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
 
     // 비동기 작업 취소용 토큰 소스
     private CancellationTokenSource _selectCts;
+    private bool hasInitialized;
 
     private void OnEnable()
     {
@@ -35,6 +37,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         LevelSelectButton.OnClickToPlay += ExecuteLevelButton;
 
         gameSessionSO.isExploringOriginalLevel = true;
+        hasInitialized = false;
     }
 
     private void OnDisable()
@@ -43,10 +46,12 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
         LevelSelectButton.OnClickToPlay -= ExecuteLevelButton;
     }
 
-    private void Start()
+    IEnumerator Start()
     {
         levelSelectPanel.Init(levelDB);
         sceneTransitionSO.EnsureWarmup();
+        
+        yield return new WaitUntil(() => hasInitialized);
         StartCoroutine(sceneTransitionSO.FadeIn());
         RefreshSkipCountText();
     }
@@ -115,6 +120,7 @@ public class OriginalLevelSelectUIManager : MonoBehaviour
                     levelSelectPanel.CurrentSelectedButton.Index);
                 // TODO: 기록 패널에 기록 보여주기
                 levelRecordPanel.ShowRecords(gameSessionSO.selectedOriginalLevelData);
+                hasInitialized = true;
             }
         }
         catch (OperationCanceledException)

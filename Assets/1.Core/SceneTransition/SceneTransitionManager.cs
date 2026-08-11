@@ -37,6 +37,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     public IEnumerator FadeIn()
     {
+        yield return new WaitForEndOfFrame();
+        // 2. 가장 보편적인 방법: 연쇄적인 프레임 스파이크가 지날 때까지 3~5프레임 무조건 대기
+        for (int i = 0; i < 3; i++)
+        {
+            yield return null;
+        }
+        
         blackScreen.color = blackScreen.color.WithAlpha(1);
         blackScreen.gameObject.SetActive(true);
         

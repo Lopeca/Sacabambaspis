@@ -884,6 +884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 556262149}
   - component: {fileID: 556262150}
+  - component: {fileID: 556262151}
   m_Layer: 5
   m_Name: TitleUI
   m_TagString: Untagged
@@ -930,6 +931,19 @@ MonoBehaviour:
   gameSetting: {fileID: 11400000, guid: dcbbd9b5949c3284a84a9ab4c064fbb2, type: 2}
   sceneTransition: {fileID: 11400000, guid: e75f3183a0649e644b6e52b981c9db2e, type: 2}
   manualPanel: {fileID: 767483920}
+--- !u!114 &556262151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556262148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9bce265930047f40b4faaa22e83aa1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeScaleControl
+  timeScale: 0.3
 --- !u!1 &735187376
 GameObject:
   m_ObjectHideFlags: 0

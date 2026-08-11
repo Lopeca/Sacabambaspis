@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7904641682290780094}
   - component: {fileID: 3876708212703487146}
   - component: {fileID: 5830275527531167922}
+  - component: {fileID: 498065359919184938}
   m_Layer: 0
   m_Name: Mushroom_Collectible
   m_TagString: Untagged
@@ -125,6 +126,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7046408151685765457}
+  - {fileID: 6670260830492239912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4222008358316843005
@@ -206,6 +208,7 @@ MonoBehaviour:
   isVulnerableToFalling: 0
   posX: 0
   posY: 0
+  traceDestruction: 0
 --- !u!114 &3876708212703487146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
   collectibleEffect: {fileID: 11400000, guid: 28a36e72a7b7eac4baabeab514ae2158, type: 2}
   collectSound: {fileID: 8300000, guid: 86797faccbb26694097c2c98436d8c8a, type: 3}
+  trapKillSound: {fileID: 0}
+  collected: 0
   isTrap: 0
 --- !u!114 &5830275527531167922
 MonoBehaviour:
@@ -235,3 +240,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileMaskAnimator
   speedConfigSO: {fileID: 11400000, guid: 41373de0f65afb042b0c30bbfa3eb31a, type: 2}
   mask: {fileID: 3531960907381202838}
+--- !u!114 &498065359919184938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9128175508974058391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8306ab7dad0d20442a8e381cd0682158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomItem
+  mushroom: {fileID: 4217043932567556914}
+  collectible: {fileID: 3876708212703487146}
+--- !u!1001 &7386813787380228045
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4184612484318017509}
+    m_Modifications:
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128175508974058391, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+      propertyPath: m_Name
+      value: Mushroom_Fired
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+--- !u!114 &4217043932567556914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6631215227094846719, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+  m_PrefabInstance: {fileID: 7386813787380228045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c7ad947c5ff1640a18ee9d99436550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mushroom
+--- !u!4 &6670260830492239912 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4184612484318017509, guid: e746730b30f40d343b768f41c3e22c82, type: 3}
+  m_PrefabInstance: {fileID: 7386813787380228045}
+  m_PrefabAsset: {fileID: 0}

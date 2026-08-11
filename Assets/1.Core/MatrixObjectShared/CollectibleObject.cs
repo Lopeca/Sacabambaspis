@@ -6,12 +6,15 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
     private MatrixObject mo;
     TileMaskAnimator tileMaskAnimator;
     public bool Continuous { get; set; }
-    public CollectibleEffect collectibleEffect;
+    public CollectibleEffect collectibleEffect; // 이건 레거시. 액션쪽이 커스텀 기능을 만들기 좋아보임. 일단은 둘 다 사용
+    
     public AudioClip collectSound;
     public AudioClip trapKillSound;
 
     public bool collected;
     public bool isTrap;
+    
+    public event Action OnCollected;
     private void Awake()
     {
         mo = GetComponent<MatrixObject>();
@@ -57,7 +60,10 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
 
         Vector2Int pos = mo.GetPos();
         if (direction != Vector2.zero) GamePlayGridManager.Instance.ClearCell(pos);
-        collectibleEffect?.ApplyEffect();
+        
+        collectibleEffect?.ApplyEffect();       // 필드 주석 참고. 액션 사용을 지향해야함
+        OnCollected?.Invoke();
+        
         tileMaskAnimator.PlayMaskAnimation(direction, ( )=>
         {
             if(direction == Vector2.zero) GamePlayGridManager.Instance.ClearCell(pos);

@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     public GridMovement Movement => movement;
 
     [SerializeField] private GameObject mushroomPrefab; 
+    
+    Stack<Mushroom> mushrooms;
     private int mushroomCount;
     public int MushroomCount => mushroomCount;
 
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         escBuffer = false;
         spaceBuffer = false;
 
+        mushrooms = new Stack<Mushroom>();
         movement.AfterOnMoveCompleted += PlayerUpdate;
     }
 
@@ -345,16 +348,27 @@ public class PlayerController : MonoBehaviour
         mushroomCount++;
     }
 
-    public void UseMushroom()
+    private void UseMushroom()
     {
         mushroomCount--;
         
-        Mushroom mushroom = Instantiate(mushroomPrefab.GetComponent<Mushroom>(), mo.GetCurrentCell().transform, true);
+        Mushroom mushroom = mushrooms.Pop();
+        
+        Debug.Log(mushroom + "||" + mushroom.GetEntityId());
         mushroom.transform.position = transform.position;
         
         mushroom.MO.posX = mo.posX;
         mushroom.MO.posY = mo.posY;
         
+        mushroom.gameObject.SetActive(true);
+        mushroom.gameObject.transform.SetParent(GamePlayGridManager.Instance.GetCell(mushroom.MO.GetPos()).transform);
+        
         MushroomUseAction?.Invoke();
+    }
+
+    public void GetMushroom(Mushroom mushroom)
+    {
+        mushroom.gameObject.transform.SetParent(transform);
+        mushrooms.Push(mushroom);
     }
 }
