@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private Coroutine controlCoroutine;
     public Action OnDeath;
+    public Action MushroomUseAction;
     private bool isAlive;
     
     [SerializeField] AudioClip deathSound;
@@ -353,5 +354,7 @@ public class PlayerController : MonoBehaviour
         
         mushroom.MO.posX = mo.posX;
         mushroom.MO.posY = mo.posY;
+        
+        MushroomUseAction?.Invoke();
     }
 }

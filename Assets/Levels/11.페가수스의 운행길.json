@@ -1,5 +1,5 @@
 {
-    "levelName": "New Level",
+    "levelName": "페가수스의 운행길",
     "autoCountChicken": true,
     "requiredChickenCount": 41,
     "tiles": [
@@ -1237,6 +1237,12 @@
             "tileKey": "Stone",
             "initDirection": 0,
             "posX": 63,
+            "posY": 66
+        },
+        {
+            "tileKey": "Player",
+            "initDirection": 0,
+            "posX": 64,
             "posY": 66
         },
         {
@@ -2671,12 +2677,6 @@
             "tileKey": "HornPipe_Left",
             "initDirection": 0,
             "posX": 54,
-            "posY": 77
-        },
-        {
-            "tileKey": "Player",
-            "initDirection": 0,
-            "posX": 55,
             "posY": 77
         },
         {

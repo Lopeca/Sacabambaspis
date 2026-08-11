@@ -39,10 +39,9 @@ public class GamePlayGridManager : MonoBehaviour
     [Header("스코어보드")]
     [SerializeField] int requiredChickenCount;
     public int RequiredChickenCount => requiredChickenCount;
-    
-    // 플레이 타임
-    // 레드 디스크 수
 
+
+    public event Action OnPlayerUsedMushroom;
     public event Action OnGameOver;
     private void Awake()
     {
@@ -307,7 +306,11 @@ public class GamePlayGridManager : MonoBehaviour
     
     private void OnDestroy()
     {
-        if(player != null) player.OnDeath -= HandlePlayerDeath;
+        if (player != null)
+        {
+            player.OnDeath -= HandlePlayerDeath;
+            player.MushroomUseAction -= ListenPlayerUseMushroom;
+        }
         ExitObject.OnTryExit -= ExitEventListener;
 
         foreach (GameObject obj in pendingObjects)
@@ -321,5 +324,17 @@ public class GamePlayGridManager : MonoBehaviour
     {
         requiredChickenCount -= count;
         if (requiredChickenCount < 0) requiredChickenCount = 0;
+    }
+
+    public void StartPlaying()
+    {
+        isPlaying = true;
+        player.MushroomUseAction += ListenPlayerUseMushroom;
+    }
+
+    private void ListenPlayerUseMushroom()
+    {
+        // 플레이어 단일 개체 구독을 위해 다중 액션 보고 시스템으로 처리함
+        OnPlayerUsedMushroom?.Invoke();
     }
 }

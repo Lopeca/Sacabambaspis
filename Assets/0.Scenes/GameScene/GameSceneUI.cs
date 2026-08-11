@@ -42,7 +42,7 @@ public class GameSceneUI : MonoBehaviour
 
     public void ShowLevelInfo(LevelSaveData instanceLoadedLevelData)
     {
-        levelNumText.text = gameSession.selectedOriginalLevelIndex.ToString();
+        levelNumText.text = gameSession.selectedOriginalLevelIndex.ToString("D3");
         if(gameSession.isExploringOriginalLevel) levelNameText.text = gameSession.selectedOriginalLevelData.levelName;
         else levelNameText.text = instanceLoadedLevelData.levelName;
     }

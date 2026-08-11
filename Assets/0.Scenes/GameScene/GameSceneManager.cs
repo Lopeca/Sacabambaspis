@@ -45,6 +45,7 @@ public class GameSceneManager : MonoBehaviour
     {
         chickenCollectEffect.OnCollected += ShowChickenCount;
         mushroomCollectEffect.OnCollected += ShowMushroomCount;
+        GamePlayGridManager.Instance.OnPlayerUsedMushroom += ShowMushroomCount;
         GamePlayGridManager.Instance.OnGameOver += HandleResult;
     }
 
@@ -52,6 +53,7 @@ public class GameSceneManager : MonoBehaviour
     {
         chickenCollectEffect.OnCollected -= ShowChickenCount;
         mushroomCollectEffect.OnCollected -= ShowMushroomCount;
+        GamePlayGridManager.Instance.OnPlayerUsedMushroom -= ShowMushroomCount;
         GamePlayGridManager.Instance.OnGameOver -= HandleResult;
         
 
@@ -130,7 +132,7 @@ public class GameSceneManager : MonoBehaviour
         
         SoundManager.Instance.PlayGlobalGameSFX(helloSound);
         isPlaying = true;
-        GamePlayGridManager.Instance.isPlaying = true;
+        GamePlayGridManager.Instance.StartPlaying();
         
         
     }
