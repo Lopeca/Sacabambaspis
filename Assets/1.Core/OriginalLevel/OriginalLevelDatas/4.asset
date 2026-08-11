@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46d12bc60d69a44be21894ca5a2e13, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: Assembly-CSharp::OriginalLevelData
-  levelName: "\uC591\uBC30\uCD94 \uD558\uB098\uC5D4 9\uAC1C\uC758"
+  levelName: "\uC591\uBC30\uCD94 \uD558\uB098\uC5D4 9\uAC1C\uC758.."
   levelAddress:
     m_AssetGUID: 681b94fb0885ba441ad522705e86b4d7
     m_SubObjectName: 

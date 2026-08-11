@@ -31,6 +31,9 @@ public class StoneAI : MonoBehaviour, IGridComponent
 
     private void ObserveSurroundingAreaAndAct()
     {
+        // 중복 방지: Staying 상태가 아니면 실행하지 않음
+        if (gridMovement.State != GridMovement.MoveState.Staying) return;
+        
         if (gravity.CanProcess())  
             gravity.Process();  
         else if (rollable != null && rollable.CanRoll())

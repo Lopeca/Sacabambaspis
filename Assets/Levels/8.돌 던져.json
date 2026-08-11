@@ -718,6 +718,12 @@
             "posY": 57
         },
         {
+            "tileKey": "BaseTile",
+            "initDirection": 0,
+            "posX": 64,
+            "posY": 57
+        },
+        {
             "tileKey": "StrongWall",
             "initDirection": 0,
             "posX": 65,
@@ -1384,6 +1390,12 @@
             "posY": 64
         },
         {
+            "tileKey": "Player",
+            "initDirection": 0,
+            "posX": 58,
+            "posY": 64
+        },
+        {
             "tileKey": "StrongWall",
             "initDirection": 0,
             "posX": 65,
@@ -1459,12 +1471,6 @@
             "tileKey": "StrongWall",
             "initDirection": 0,
             "posX": 75,
-            "posY": 65
-        },
-        {
-            "tileKey": "Player",
-            "initDirection": 0,
-            "posX": 76,
             "posY": 65
         },
         {

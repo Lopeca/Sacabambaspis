@@ -76,7 +76,6 @@ public class GameSettingSO : ScriptableObject
         }
         else
         {
-            Debug.Log("여기");
             // 파일이 없으면 기본값으로 저장 파일 생성
             settingData = new GameSettingData();
             SaveSettings();

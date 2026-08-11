@@ -44,7 +44,6 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
 
     public void Collect(Vector2Int direction)
     {
-        Debug.Log("Collect called");
         collected = true;
         SoundManager.Instance.PlayGameSFX(collectSound, transform.position);
         

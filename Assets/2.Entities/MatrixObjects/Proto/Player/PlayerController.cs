@@ -75,11 +75,18 @@ public class PlayerController : MonoBehaviour
     {
         if (spaceBuffer && state == PlayerState.Uncontrolled)
         {
-            spacePressedTime = Time.time;
+            spacePressedTime = Time.time; //
         }
+
+        // [핵심] 이동이 완료된 상태(Staying)라면 즉시 제어 권한을 복구합니다.
+        if (movement.State == GridMovement.MoveState.Staying)
+        {
+            state = PlayerState.Controlled;
+        }
+
         if (isAlive && state == PlayerState.Controlled)
         {
-            HandleInput();
+            HandleInput(); //[cite: 6]
         }
     }
 
@@ -223,7 +230,6 @@ public class PlayerController : MonoBehaviour
             if (targetCell.matrixObject.CollectibleObject != null &&
                 targetCell.matrixObject.CollectibleObject.collected == false)
             {
-                Debug.Log("Collectable");
                 return true;
             }
         }

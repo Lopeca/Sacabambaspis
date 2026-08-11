@@ -40,10 +40,8 @@ public class TileMaskAnimator : MonoBehaviour
         if (mask == null) return;
         if (speedConfigSO == null)
         {
-            Debug.LogWarning($"{gameObject.name}의 speedConfigSO가 지정되지 않았습니다.");
             return;
         }
-        Debug.Log("MaskAni");
         // 이전 동작 중인 트윈과 코루틴 안전하게 중단
         StopActiveMaskRoutine();
         int targetTicks = Mathf.Max(1, Mathf.RoundToInt(speedConfigSO.moveDuration / Time.fixedDeltaTime));
@@ -76,8 +74,7 @@ public class TileMaskAnimator : MonoBehaviour
         // 2. 시각 연출: DOTween으로 Vector3.zero까지 스케일 축소 트윈 실행
         float duration = targetTicks * Time.fixedDeltaTime;
         tileTween = transform.DOScale(Vector3.zero, duration)
-            .SetEase(Ease.Linear)
-            .SetUpdate(UpdateType.Fixed);
+            .SetEase(Ease.Linear).SetUpdate(UpdateType.Fixed);
    
 
         // 3. 논리 대기: 정확히 계산된 targetTicks 수만큼 FixedUpdate 대기

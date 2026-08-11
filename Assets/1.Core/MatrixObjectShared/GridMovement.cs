@@ -65,6 +65,18 @@ public class GridMovement : MonoBehaviour
     
     public void ExecuteMove(Vector2Int direction, MoveState targetState, MatrixCell.CellState destState, bool isPlayerSpeed = false)
     {
+        
+        // 기존에 도르고 있던 코루틴이 있다면 깔끔하게 정돈 후 새로 시작[cite: 1]
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        if (moveTween != null && moveTween.IsActive())
+        {
+            moveTween.Kill();
+        }
+        
         lastIntendedDirection = direction;
         startPos = new Vector2Int(mo.posX, mo.posY);
         destPos = new Vector2Int(mo.posX + direction.x, mo.posY + direction.y);
@@ -76,9 +88,9 @@ public class GridMovement : MonoBehaviour
         destCell = GamePlayGridManager.Instance.GetCell(destPos);
         if (destCell.matrixObject != null)
         {
-            Debug.LogError($"ID : {mo.id} - movent로부터 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.\n" +
-                           $"destCell pos : " + destCell.GetPosition() + "|| destCell Object : " + destCell.matrixObject +"\n" +
-                           "frame : " + Time.frameCount);
+            // Debug.LogError($"ID : {mo.id} - movent로부터 로직 오류 : 오브젝트가 이미 있는 칸으로의 이동이 감지됨. 이동 가능 여부 검사 로직 확인 필요함.\n" +
+            //                $"destCell pos : " + destCell.GetPosition() + "|| destCell Object : " + destCell.matrixObject +"\n" +
+            //                "frame : " + Time.frameCount);
             Debug.Break();
             return;
         }
@@ -105,11 +117,14 @@ public class GridMovement : MonoBehaviour
         int ticks = isPlayerSpeed ? GamePlayGridManager.Instance.player.MoveTicks : targetTicks;
         float duration = ticks * Time.fixedDeltaTime;
 
-        // [중요] 비주얼 트윈은 Update 타임라인에서 부드럽게 움직이도록 SetUpdate(Fixed)를 제거합니다.
+        // 기존 트윈이 겹치지 않도록 Kill 처리
+        moveTween?.Kill();
+        
         moveTween = transform.DOMove(destPos, duration)
-            .SetEase(Ease.Linear);
-
-        // 논리적 틱 카운팅 및 동기화는 코루틴이 담당합니다.
+            .SetEase(Ease.Linear).SetUpdate(UpdateType.Fixed);
+        
+        // 2. [핵심] 첫 한 칸 출발 시 1프레임 연산 지연을 없애기 위해 즉시 0초 시점으로 평가
+        moveTween.Goto(0f, true);
         coroutine = StartCoroutine(PerformMoveCoroutine(ticks));
     }
 

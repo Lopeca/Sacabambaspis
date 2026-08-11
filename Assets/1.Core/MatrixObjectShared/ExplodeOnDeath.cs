@@ -28,7 +28,6 @@ public class ExplodeOnDeath : MonoBehaviour
     {
         if (GamePlayGridManager.Instance == null)
         {
-            Debug.LogError("ExplodeOnDeath: GamePlayGridManager.Instance == null");
             return; // 매니저가 없으면 아래 루프에서 에러가 나므로 리턴 처리
         }
 

@@ -25,6 +25,7 @@ public class GridGravity : MonoBehaviour, IGridComponent
         explodeOnDeath = GetComponent<ExplodeOnDeath>();
         isFalling = false;
     }
+    
 
     public bool CanProcess()
     {

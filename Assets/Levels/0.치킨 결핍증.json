@@ -1,7 +1,7 @@
 {
     "levelName": "치킨 결핍증",
-    "autoCountChicken": false,
-    "requiredChickenCount": -1,
+    "autoCountChicken": true,
+    "requiredChickenCount": 1,
     "tiles": [
         {
             "tileKey": "Boundary",
@@ -542,36 +542,6 @@
             "initDirection": 0,
             "posX": 69,
             "posY": 67
-        },
-        {
-            "tileKey": "Boundary",
-            "initDirection": 0,
-            "posX": 68,
-            "posY": 68
-        },
-        {
-            "tileKey": "Boundary",
-            "initDirection": 0,
-            "posX": 68,
-            "posY": 69
-        },
-        {
-            "tileKey": "Boundary",
-            "initDirection": 0,
-            "posX": 68,
-            "posY": 70
-        },
-        {
-            "tileKey": "Boundary",
-            "initDirection": 0,
-            "posX": 69,
-            "posY": 70
-        },
-        {
-            "tileKey": "Boundary",
-            "initDirection": 0,
-            "posX": 73,
-            "posY": 70
         }
     ]
 }

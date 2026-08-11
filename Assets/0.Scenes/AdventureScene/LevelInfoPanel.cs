@@ -10,7 +10,7 @@ public class LevelInfoPanel : MonoBehaviour
 
     public void ShowLevelInfo(LevelSaveData currentLoadedLevelData, int index)
     {
-        Debug.Log("ShowLevelInfo : " + index);
+        //Debug.Log("ShowLevelInfo : " + index);
         levelNameText.text = currentLoadedLevelData.levelName;
         
         LevelState state = userSaveData.Data.GetLevelState(index);
