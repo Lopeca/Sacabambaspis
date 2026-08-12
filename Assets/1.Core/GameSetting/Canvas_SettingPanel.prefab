@@ -963,6 +963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingPanel
   gameSetting: {fileID: 11400000, guid: dcbbd9b5949c3284a84a9ab4c064fbb2, type: 2}
   userRuntimeData: {fileID: 11400000, guid: dfa1ca057d7eabb419d98993ebeefa28, type: 2}
+  sceneTransition: {fileID: 11400000, guid: e75f3183a0649e644b6e52b981c9db2e, type: 2}
   dataResetNotice: {fileID: 5153173358099044559}
   masterVolumeSlider: {fileID: 2119563040774453454}
   bgmVolumeSlider: {fileID: 1198124985895360541}

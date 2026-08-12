@@ -2,12 +2,15 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingPanel : MonoBehaviour
 {
     [SerializeField] private GameSettingSO gameSetting;
     [SerializeField] private UserRuntimeDataSO userRuntimeData;
+    [SerializeField] private SceneTransitionSO sceneTransition;
 
     [SerializeField] private GameObject dataResetNotice;
 
@@ -77,6 +80,17 @@ public class SettingPanel : MonoBehaviour
     public void OnClickResetSaveDataButton()
     {
         userRuntimeData.ClearAllData();
+
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "AdventureScene")
+        {
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.enabled = false;
+            }
+            sceneTransition.LoadSceneWithFade(sceneName);
+        }
         dataResetNotice.SetActive(true);
     }
 }

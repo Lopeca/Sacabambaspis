@@ -365,7 +365,7 @@ public class LevelEditorManager : MonoBehaviour
 
         GamePlayGridManager.Instance.isPlaying = false;
         GamePlayGridManager.Instance.ClearGrid();
-        ExitObject.OnTryExit -= TryClearGame;
+        
         
         OnPlayModeStopped?.Invoke();
         GamePlayGridManager.Instance.OnGameOver -= StopPlaying;
@@ -386,6 +386,6 @@ public class LevelEditorManager : MonoBehaviour
     private void OnDestroy()
     {
         GamePlayGridManager.Instance.OnGameOver -= StopPlaying;
-
+        ExitObject.OnTryExit -= TryClearGame;
     }
 }

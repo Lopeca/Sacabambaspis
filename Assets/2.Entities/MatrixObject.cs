@@ -44,6 +44,7 @@ public class MatrixObject : MonoBehaviour
     [Header("Debug Inspector")]
     [SerializeField] private bool traceDestruction = false; // 인스펙터에서 켜고 끌 수 있는 체크박스
 
+    public bool isLive;    
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -58,6 +59,8 @@ public class MatrixObject : MonoBehaviour
         GridInteractable = GetComponent<IGridInteractable>();
         GridCreature = GetComponent<IGridCreature>();
         ExplodeOnDeath = GetComponent<ExplodeOnDeath>();
+
+        isLive = true;
     }
 
     public Vector2Int GetPos()
@@ -70,6 +73,7 @@ public class MatrixObject : MonoBehaviour
     }
     public void GridUpdate()
     {
+        if (!isLive) return;
         foreach (var gridComponent in gridComponents)
         {
             gridComponent.GridUpdate();

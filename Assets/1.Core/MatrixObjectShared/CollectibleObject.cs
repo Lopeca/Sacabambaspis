@@ -48,6 +48,7 @@ public class CollectibleObject : MonoBehaviour, IGridInteractable
     public void Collect(Vector2Int direction)
     {
         collected = true;
+        mo.isLive = false;
         SoundManager.Instance.PlayGameSFX(collectSound, transform.position);
         
         if (isTrap)
