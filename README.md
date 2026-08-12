@@ -1,6 +1,7 @@
 # 🎮 Saca-Labyrinth(부제 : 사카 게임)
 
 치킨 먹는 생선이 나오는 린의 꿈 속입니다
+치킨을 배부르게 먹고 쿠리미에게 돌아가면 클리어
 
 ---
 
@@ -14,6 +15,3 @@
 | **`ESC`** | 자폭 |
 
 ---
-세이브 파일은 
-C:\Users\\(username)\AppData\LocalLow\DefaultCompany\Saca-Labyrinth 에서 조작할 수 있습니다. </br>
-스테이지 추가하면서 인게임 버튼으로 넣을 예정
